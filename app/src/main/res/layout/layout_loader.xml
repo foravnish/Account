@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:gravity="center"
+        android:visibility="visible">
+
+<!--        <com.wang.avi.AVLoadingIndicatorView-->
+<!--            android:id="@+id/loading_indicator"-->
+<!--            style="@style/AVLoadingIndicatorView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"-->
+<!--            app:indicatorColor="@color/colorAccent"-->
+<!--            app:indicatorName="LineSpinFadeLoaderIndicator"-->
+<!--            tools:visibility="visible" />-->
+
+        <com.agrawalsuneet.loaderspack.loaders.ClockLoader
+            android:id="@+id/loading_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:clock_animSpeedMultiplier="0.5"
+            app:clock_bigCircleColor="@color/colorPrimary"
+            app:clock_bigCircleRadius="20dp"
+            app:clock_hourHandColor="@color/colorAccent"
+            app:clock_hourHandLength="13dp"
+            app:clock_innerCircleColor="@color/colorPrimaryDark"
+            app:clock_innerCircleRadius="2dp"
+            app:clock_minuteHandColor="@color/colorAccent"
+            app:clock_minuteHandLength="20dp"
+            app:clock_outerCircleBorderColor="@color/colorAccent"
+            app:clock_outerCircleBorderWidth="2dp" />
+
+    </LinearLayout>
+
+</layout>

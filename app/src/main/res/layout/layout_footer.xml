@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/bottomStrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/rcSearchProduct"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="@color/app_black"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:layout_weight="1"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:textStyle="bold"
+            android:textColor="@color/app_black"
+            android:layout_weight="3"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/txtDrTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/red_color"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:id="@+id/txtCrTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="0"
+            android:textStyle="bold"
+            android:textColor="@color/green_color"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/txtBalTotal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/app_black"
+            android:layout_height="wrap_content"
+            tools:text="0"
+            android:textStyle="bold"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

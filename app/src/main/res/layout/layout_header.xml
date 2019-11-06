@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/topStrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="@color/app_black"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Narration"
+            android:textStyle="bold"
+            android:textColor="@color/app_black"
+            android:layout_weight="3"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Debit(₹)"
+            android:textColor="@color/red_color"
+            android:textStyle="bold"
+            android:layout_marginLeft="7dp"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Credit(₹)"
+            android:textColor="@color/green_color"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Balance"
+            android:textColor="@color/app_black"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_list"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/topStrip"
+        android:background="@color/hint_color"/>
+</LinearLayout>

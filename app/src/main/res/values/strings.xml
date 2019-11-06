@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">Account</string>
+
+    <string name="login_success">login success</string>
+    <string name="login">LOGIN</string>
+    <string name="change_passowrd">Change Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="Username">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="com_name">Company Name</string>
+    <string name="email_id">Email</string>
+    <string name="gst">GST No</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="Password">Password</string>
+    <string name="forgot_your_password">Forgot your password ?</string>
+    <string name="go">GO</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="next">Submit</string>
+    <string name="register">REGISTER</string>
+
+    <string name="err_check_interner">There is no active internet connection</string>
+    <string name="err_user_name">Mobile No is blank</string>
+    <string name="err_password">Password is blank</string>
+
+    <string name="err_from_date">Select from Date</string>
+    <string name="err_end_date">Select end Date</string>
+
+    <!--    Registration Validation-->
+    <string name="err_name">Name is blank</string>
+    <string name="err_re_password">Repeat password is blank</string>
+    <string name="err_same_password">Password did not match</string>
+    <string name="err_com_name">Company name is blank</string>
+    <string name="err_email">Email is blank</string>
+    <string name="err_gst">GST is blank</string>
+    <string name="err_address">Address is blank</string>
+    <string name="err_city">City is blank</string>
+    <string name="home_tool">Home</string>
+    <string name="com_list">Company Listing</string>
+    <string name="ledger_list">Ledger Listing</string>
+    <string name="title_home">Home</string>
+    <string name="title_ledger">Ledger</string>
+    <string name="title_trail_bal">Trial Balance</string>
+    <string name="title_profile">Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="show_pwd">Show Password</string>
+    <string name="hide_pwd">Hide Password</string>
+    <string name="forgot">Forgot password?</string>
+    <string name="closebutton">Close Button for Activity</string>
+    <string name="newUser">Not a Member yet? Sign Up here.</string>
+    <string name="fullName">Full Name</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="location">Location</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="terms_conditions">By clicking SignUp you agree all the Terms and Conditions.</string>
+    <string name="signUp">SIGN UP</string>
+    <string name="already_user">Already have Account? Login here.</string>
+    <string name="registered_emailid">Please enter your Registered Mobile Number:</string>
+    <string name="submit">SUBMIT</string>
+    <string name="back">BACK</string>
+    <string name="email">Email Id</string>
+    <string name="passowrd">Password</string>
+
+
+    <string name="old_assword">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="conf_password">Confirm new password</string>
+
+    <string name="err_old_pass">Old password is blank</string>
+    <string name="err_new_passs">New password is blank</string>
+    <string name="err_confirm">COnfirm new password is blank</string>
+</resources>

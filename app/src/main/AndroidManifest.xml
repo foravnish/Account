@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.accountapp.accounts">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".utils.SampleApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.changePassword.ChangePasswordActivity"></activity>
+        <activity android:name=".ui.forgotPassword.ForgotPasswordActivity" />
+        <activity android:name=".base.BaseFragmentActivity" />
+        <activity android:name=".ui.ladgerList.DateSelectionActivity" />
+        <activity android:name=".ui.ladgerList.LadgerListingActivity" />
+        <activity android:name=".ui.ladgerList.CompanyListActiity" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.signup.RegistrationActivity" />
+        <activity android:name=".ui.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

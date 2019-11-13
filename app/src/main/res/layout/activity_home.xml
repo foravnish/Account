@@ -70,6 +70,7 @@
             android:background="@color/white_color"
             app:itemIconTint="@color/colorAccent"
             app:itemTextColor="@color/colorAccent"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/navigation" />
 
         <include

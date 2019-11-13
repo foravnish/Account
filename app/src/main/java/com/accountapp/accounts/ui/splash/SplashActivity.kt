@@ -20,9 +20,6 @@ class SplashActivity :BaseActivity() , SplashHandler{
         binding= DataBindingUtil.setContentView(this,R.layout.activity_splash)
         mSplashRepo.onSplashInitiated()
 
-
-
-
     }
 
     override fun onSplashCompleted() {

@@ -50,11 +50,6 @@ class HomeFragment : BaseFragment() {
 
 
 
-        binding.btnGetCom!!.setOnClickListener(View.OnClickListener {
-            callReadCompanyApi()
-
-        })
-
         binding.btnLogout.setOnClickListener {
             val intent = Intent(activity, LoginActivity::class.java)
             Utility.startActivityWithLeftToRightAnimation(activity,intent)
@@ -66,25 +61,6 @@ class HomeFragment : BaseFragment() {
 
     }
 
-    private fun callReadCompanyApi() {
-        showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callReadCompany(Prefences.getGST_No(mContext!!))
-            .observe(this, object : Observer<SignUpResponse> {
-                override fun onChanged(resp: SignUpResponse?) {
-                    showLoadingView(false, binding.loadingView.loadingIndicator, binding.loadingView.container)
-                    if (resp != null) {
-                        if (resp.status.equals("success")) {
-                            Utility.startActivityWithLeftToRightAnimation(activity,Intent(activity, CompanyListActiity::class.java))
-                        } else {
-                        }
-                    } else {
-                        Utility.showSnackBar(binding.root,"File not Exist, Please connect to Admin")
-                    }
-                }
-
-            })
-
-    }
 
 
 

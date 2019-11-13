@@ -12,7 +12,7 @@ class SignupViewModel: ViewModel() {
         mRepo = SignupReposatory()
     }
 
-    fun callSignUp(name: String,mobile: String,login_pass: String,company_name: String,email: String,gst: String,address: String, city: String): LiveData<SignUpResponse> {
-        return mRepo.callSignUp(name,mobile,login_pass,company_name,email,gst,address,city)
+    fun callSignUp(name: String,mobile: String,login_pass: String,company_name: String,email: String,gst: String,address: String, city: String,status: String): LiveData<SignUpResponse> {
+        return mRepo.callSignUp(name,mobile,login_pass,company_name,email,gst,address,city,status)
     }
 }

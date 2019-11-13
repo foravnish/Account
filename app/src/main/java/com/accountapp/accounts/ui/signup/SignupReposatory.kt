@@ -13,9 +13,9 @@ import retrofit2.Response
 
 class SignupReposatory {
 
-    fun callSignUp(name: String,mobile: String,login_pass: String,company_name: String,email: String,gst: String,address: String, city: String): LiveData<SignUpResponse> {
+    fun callSignUp(name: String,mobile: String,login_pass: String,company_name: String,email: String,gst: String,address: String, city: String,status: String): LiveData<SignUpResponse> {
         val data = MutableLiveData<SignUpResponse>()
-        AppRetrofit.instance.callSignUp(name,mobile,login_pass,company_name,email,gst,address,city).enqueue(object :
+        AppRetrofit.instance.callSignUp(name,mobile,login_pass,company_name,email,gst,address,city,status).enqueue(object :
             Callback<SignUpResponse> {
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 data.value = null

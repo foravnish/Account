@@ -71,7 +71,10 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         var endDate=intent.getStringExtra("todate")
 
 
-        dirPath = Utility.getRootDirPath(applicationContext)
+//        dirPath = Utility.getRootDirPath(applicationContext)
+//        dirPath= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        dirPath= Environment.getExternalStorageDirectory().toString()+ File.separator + Environment.DIRECTORY_DOWNLOADS;
+
 
         pDialog= ProgressDialog(this)
         pDialog!!.setMessage("Please wait...");

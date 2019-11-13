@@ -2,8 +2,12 @@ package com.accountapp.accounts.ui.signup
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.Dialog
+import android.text.Editable
+import android.text.TextWatcher
 import android.transition.Transition
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
@@ -16,6 +20,13 @@ import com.accountapp.accounts.databinding.ActivityRegistrationBinding
 import com.accountapp.accounts.model.response.SignUpResponse
 import com.accountapp.accounts.utils.Utility
 import com.accountapp.accounts.utils.ValidationHelper
+import android.view.LayoutInflater
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import com.chaos.view.PinView
+
 
 class RegistrationActivity : BaseActivity() {
 
@@ -23,26 +34,77 @@ class RegistrationActivity : BaseActivity() {
 
     val mViewModel by lazy { ViewModelProviders.of(mContext).get(SignupViewModel::class.java) }
     val mContext by lazy { this@RegistrationActivity }
-
-
+    var otpVal: String = ""
+    var status: String = "";
     override fun initUI() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_registration)
         ShowEnterAnimation()
         initView()
-        binding.fab!!.setOnClickListener(View.OnClickListener { animateRevealClose() })
+        binding.fab!!.setOnClickListener({ animateRevealClose() })
 
         binding.btGo.setOnClickListener {
+            //            openDialog()
             if (isInternetAvailable(binding.root, mContext)) {
                 if (isValidate()) {
-                    hitSignUpAPi()
+                    hitSignUpAPi(false)
                 }
             }
 
         }
     }
 
-    private fun hitSignUpAPi() {
+    private fun openDialog(otp: String) {
+
+        val dialog = Dialog(this@RegistrationActivity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.custom_otp_dialog)
+        dialog.setCancelable(false)
+
+        val btnSubmit = dialog.findViewById<View>(R.id.bt_submit) as Button
+        val getMobileNo = dialog.findViewById<View>(R.id.getMobileNo) as TextView
+        val pinView = dialog.findViewById<View>(R.id.pinView) as PinView
+        getMobileNo.text = "" + binding.txtMobile.text.toString()
+
+        pinView.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                otpVal = s.toString()
+
+            }
+        })
+
+
+        btnSubmit.setOnClickListener {
+
+            Log.d("OTPVALUE", otpVal)
+
+            if (otpVal == "") {
+                ValidationHelper.showSnackBar(binding.root, getString(R.string.err_otp))
+            } else if (otpVal.length < 4) {
+                ValidationHelper.showSnackBar(binding.root, getString(R.string.err_invalid_itp))
+            } else if (otp.equals(otpVal)) {
+                Utility.closeKeyboard(binding.root, mContext)
+                dialog.dismiss()
+                hitSignUpAPi(true)
+
+            } else {
+                ValidationHelper.showSnackBar(binding.root, getString(R.string.err_invalid_itp))
+            }
+
+
+        }
+        dialog.show()
+    }
+
+
+    private fun hitSignUpAPi(b: Boolean) {
+
         Utility.closeKeyboard(binding.root, mContext)
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
         val name = binding.txtName.text.toString()
@@ -53,18 +115,24 @@ class RegistrationActivity : BaseActivity() {
         val gst = binding.txtGst.text.toString()
         val address = binding.txtAddress.text.toString()
         val city = binding.txtCity.text.toString()
+        if (b) {
+            status = "1"
+        } else {
+            status = "0"
+        }
 
-//        var req=SignUpRequest(
-//            ""+name,
-//            ""+mobile,
-//            ""+password,
-//            ""+companyName,
-//            ""+email,
-//            ""+gst,
-//            ""+address,
-//            ""+city
-//        )
-        mViewModel.callSignUp(name, mobile, password, companyName, email, gst, address, city)
+
+        mViewModel.callSignUp(
+            name,
+            mobile,
+            password,
+            companyName,
+            email,
+            gst,
+            address,
+            city,
+            status
+        )
             .observe(mContext, object : Observer<SignUpResponse> {
                 override fun onChanged(resp: SignUpResponse?) {
                     showLoadingView(
@@ -76,9 +144,14 @@ class RegistrationActivity : BaseActivity() {
                         if (resp.status.equals("success")) {
                             Utility.showSnackBar(binding.root, "" + resp.msg)
 
-                            binding.root.postDelayed({
-                                animateRevealClose()
-                            }, 2000)
+                            if (b) {
+                                binding.root.postDelayed({
+                                    animateRevealClose()
+                                }, 2000)
+
+                            } else {
+                                openDialog(resp.otp)
+                            }
 
 
                         } else {
@@ -195,64 +268,74 @@ class RegistrationActivity : BaseActivity() {
                     binding.root
                 )
             ) {
-                if (ValidationHelper.isDataFilled(
-                        binding.txtPasword,
-                        getString(R.string.err_password),
-                        binding.root
-                    )
-                ) {
+
+                if (ValidationHelper.isValidPassword(binding.txtPasword)) {
                     if (ValidationHelper.isDataFilled(
-                            binding.txtRepeatPass,
-                            getString(R.string.err_re_password),
+                            binding.txtPasword,
+                            getString(R.string.err_password),
                             binding.root
                         )
                     ) {
-                        if (ValidationHelper.validatePasswordSameFields(
-                                binding.txtPasword,
+                        if (ValidationHelper.isDataFilled(
                                 binding.txtRepeatPass,
-                                getString(R.string.err_same_password),
+                                getString(R.string.err_re_password),
                                 binding.root
                             )
                         ) {
-                            if (ValidationHelper.isDataFilled(
-                                    binding.txtComName,
-                                    getString(R.string.err_com_name),
-                                    binding.root
-                                )
-                            ) {
-                                if (ValidationHelper.isDataFilled(
-                                        binding.txtEmail,
-                                        getString(R.string.err_email),
+                            if (ValidationHelper.isValidPassword(binding.txtRepeatPass)) {
+                                if (ValidationHelper.validatePasswordSameFields(
+                                        binding.txtPasword,
+                                        binding.txtRepeatPass,
+                                        getString(R.string.err_same_password),
                                         binding.root
                                     )
                                 ) {
                                     if (ValidationHelper.isDataFilled(
-                                            binding.txtGst,
-                                            getString(R.string.err_gst),
+                                            binding.txtComName,
+                                            getString(R.string.err_com_name),
                                             binding.root
                                         )
                                     ) {
                                         if (ValidationHelper.isDataFilled(
-                                                binding.txtAddress,
-                                                getString(R.string.err_address),
+                                                binding.txtEmail,
+                                                getString(R.string.err_email),
                                                 binding.root
                                             )
                                         ) {
                                             if (ValidationHelper.isDataFilled(
-                                                    binding.txtCity,
-                                                    getString(R.string.err_city),
+                                                    binding.txtGst,
+                                                    getString(R.string.err_gst),
                                                     binding.root
                                                 )
                                             ) {
-                                                return true
+                                                if (ValidationHelper.isDataFilled(
+                                                        binding.txtAddress,
+                                                        getString(R.string.err_address),
+                                                        binding.root
+                                                    )
+                                                ) {
+                                                    if (ValidationHelper.isDataFilled(
+                                                            binding.txtCity,
+                                                            getString(R.string.err_city),
+                                                            binding.root
+                                                        )
+                                                    ) {
+                                                        return true
+                                                    }
+                                                }
                                             }
                                         }
                                     }
+
                                 }
                             }
 
                         }
+                    }else{
+                        Utility.showSnackBar(binding.root, getString(R.string.err_invalid_password))
                     }
+                } else {
+                    Utility.showSnackBar(binding.root, getString(R.string.err_invalid_password))
                 }
             }
         }

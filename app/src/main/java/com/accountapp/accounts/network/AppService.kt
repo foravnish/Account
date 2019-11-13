@@ -21,7 +21,8 @@ interface AppService {
         @Field("email") email: String,
         @Field("gst") gst: String,
         @Field("address") address: String,
-        @Field("city") city: String
+        @Field("city") city: String,
+        @Field("status") status: String
     ): Call<SignUpResponse>
 
 

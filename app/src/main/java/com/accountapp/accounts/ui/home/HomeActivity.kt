@@ -8,6 +8,8 @@ import com.accountapp.accounts.base.BaseActivity
 import com.accountapp.accounts.base.BaseFragment
 import com.accountapp.accounts.base.BaseFragmentActivity
 import com.accountapp.accounts.databinding.ActivityHomeBinding
+import com.accountapp.accounts.ui.fragment.LedgerFragment
+import com.accountapp.accounts.ui.fragment.TrailBalanceFragment
 import com.accountapp.accounts.ui.profile.ProfileFragemnt
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -30,7 +32,7 @@ class HomeActivity : BaseFragmentActivity() {
 
     override fun initUI() {
         binding= DataBindingUtil.setContentView(this, R.layout.activity_home)
-        //setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbar)
 
         TAG = HomeFragment.TAG
         currentlyLoadedFragment = TAG
@@ -47,14 +49,28 @@ class HomeActivity : BaseFragmentActivity() {
                                 currentlyLoadedFragment = TAG
 
                                 showFragment(TAG, null, true, true)
-                                //supportActionBar!!.setTitle("Notifications")
+                                //supportActionBar!!.setTitle("Home")
                             }
                             return true
                         }
                         R.id.navigation_ledger -> {
+                            if (currentlyLoadedFragment != LedgerFragment.TAG) {
+                                TAG = LedgerFragment.TAG
+                                currentlyLoadedFragment = TAG
+
+                                showFragment(TAG, null, true, true)
+                               // supportActionBar!!.setTitle("Ledger")
+                            }
                             return true
                         }
                         R.id.navigation_tb -> {
+                            if (currentlyLoadedFragment != TrailBalanceFragment.TAG) {
+                                TAG = TrailBalanceFragment.TAG
+                                currentlyLoadedFragment = TAG
+
+                                showFragment(TAG, null, true, true)
+                                //supportActionBar!!.setTitle("Trail Balance")
+                            }
                             return true
                         }
                         R.id.navigation_profile -> {
@@ -63,17 +79,9 @@ class HomeActivity : BaseFragmentActivity() {
                                 currentlyLoadedFragment = TAG
 
                                 showFragment(TAG, null, true, true)
-                                //supportActionBar!!.setTitle("Notifications")
+                                //supportActionBar!!.setTitle("Profile")
                             }
-//                            val newFragment = ProfileFragemnt()
-//                            val transaction = supportFragmentManager.beginTransaction()
-//                            transaction.replace(R.id.container, newFragment)
-//                            transaction.addToBackStack(null)
-//                            transaction.commit()
-
-
-//                            val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
-//                            Utility.startActivityWithLeftToRightAnimation(this@HomeActivity,intent)
+//
                             return true
                         }
                     }
@@ -105,12 +113,15 @@ class HomeActivity : BaseFragmentActivity() {
             HomeFragment.TAG -> {
                 frag = HomeFragment.newInstance(args)
             }
+            LedgerFragment.TAG -> {
+                frag = LedgerFragment.newInstance(args)
+            }
+            TrailBalanceFragment.TAG -> {
+                frag = TrailBalanceFragment.newInstance(args)
+            }
             ProfileFragemnt.TAG -> {
                 frag = ProfileFragemnt.newInstance(args)
             }
-//            FragmentSettings.TAG -> {
-//                frag = FragmentSettings.newInstance(args)
-//            }
 //            FragmentNotifications.TAG -> {
 //                frag = FragmentNotifications.newInstance(args)
 //            }

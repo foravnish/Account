@@ -29,10 +29,12 @@ class ChangePasswordActivity : BaseActivity() {
 
         binding.btSubmit.setOnClickListener {
 
-
             if (isInternetAvailable(binding.root, mContext)) {
                 if (isValidate()) {
-                    callChangePasswordApi(binding.etOldPass.text.toString(),binding.etNewPass.text.toString())
+                    callChangePasswordApi(
+                        binding.etOldPass.text.toString(),
+                        binding.etNewPass.text.toString()
+                    )
                 }
             }
 
@@ -43,25 +45,38 @@ class ChangePasswordActivity : BaseActivity() {
         if (ValidationHelper.isDataFilled(
                 binding.etOldPass,
                 getString(R.string.err_old_pass),
-                binding.root )) {
+                binding.root
+            )
+        ) {
             if (ValidationHelper.isDataFilled(
                     binding.etNewPass,
-                    getString(R.string.err_new_passs), binding.root)){
-                if (ValidationHelper.isDataFilled(
-                        binding.etConfirmPassword,
-                        getString(R.string.err_confirm), binding.root)){
-
-                    if (ValidationHelper.validatePasswordSameFields(
-                            binding.etNewPass,
+                    getString(R.string.err_new_passs), binding.root
+                )
+            ) {
+                if (ValidationHelper.isValidPassword(binding.etNewPass)) {
+                    if (ValidationHelper.isDataFilled(
                             binding.etConfirmPassword,
-                            getString(R.string.err_same_password),
-                            binding.root
+                            getString(R.string.err_confirm), binding.root
                         )
                     ) {
-                        return  true
-                    }
-                }
+                        if (ValidationHelper.isValidPassword(binding.etConfirmPassword)) {
+                            if (ValidationHelper.validatePasswordSameFields(
+                                    binding.etNewPass,
+                                    binding.etConfirmPassword,
+                                    getString(R.string.err_same_password),
+                                    binding.root
+                                )
+                            ) {
+                                return true
+                            }
+                        } else {
+                            Utility.showSnackBar(binding.root, getString(R.string.err_invalid_password))
+                        }
 
+                    }
+                } else {
+                    Utility.showSnackBar(binding.root, getString(R.string.err_invalid_password))
+                }
             }
         }
 
@@ -73,23 +88,31 @@ class ChangePasswordActivity : BaseActivity() {
 
 
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callChangePassword(Prefences.getUserMobile(mContext).toString(),old_pass, new_passs)
+        mViewModel.callChangePassword(
+            Prefences.getUserMobile(mContext).toString(),
+            old_pass,
+            new_passs
+        )
             .observe(mContext, object : Observer<LoginResponse> {
                 override fun onChanged(resp: LoginResponse?) {
-                    showLoadingView(false, binding.loadingView.loadingIndicator, binding.loadingView.container)
+                    showLoadingView(
+                        false,
+                        binding.loadingView.loadingIndicator,
+                        binding.loadingView.container
+                    )
                     if (resp != null) {
                         if (resp.status.equals("success")) {
 
-                            Utility.showSnackBar(binding.root, ""+resp.message)
+                            Utility.showSnackBar(binding.root, "" + resp.message)
                             binding.root.postDelayed({
-//                                val intent = Intent(this@ForgotPasswordActivity, LoginActivity::class.java)
+                                //                                val intent = Intent(this@ForgotPasswordActivity, LoginActivity::class.java)
 //                                Utility.startActivityWithLeftToRightAnimation(this@ForgotPasswordActivity,intent)
                                 finish()
-                            },2000)
+                            }, 2000)
 
 
                         } else {
-                            Utility.showSnackBar(binding.root, ""+resp.message)
+                            Utility.showSnackBar(binding.root, "" + resp.message)
                         }
                     } else {
                         showServerErrorSnackbar(binding.root)

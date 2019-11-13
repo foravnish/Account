@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="15dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Verify Mobile"
+            android:textColor="@color/app_black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="We have sent a one-time code to your mobile number"
+            android:textColor="@color/app_black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/getMobileNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/app_black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.chaos.view.PinView
+            android:id="@+id/pinView"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="number"
+            android:textSize="18sp"
+            app:itemCount="6"
+            android:textStyle="bold"
+            app:cursorColor="@color/gray_login"
+            app:cursorWidth="2dp"
+            app:viewType="line" />
+
+        <!--        app:lineColor="@drawable/line_colors"-->
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/linerLoader"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:layout_gravity="right"-->
+        <!--            android:visibility="gone"-->
+        <!--            android:gravity="right">-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar"-->
+        <!--                style="?android:attr/progressBarStyleLarge"-->
+        <!--                android:layout_width="@dimen/dp40"-->
+        <!--                android:layout_height="@dimen/dp40"-->
+        <!--                android:progressDrawable="@drawable/circular_progress_bar"-->
+        <!--                android:layout_marginTop="@dimen/dp0_5"-->
+        <!--                android:shadowColor="@color/app_green"-->
+        <!--                android:backgroundTint="@color/app_green"-->
+        <!--                android:progressTint="@color/app_green"-->
+        <!--                android:layout_alignParentBottom="true"/>-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/txtTimer"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text=""-->
+        <!--                android:textColor="@color/red_FD4E00"-->
+        <!--                android:layout_gravity="right"-->
+        <!--                android:gravity="right"-->
+        <!--                android:textSize="@dimen/text_size_18sp"/>-->
+
+        <!--        </LinearLayout>-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/txtResend"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="@string/resend_otp"-->
+        <!--            android:textColor="@color/app_green"-->
+        <!--            android:layout_gravity="right"-->
+        <!--            android:gravity="right"-->
+        <!--            android:textSize="@dimen/text_size_18sp"-->
+        <!--            android:onClick="@{otphandel::onClickResendOTP}"-->
+        <!--            android:layout_marginTop="@dimen/dp30"/>-->
+
+        <Button
+            android:id="@+id/bt_submit"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bt_shape"
+            android:stateListAnimator="@drawable/state_list_animator_z"
+            android:text="@string/submit"
+            android:textColor="@color/colorPrimary"></Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>

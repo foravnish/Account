@@ -46,7 +46,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textAppearance="@android:style/TextAppearance.Material.Title"
-                            android:text="Home" />
+                            android:text="Ledger" />
 
                     </LinearLayout>
                 </androidx.appcompat.widget.Toolbar>
@@ -55,42 +55,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@color/hint_color"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="120dp"
-                    android:src="@drawable/esc_logo">
 
-                </ImageView>
 
-                <LinearLayout
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:visibility="gone"
+
                     android:orientation="vertical">
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:layout_marginTop="500dp"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:orientation="horizontal">
 
+
                         <androidx.cardview.widget.CardView
-                            android:layout_width="150dp"
+                            android:layout_width="250dp"
                             android:layout_height="70dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="30dp"
                             android:layout_marginBottom="20dp"
                             android:background="@color/colorAccent"
-                            android:stateListAnimator="@drawable/state_list_animator_z"
                             android:backgroundTint="@color/colorAccent"
+                            android:stateListAnimator="@drawable/state_list_animator_z"
+                            android:textColor="@color/white_color"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="5dp"
-                            android:textColor="@color/white_color">
+                            app:cardElevation="5dp">
 
 
                             <Button
@@ -101,12 +100,10 @@
                                 android:background="@color/colorAccent"
                                 android:backgroundTint="@color/colorAccent"
                                 android:stateListAnimator="@drawable/state_list_animator_z"
-                                android:text="Get Company"
-
+                                android:text="Get Company Ledger"
                                 android:textColor="@color/white_color" />
 
                         </androidx.cardview.widget.CardView>
-
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="150dp"
@@ -170,7 +167,7 @@
                     </LinearLayout>
 
                     <!--                </androidx.cardview.widget.CardView>-->
-                </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
 

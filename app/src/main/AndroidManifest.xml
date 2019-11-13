@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.changePassword.ChangePasswordActivity"></activity>
+        <activity android:name=".ui.otpVerification.OtpVerificationActivity"></activity>
+        <activity android:name=".ui.changePassword.ChangePasswordActivity" />
         <activity android:name=".ui.forgotPassword.ForgotPasswordActivity" />
         <activity android:name=".base.BaseFragmentActivity" />
         <activity android:name=".ui.ladgerList.DateSelectionActivity" />

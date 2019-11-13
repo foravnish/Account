@@ -1,5 +1,6 @@
 package com.accountapp.accounts.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -52,6 +53,8 @@ class LedgerCompanyAdapter() : RecyclerView.Adapter<LedgerCompanyAdapter.MyViewH
                 //                callback.onSearchClick(list!!.get(position).ACCODE)
             }
 
+
+
             var credit=list!!.get(position).CREDIT.toString().toDouble()
             var debit=list!!.get(position).DEBIT.toString().toDouble()
             var balance=list!!.get(position).BALANCE.toString().toInt()
@@ -66,6 +69,15 @@ class LedgerCompanyAdapter() : RecyclerView.Adapter<LedgerCompanyAdapter.MyViewH
             holder.itemView.txtAmount.setText("" + list!!.get(position).DEBIT)
             holder.itemView.txtCredit.setText("" + list!!.get(position).CREDIT)
             holder.itemView.txtBalance.setText("" + list!!.get(position).BALANCE)
+
+//            for (i in 0 until list!!.size) {
+                if (position%2==1){
+                    holder.itemView.linearBackColor.setBackgroundColor(Color.parseColor("#BBCFD1"))
+                }else{
+                    holder.itemView.linearBackColor.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                }
+//            }
+
 
         }
 

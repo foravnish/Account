@@ -52,10 +52,8 @@ class TrailBalanceFragment : BaseFragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trail_balance, container, false)
-        binding.toolbar.title="Trail Balance"
         binding.btnGetCom!!.setOnClickListener(View.OnClickListener {
             callReadCompanyApi()
-
         })
 
 

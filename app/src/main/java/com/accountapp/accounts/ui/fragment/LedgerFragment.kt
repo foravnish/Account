@@ -56,7 +56,6 @@ class LedgerFragment : BaseFragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ledger, container, false)
-        binding.toolbar.title="Ledger"
         binding.btnGetCom!!.setOnClickListener(View.OnClickListener {
             callReadCompanyApi()
 

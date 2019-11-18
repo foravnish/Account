@@ -86,7 +86,6 @@ class ChangePasswordActivity : BaseActivity() {
 
     private fun callChangePasswordApi(old_pass: String, new_passs: String) {
 
-
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
         mViewModel.callChangePassword(
             Prefences.getUserMobile(mContext).toString(),
@@ -105,7 +104,7 @@ class ChangePasswordActivity : BaseActivity() {
 
                             Utility.showSnackBar(binding.root, "" + resp.message)
                             binding.root.postDelayed({
-                                //                                val intent = Intent(this@ForgotPasswordActivity, LoginActivity::class.java)
+                                //  val intent = Intent(this@ForgotPasswordActivity, LoginActivity::class.java)
 //                                Utility.startActivityWithLeftToRightAnimation(this@ForgotPasswordActivity,intent)
                                 finish()
                             }, 2000)

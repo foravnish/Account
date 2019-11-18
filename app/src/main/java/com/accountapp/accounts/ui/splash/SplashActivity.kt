@@ -7,6 +7,7 @@ import com.accountapp.accounts.base.BaseActivity
 import com.accountapp.accounts.databinding.ActivitySplashBinding
 import com.accountapp.accounts.ui.home.HomeActivity
 import com.accountapp.accounts.ui.login.LoginActivity
+import com.accountapp.accounts.utils.DirectoryCreate
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
 
@@ -20,10 +21,12 @@ class SplashActivity :BaseActivity() , SplashHandler{
         binding= DataBindingUtil.setContentView(this,R.layout.activity_splash)
         mSplashRepo.onSplashInitiated()
 
+
     }
 
     override fun onSplashCompleted() {
         val isUserLoggedIn = Prefences.getIsLogin(mContext)
+
         if (isUserLoggedIn)
             Utility.startActivityWithLeftToRightAnimation(
                 this,

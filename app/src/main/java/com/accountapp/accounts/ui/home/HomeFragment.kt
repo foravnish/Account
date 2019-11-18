@@ -8,13 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.accountapp.accounts.ui.companies.MyCompaniesActivity
 import com.accountapp.accounts.R
 import com.accountapp.accounts.base.BaseFragment
 import com.accountapp.accounts.databinding.FragmentHomeBinding
-import com.accountapp.accounts.model.response.SignUpResponse
-import com.accountapp.accounts.ui.ladgerList.CompanyListActiity
 import com.accountapp.accounts.ui.login.LoginActivity
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
@@ -48,12 +46,16 @@ class HomeFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-
+        binding.txtComName.setText(""+Prefences.getCompany(mContext)+"\n"+Prefences.getGST_No(mContext))
 
         binding.btnLogout.setOnClickListener {
             val intent = Intent(activity, LoginActivity::class.java)
             Utility.startActivityWithLeftToRightAnimation(activity,intent)
 
+        }
+        binding.btnMyCom.setOnClickListener {
+            val intent = Intent(activity, MyCompaniesActivity::class.java)
+            Utility.startActivityWithLeftToRightAnimation(activity,intent)
         }
 
         return binding.root

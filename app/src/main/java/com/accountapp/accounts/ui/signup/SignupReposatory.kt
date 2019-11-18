@@ -38,4 +38,31 @@ class SignupReposatory {
         return data
     }
 
+
+
+    fun callAddCompany(comName: String,gst: String,status: String,mobile: String): LiveData<SignUpResponse> {
+        val data = MutableLiveData<SignUpResponse>()
+        AppRetrofit.instance.callAddCompany(comName,gst,status,mobile).enqueue(object :
+            Callback<SignUpResponse> {
+            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                data.value = null
+            }
+
+            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+
+                if (response.isSuccessful){
+                    data.value = if (response != null && response.body() != null) response!!.body() else null
+                }
+                else {
+                    val gson = Gson()
+                    val adapter = gson.getAdapter(SignUpResponse::class.java)
+                    if (response.errorBody() != null)
+                        data.value = adapter.fromJson(response.errorBody()!!.string())
+                }
+            }
+        })
+
+        return data
+    }
+
 }

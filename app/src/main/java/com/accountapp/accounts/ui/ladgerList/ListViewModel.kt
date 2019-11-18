@@ -2,10 +2,7 @@ package com.accountapp.accounts.ui.ladgerList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.accountapp.accounts.model.response.LadgerListResponse
-import com.accountapp.accounts.model.response.PDFGeneratorReponse
-import com.accountapp.accounts.model.response.SearchCompanyList
-import com.accountapp.accounts.model.response.SignUpResponse
+import com.accountapp.accounts.model.response.*
 
 class ListViewModel: ViewModel() {
     lateinit var mRepo: ListReposatory
@@ -25,4 +22,10 @@ class ListViewModel: ViewModel() {
     fun callPdffGenerateApi(gstNo: String?,acc_no:String,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
         return mRepo.callPdffGenerateApi(gstNo!!,acc_no,fromDate,endDate)
     }
+
+    // My Company Listing
+    fun callCompanyList(mobileNo: String?): LiveData<CompanyListingResponse> {
+        return mRepo.callCompanyList(mobileNo)
+    }
+
 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#da251d</color>
+    <color name="colorPrimaryDark">#da251d</color>
+<!--    <color name="colorAccent">#D81B60</color>-->
+    <color name="colorAccent">#da251d</color>
     <color name="app_black">#000000</color>
 
     <color name="reg_bc_color">#F57D57</color>
-    <color name="orange_bc_color">#FF5D29</color>
+    <color name="orange_bc_color">#da251d</color>
     <color name="color_424242">#424242</color>
     <color name="blue_03A9F4">#03A9F4</color>
     <color name="hint_color">#A9AEB1</color>

@@ -17,4 +17,6 @@ object NetworkConstants {
     const val PDF_GENERATOR = "ledger_pdf_url"
     const val FORGOT_PASSWORD = "forgot_pass"
     const val CHANGE_PASSWORD = "change_pass"
+    const val ADD_COMPANY = "add_comapny"
+    const val MY_COMPANY = "get_my_company"
 }

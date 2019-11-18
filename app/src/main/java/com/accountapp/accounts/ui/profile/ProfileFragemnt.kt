@@ -12,7 +12,6 @@ import com.accountapp.accounts.R
 import com.accountapp.accounts.base.BaseFragment
 import com.accountapp.accounts.databinding.ActivityProfileBinding
 import com.accountapp.accounts.ui.changePassword.ChangePasswordActivity
-import com.accountapp.accounts.ui.home.HomeFragment
 import com.accountapp.accounts.ui.login.LoginActivity
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility

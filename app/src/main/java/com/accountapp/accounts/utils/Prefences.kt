@@ -149,7 +149,7 @@ object Prefences {
         editor.commit()
     }
 
-    fun getGST_No(context: Context): String? {
+    fun getGST_No(context: Context?): String? {
         userAge = PreferenceManager.getDefaultSharedPreferences(context)
         return userAge.getString(USER_AGE, "")
     }
@@ -177,7 +177,7 @@ object Prefences {
         editor.commit()
     }
 
-    fun getCompany(context: Context): String? {
+    fun getCompany(context: Context?): String? {
         pinCodeTemp = PreferenceManager.getDefaultSharedPreferences(context)
         return pinCodeTemp.getString(PIN_CODE_TEMP, "")
     }

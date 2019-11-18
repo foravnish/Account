@@ -16,7 +16,6 @@ import com.accountapp.accounts.base.BaseActivity
 import com.accountapp.accounts.databinding.ActivityLadgerListActiityBinding
 import com.accountapp.accounts.model.response.DataItem
 import com.accountapp.accounts.model.response.SearchCompanyList
-import com.accountapp.accounts.ui.home.HomeActivity
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
 import org.apache.commons.lang3.text.WordUtils

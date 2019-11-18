@@ -10,6 +10,7 @@ import com.accountapp.accounts.R
 import com.accountapp.accounts.base.BaseActivity
 import com.accountapp.accounts.databinding.ActivityMainBinding
 import com.accountapp.accounts.model.response.LoginResponse
+import com.accountapp.accounts.ui.companies.MyCompaniesActivity
 import com.accountapp.accounts.ui.forgotPassword.ForgotPasswordActivity
 import com.accountapp.accounts.ui.home.HomeActivity
 import com.accountapp.accounts.ui.signup.RegistrationActivity
@@ -57,14 +58,14 @@ class LoginActivity : BaseActivity() {
                             Prefences.setUserName(mContext,resp.detail.name)
                             Prefences.setUserMobile(mContext,resp.detail.mobile)
                             Prefences.setUserEmailId(mContext,resp.detail.email)
+                            Prefences.setCompany(mContext,resp.detail.company)
                             Prefences.setGST_No(mContext,resp.detail.gst)
                             Prefences.setAddress(mContext,resp.detail.address)
-                            Prefences.setCompany(mContext,resp.detail.company)
                             Prefences.setCity(mContext,resp.detail.city)
 
-                            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                            val intent = Intent(this@LoginActivity, MyCompaniesActivity::class.java)
                             Utility.startActivityWithLeftToRightAnimation(this@LoginActivity,intent)
-                            finish()
+
 
                         } else {
                             Utility.showSnackBar(binding.root, ""+resp.message)

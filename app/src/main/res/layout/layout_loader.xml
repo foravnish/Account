@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:clock_animSpeedMultiplier="0.5"
-            app:clock_bigCircleColor="@color/colorPrimary"
+            app:clock_bigCircleColor="@color/green_color"
             app:clock_bigCircleRadius="20dp"
             app:clock_hourHandColor="@color/colorAccent"
             app:clock_hourHandLength="13dp"

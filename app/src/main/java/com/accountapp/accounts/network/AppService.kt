@@ -63,5 +63,22 @@ interface AppService {
     fun callChangePassword(@Field("mobile") phone_number: String,@Field("cpass") cpass: String,@Field("npass") npass: String): Call<LoginResponse>
 
 
+    //Add Company API
+    @FormUrlEncoded
+    @POST(NetworkConstants.ADD_COMPANY)
+    fun callAddCompany(
+        @Field("company_name") comName: String,
+        @Field("gst") gst: String,
+        @Field("status") status: String,
+        @Field("mobile") mobile: String
+
+    ): Call<SignUpResponse>
+
+
+
+    //   My Company Api
+    @GET(NetworkConstants.MY_COMPANY + "/{mobile}" )
+    fun callCompanyList(@Path("mobile") mobile: String?): Call<CompanyListingResponse>
+
 
 }

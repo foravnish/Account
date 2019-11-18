@@ -15,4 +15,8 @@ class SignupViewModel: ViewModel() {
     fun callSignUp(name: String,mobile: String,login_pass: String,company_name: String,email: String,gst: String,address: String, city: String,status: String): LiveData<SignUpResponse> {
         return mRepo.callSignUp(name,mobile,login_pass,company_name,email,gst,address,city,status)
     }
+
+    fun callAddCompany(comName: String,gst: String,status: String,mobile:String): LiveData<SignUpResponse> {
+        return mRepo.callAddCompany(comName,gst,status,mobile)
+    }
 }

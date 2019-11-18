@@ -1,12 +1,7 @@
 package com.accountapp.accounts.ui.ladgerList
 
 import android.app.ProgressDialog
-import android.app.WallpaperManager
-import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.view.View
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -17,24 +12,10 @@ import com.accountapp.accounts.databinding.ActivityLadgerListingBinding
 import com.accountapp.accounts.model.response.DataItemLadger
 import com.accountapp.accounts.model.response.LadgerListResponse
 import com.accountapp.accounts.model.response.PDFGeneratorReponse
-import com.accountapp.accounts.model.response.SignUpResponse
-import com.accountapp.accounts.utils.DownloadFile
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
-import android.content.Intent
-import android.net.Uri
-import android.os.Environment
-import android.widget.Toast
 import com.accountapp.accounts.R
-import com.downloader.*
-import java.io.File
-import java.io.IOException
-import kotlin.Error
 import com.downloader.OnDownloadListener
-import com.downloader.Progress
-import com.downloader.OnProgressListener
-import com.downloader.OnPauseListener
-import com.downloader.OnStartOrResumeListener
 import com.downloader.PRDownloader
 import android.util.Log
 
@@ -52,6 +33,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
     var crTotal = 0.0
     var drTotal = 0.0
     var balTotal = 0.0
+    var totalBlalance=0.0
     var x = 0
     var pDialog: ProgressDialog? = null
     var downloadIdTwelve:Int = 0
@@ -71,10 +53,16 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         var endDate=intent.getStringExtra("todate")
 
 
-//        dirPath = Utility.getRootDirPath(applicationContext)
+        dirPath = Utility.getRootDirPath(applicationContext)
 //        dirPath= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        dirPath= Environment.getExternalStorageDirectory().toString()+ File.separator + Environment.DIRECTORY_DOWNLOADS;
+//        dirPath= Environment.getExternalStorageDirectory().toString()+ File.separator + Environment.DIRECTORY_DOWNLOADS;
+//        dirPath= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
 
+//        val file=Environment.getExternalStorageDirectory()
+//        val mydir = File(file + "/"+"ddd/")
+//        mydir.mkdirs();
+
+//        dirPath=mydir.toString()
 
         pDialog= ProgressDialog(this)
         pDialog!!.setMessage("Please wait...");
@@ -130,7 +118,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                         }
 
                                         override fun onError(error: com.downloader.Error) {
-                                            Log.d("pdfStatus","error")
+                                            Log.d("pdfStatus","error:"+error)
                                         }
                                     })
 
@@ -175,7 +163,14 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                 }
                                 binding.txtDrTotal.setText("" + drTotal)
                                 binding.txtCrTotal.setText(""+crTotal)
-                                binding.txtBalTotal.setText(""+balTotal)
+                                if (drTotal>crTotal){
+                                    totalBlalance=drTotal-crTotal
+                                    binding.txtBalTotal.setText(""+totalBlalance+"(Dr)")
+                                }else{
+                                    totalBlalance=crTotal-drTotal
+                                    binding.txtBalTotal.setText(""+totalBlalance+"(Cr)")
+                                }
+
 
                             } else {
                                 binding.rcSearchProduct.visibility= View.GONE

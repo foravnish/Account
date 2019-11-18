@@ -11,7 +11,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/orange_bc_color">
+            android:background="@color/colorAccent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv"
@@ -44,7 +44,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginStart="50dp"
                             android:text="@string/login"
-                            android:textColor="#FFCC00"
+                            android:textColor="@color/colorAccent"
                             android:textSize="18sp"
                             android:textStyle="bold" />
                     </RelativeLayout>

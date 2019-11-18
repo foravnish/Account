@@ -2,10 +2,10 @@ package com.accountapp.accounts.ui.ladgerList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.accountapp.accounts.model.response.CompanyListingResponse
 import com.accountapp.accounts.model.response.LadgerListResponse
 import com.accountapp.accounts.model.response.PDFGeneratorReponse
 import com.accountapp.accounts.model.response.SearchCompanyList
-import com.accountapp.accounts.model.response.SignUpResponse
 import com.google.gson.Gson
 import network.AppRetrofit
 import retrofit2.Call
@@ -80,6 +80,34 @@ class ListReposatory {
                 else {
                     val gson = Gson()
                     val adapter = gson.getAdapter(PDFGeneratorReponse::class.java)
+                    if (response.errorBody() != null)
+                        data.value = adapter.fromJson(response.errorBody()!!.string())
+                }
+            }
+        })
+
+        return data
+    }
+
+
+
+    // My Company listing Repo
+    fun callCompanyList(mobileNo: String?): LiveData<CompanyListingResponse> {
+        val data = MutableLiveData<CompanyListingResponse>()
+        AppRetrofit.instance.callCompanyList(mobileNo).enqueue(object :
+            Callback<CompanyListingResponse> {
+            override fun onFailure(call: Call<CompanyListingResponse>, t: Throwable) {
+                data.value = null
+            }
+
+            override fun onResponse(call: Call<CompanyListingResponse>, response: Response<CompanyListingResponse>) {
+
+                if (response.isSuccessful){
+                    data.value = if (response != null && response.body() != null) response!!.body() else null
+                }
+                else {
+                    val gson = Gson()
+                    val adapter = gson.getAdapter(CompanyListingResponse::class.java)
                     if (response.errorBody() != null)
                         data.value = adapter.fromJson(response.errorBody()!!.string())
                 }

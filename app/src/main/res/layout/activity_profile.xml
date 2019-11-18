@@ -30,7 +30,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="60dp"
-                android:text="Change Password" />
+                android:text="@string/change_pwd" />
 
             <ImageView
                 android:id="@+id/logout"
@@ -38,7 +38,7 @@
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:tint="@color/app_black"
+                android:tint="@color/colorAccent"
                 app:srcCompat="@android:drawable/ic_lock_power_off" />
 
         </RelativeLayout>

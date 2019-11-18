@@ -13,10 +13,8 @@ import androidx.lifecycle.ViewModelProviders
 
 import com.accountapp.accounts.R
 import com.accountapp.accounts.base.BaseFragment
-import com.accountapp.accounts.databinding.FragmentHomeBinding
 import com.accountapp.accounts.databinding.FragmentLedgerBinding
 import com.accountapp.accounts.model.response.SignUpResponse
-import com.accountapp.accounts.ui.home.HomeFragment
 import com.accountapp.accounts.ui.home.HomeViewModel
 import com.accountapp.accounts.ui.ladgerList.CompanyListActiity
 import com.accountapp.accounts.utils.Prefences

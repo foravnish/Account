@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.companies.AddCompanyActivity"></activity>
+        <activity android:name=".ui.ladgerList.TrialBalanceListingActivites"></activity>
+        <activity android:name=".ui.companies.AddCompanyActivity" />
         <activity android:name=".ui.companies.MyCompaniesActivity" />
         <activity android:name=".ui.changePassword.ChangePasswordActivity" />
         <activity android:name=".ui.forgotPassword.ForgotPasswordActivity" />

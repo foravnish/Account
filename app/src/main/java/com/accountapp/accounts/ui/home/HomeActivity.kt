@@ -11,6 +11,8 @@ import com.accountapp.accounts.databinding.ActivityHomeBinding
 import com.accountapp.accounts.ui.fragment.LedgerFragment
 import com.accountapp.accounts.ui.fragment.TrailBalanceFragment
 import com.accountapp.accounts.ui.profile.ProfileFragemnt
+import com.accountapp.accounts.utils.Prefences
+import com.accountapp.accounts.utils.Utility
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -38,6 +40,7 @@ class HomeActivity : BaseFragmentActivity() {
         currentlyLoadedFragment = TAG
         showFragment(TAG, null, true, true)
 
+
         val mOnNavigationItemSelectedListener =
             object : BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -54,6 +57,7 @@ class HomeActivity : BaseFragmentActivity() {
                             return true
                         }
                         R.id.navigation_ledger -> {
+                            Utility.isLadger=true
                             if (currentlyLoadedFragment != LedgerFragment.TAG) {
                                 TAG = LedgerFragment.TAG
                                 currentlyLoadedFragment = TAG
@@ -64,6 +68,7 @@ class HomeActivity : BaseFragmentActivity() {
                             return true
                         }
                         R.id.navigation_tb -> {
+                            Utility.isLadger=false
                             if (currentlyLoadedFragment != TrailBalanceFragment.TAG) {
                                 TAG = TrailBalanceFragment.TAG
                                 currentlyLoadedFragment = TAG

@@ -44,7 +44,7 @@ class LoginActivity : BaseActivity() {
 
 
     private fun callLoginAPi(userName: String, password: String) {
-        Utility.closeKeyboard(binding.root, mContext)
+
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
         mViewModel.callLogin(userName, password)
             .observe(mContext, object : Observer<LoginResponse> {
@@ -81,7 +81,7 @@ class LoginActivity : BaseActivity() {
 
     private fun setListener() {
         binding.btGo!!.setOnClickListener(View.OnClickListener {
-
+            Utility.closeKeyboard(binding.root, mContext)
             if (isInternetAvailable(binding.root, mContext)) {
                 if (isValidate()) {
                     callLoginAPi(binding.etUsername.text.toString(), binding.etPassword.text.toString())

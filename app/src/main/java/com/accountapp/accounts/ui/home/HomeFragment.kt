@@ -45,8 +45,8 @@ class HomeFragment : BaseFragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-
-        binding.txtComName.setText(""+Prefences.getCompany(mContext)+"\n"+Prefences.getGST_No(mContext))
+        binding.txtname.setText(""+ Prefences.getCompany(mContext))
+//        binding.txtComName.setText(""+Prefences.getCompany(mContext)+"\n"+Prefences.getGST_No(mContext))
 
         binding.btnLogout.setOnClickListener {
             val intent = Intent(activity, LoginActivity::class.java)

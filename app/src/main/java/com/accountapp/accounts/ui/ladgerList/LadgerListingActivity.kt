@@ -171,7 +171,6 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                     binding.txtBalTotal.setText(""+totalBlalance+"(Cr)")
                                 }
 
-
                             } else {
                                 binding.rcSearchProduct.visibility= View.GONE
                                 binding.liEmptyLayout.visibility= View.VISIBLE

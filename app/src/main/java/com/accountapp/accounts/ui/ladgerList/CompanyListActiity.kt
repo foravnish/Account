@@ -45,6 +45,11 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
 //            binding.includedToolbar.findViewById(R.id.toolbar),
 //            getString(R.string.com_list) )
 
+//        if (!Utility.isLadger){
+//            binding.albumCard.setVisibility(View.GONE)
+//            binding.rcSearchProduct.setVisibility(View.GONE)
+//            binding.dateLayout.setVisibility(View.VISIBLE)
+//        }
         binding.closePress.setOnClickListener {
             binding.searchEdit.setText("")
             callSearchProductApi("")
@@ -57,12 +62,22 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
         }
 
         binding.submit.setOnClickListener {
-            val intent = Intent(this@CompanyListActiity, LadgerListingActivity::class.java)
-            intent.putExtra("ACC_ID", comId)
-            intent.putExtra("COM_NAME", comName)
-            intent.putExtra("fromdate", binding.fromDate.text.toString())
-            intent.putExtra("todate", binding.toDate.text.toString())
-            Utility.startActivityWithLeftToRightAnimation(this@CompanyListActiity, intent)
+            if (Utility.isLadger) {
+                val intent = Intent(this@CompanyListActiity, LadgerListingActivity::class.java)
+                intent.putExtra("ACC_ID", comId)
+                intent.putExtra("COM_NAME", comName)
+                intent.putExtra("fromdate", binding.fromDate.text.toString())
+                intent.putExtra("todate", binding.toDate.text.toString())
+                Utility.startActivityWithLeftToRightAnimation(this@CompanyListActiity, intent)
+            }
+//            else{
+//                val intent = Intent(this@CompanyListActiity, TrialBalanceListingActivites::class.java)
+//                intent.putExtra("ACC_ID", comId)
+//                intent.putExtra("COM_NAME", comName)
+//                intent.putExtra("fromdate", binding.fromDate.text.toString())
+//                intent.putExtra("todate", binding.toDate.text.toString())
+//                Utility.startActivityWithLeftToRightAnimation(this@CompanyListActiity, intent)
+//            }
 
         }
 

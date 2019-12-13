@@ -30,7 +30,8 @@ import java.util.*
 class Utility {
     companion object {
 
-//        private var mediaFactory: MediaFactory? = null
+        var isLadger:Boolean = true
+        //        private var mediaFactory: MediaFactory? = null
         var dateM: Date? = null
 //    fun setConnectivity(context: Context) {
 //        try {

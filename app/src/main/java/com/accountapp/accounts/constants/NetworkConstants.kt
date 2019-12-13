@@ -19,4 +19,6 @@ object NetworkConstants {
     const val CHANGE_PASSWORD = "change_pass"
     const val ADD_COMPANY = "add_comapny"
     const val MY_COMPANY = "get_my_company"
+    const val TRIAL_BALANCE = "make_trail03"
+    const val TRIAL_BALANCE_PDF = "trail_pdf_url"
 }

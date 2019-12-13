@@ -28,4 +28,13 @@ class ListViewModel: ViewModel() {
         return mRepo.callCompanyList(mobileNo)
     }
 
+// Trailbalance Api
+    fun callTrialBalanceList(gstNo: String?,fromDate: String,endDate: String): LiveData<TrialBalanceRespone> {
+        return mRepo.callTrialBalanceList(gstNo!!,fromDate,endDate)
+    }
+
+// Generate Tb PDF
+    fun callPdffGenerateTrialBalance(gstNo: String?,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
+        return mRepo.callPdffGenerateTrialBalance(gstNo!!,fromDate,endDate)
+    }
 }

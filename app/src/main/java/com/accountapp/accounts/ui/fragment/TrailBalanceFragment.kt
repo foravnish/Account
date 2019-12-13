@@ -16,6 +16,7 @@ import com.accountapp.accounts.databinding.FragmentTrailBalanceBinding
 import com.accountapp.accounts.model.response.SignUpResponse
 import com.accountapp.accounts.ui.home.HomeViewModel
 import com.accountapp.accounts.ui.ladgerList.CompanyListActiity
+import com.accountapp.accounts.ui.ladgerList.TrialBalanceListingActivites
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
 
@@ -53,7 +54,19 @@ class TrailBalanceFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trail_balance, container, false)
         binding.btnGetCom!!.setOnClickListener(View.OnClickListener {
-            callReadCompanyApi()
+//            callReadCompanyApi()
+
+            val intent = Intent(activity, TrialBalanceListingActivites::class.java)
+//            intent.putExtra("ACC_ID", comId)
+//            intent.putExtra("COM_NAME", comName)
+            intent.putExtra("fromdate", binding.fromDate.text.toString())
+            intent.putExtra("todate", binding.toDate.text.toString())
+            Utility.startActivityWithLeftToRightAnimation(activity, intent)
+
+
+//            Utility.startActivityWithLeftToRightAnimation(activity,
+//                Intent(activity, CompanyListActiity::class.java)
+//            )
         })
 
 

@@ -80,5 +80,14 @@ interface AppService {
     @GET(NetworkConstants.MY_COMPANY + "/{mobile}" )
     fun callCompanyList(@Path("mobile") mobile: String?): Call<CompanyListingResponse>
 
+    //   My Trial Blance Api
+    @GET(NetworkConstants.TRIAL_BALANCE +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
+    fun callTrialBalanceList(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<TrialBalanceRespone>
+
+
+    //    PDF_GENERATOR Trial Balance Api
+    @GET(NetworkConstants.TRIAL_BALANCE_PDF + "/{gstNo}"+ "/{fromDate}"+ "/{endDate}")
+    fun callPdffGenerateTrialBalance(@Path("gstNo") gstNo: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
+
 
 }

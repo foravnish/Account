@@ -1,6 +1,8 @@
 package com.accountapp.accounts.ui.ladgerList
 
 import android.app.ProgressDialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -18,6 +20,9 @@ import com.accountapp.accounts.R
 import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.FileProvider
+import java.io.File
 
 
 class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback {
@@ -33,24 +38,25 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
     var crTotal = 0.0
     var drTotal = 0.0
     var balTotal = 0.0
-    var totalBlalance=0.0
+    var totalBlalance = 0.0
     var x = 0
     var pDialog: ProgressDialog? = null
-    var downloadIdTwelve:Int = 0
+    var downloadIdTwelve: Int = 0
 
     lateinit var mLedgerCompany: LedgerCompanyAdapter
     var mResultLedgerData: MutableList<DataItemLadger>? = null
     private var dirPath: String? = null
 
     override fun initUI() {
-        binding= DataBindingUtil.setContentView(this, R.layout.activity_ladger_listing)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_ladger_listing)
         setToolbarWithBackIcon(
-            binding.includedToolbar.findViewById(R.id.toolbar), intent.getStringExtra("COM_NAME"))
+            binding.includedToolbar.findViewById(R.id.toolbar), intent.getStringExtra("COM_NAME")
+        )
 
-        var companyName=intent.getStringExtra("COM_NAME")
-        var ACC_ID=intent.getStringExtra("ACC_ID")
-        var fromDate=intent.getStringExtra("fromdate")
-        var endDate=intent.getStringExtra("todate")
+        var companyName = intent.getStringExtra("COM_NAME")
+        var ACC_ID = intent.getStringExtra("ACC_ID")
+        var fromDate = intent.getStringExtra("fromdate")
+        var endDate = intent.getStringExtra("todate")
 
 
         dirPath = Utility.getRootDirPath(applicationContext)
@@ -64,23 +70,28 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
 //        dirPath=mydir.toString()
 
-        pDialog= ProgressDialog(this)
+        pDialog = ProgressDialog(this)
         pDialog!!.setMessage("Please wait...");
         pDialog!!.setCancelable(false);
 
         setAdapterSearchProduct()
         mLedgerCompany.setViewCallback(this)
-        getCompanyLadgerData(ACC_ID,fromDate,endDate)
+        getCompanyLadgerData(ACC_ID, fromDate, endDate)
 
         binding.fab.setOnClickListener {
-            callPdfDownlaod(ACC_ID,fromDate,endDate,companyName)
+            callPdfDownlaod(ACC_ID, fromDate, endDate, companyName)
         }
     }
 
-    private fun callPdfDownlaod(accId: String,fromDate: String,endDate: String,companyName: String) {
+    private fun callPdfDownlaod(
+        accId: String,
+        fromDate: String,
+        endDate: String,
+        companyName: String
+    ) {
 
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callPdffGenerateApi(Prefences.getGST_No(mContext),accId,fromDate,endDate)
+        mViewModel.callPdffGenerateApi(Prefences.getGST_No(mContext), accId, fromDate, endDate)
             .observe(mContext, object : Observer<PDFGeneratorReponse> {
                 override fun onChanged(resp: PDFGeneratorReponse?) {
 
@@ -90,10 +101,10 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                             //PRDownloader.download(resp.pdfUrl)
 
                             downloadIdTwelve =
-                                PRDownloader.download(""+resp.pdf_url, dirPath, ""+companyName+".pdf")
+                                PRDownloader.download("" + resp.pdf_url, dirPath, "" + companyName + ".pdf")
                                     .build()
                                     .setOnStartOrResumeListener {
-                                        Log.d("pdfStatus","resume")
+                                        Log.d("pdfStatus", "resume")
                                     }
                                     .setOnCancelListener {
                                     }
@@ -101,9 +112,16 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                     }
                                     .start(object : OnDownloadListener {
                                         override fun onDownloadComplete() {
-                                            Log.d("pdfStatus","complete")
-                                            showLoadingView(false, binding.loadingView.loadingIndicator, binding.loadingView.container)
-                                            Utility.showSnackBar(binding.root,"Pdf download successfully.")
+                                            Log.d("pdfStatus", "complete")
+                                            showLoadingView(
+                                                false,
+                                                binding.loadingView.loadingIndicator,
+                                                binding.loadingView.container
+                                            )
+//                                            Utility.showSnackBar(binding.root, "Pdf download successfully.")
+                                            Toast.makeText(applicationContext,"Pdf download successfully.",Toast.LENGTH_LONG).show()
+
+                                            Utility.openPdfWithIntent( dirPath+"/" + companyName + ".pdf",mContext)
 //                                            val file = File(dirPath, ""+companyName+".pdf")
 //                                            val path = Uri.fromFile(file)
 //                                            val pdfOpenintent = Intent(Intent.ACTION_VIEW)
@@ -118,7 +136,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                         }
 
                                         override fun onError(error: com.downloader.Error) {
-                                            Log.d("pdfStatus","error:"+error)
+                                            Log.d("pdfStatus", "error:" + error)
                                         }
                                     })
 
@@ -126,7 +144,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                         } else {
                         }
                     } else {
-                        Utility.showSnackBar(binding.root,"Some error, Please try gain.")
+                        Utility.showSnackBar(binding.root, "Some error, Please try gain.")
                     }
                 }
 
@@ -134,20 +152,24 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
     }
 
-    private fun getCompanyLadgerData(accId: String,fromDate: String,endDate: String) {
+    private fun getCompanyLadgerData(accId: String, fromDate: String, endDate: String) {
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
 
-        mViewModel.callLadgerList(Prefences.getGST_No(mContext),accId,fromDate,endDate)
+        mViewModel.callLadgerList(Prefences.getGST_No(mContext), accId, fromDate, endDate)
             .observe(mContext, object : Observer<LadgerListResponse> {
                 override fun onChanged(resp: LadgerListResponse?) {
-                    showLoadingView(false, binding.loadingView.loadingIndicator, binding.loadingView.container)
+                    showLoadingView(
+                        false,
+                        binding.loadingView.loadingIndicator,
+                        binding.loadingView.container
+                    )
                     if (resp != null) {
                         if (resp.status.equals("success")) {
                             if (resp.data!!.size > 0) {
-                                binding.rcSearchProduct.visibility= View.VISIBLE
-                                binding.liEmptyLayout.visibility= View.GONE
-                                binding.topStrip.visibility= View.VISIBLE
-                                binding.bottomStrip.visibility= View.VISIBLE
+                                binding.rcSearchProduct.visibility = View.VISIBLE
+                                binding.liEmptyLayout.visibility = View.GONE
+                                binding.topStrip.visibility = View.VISIBLE
+                                binding.bottomStrip.visibility = View.VISIBLE
                                 mResultLedgerData = ArrayList(resp.data)
                                 mLedgerCompany.setData(mResultLedgerData!!)
 
@@ -162,20 +184,20 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                     x++ // Same as x += 1
                                 }
                                 binding.txtDrTotal.setText("" + drTotal)
-                                binding.txtCrTotal.setText(""+crTotal)
-                                if (drTotal>crTotal){
-                                    totalBlalance=drTotal-crTotal
-                                    binding.txtBalTotal.setText(""+totalBlalance+"(Dr)")
-                                }else{
-                                    totalBlalance=crTotal-drTotal
-                                    binding.txtBalTotal.setText(""+totalBlalance+"(Cr)")
+                                binding.txtCrTotal.setText("" + crTotal)
+                                if (drTotal > crTotal) {
+                                    totalBlalance = drTotal - crTotal
+                                    binding.txtBalTotal.setText("" + totalBlalance + "(Dr)")
+                                } else {
+                                    totalBlalance = crTotal - drTotal
+                                    binding.txtBalTotal.setText("" + totalBlalance + "(Cr)")
                                 }
 
                             } else {
-                                binding.rcSearchProduct.visibility= View.GONE
-                                binding.liEmptyLayout.visibility= View.VISIBLE
-                                binding.topStrip.visibility= View.GONE
-                                binding.bottomStrip.visibility= View.GONE
+                                binding.rcSearchProduct.visibility = View.GONE
+                                binding.liEmptyLayout.visibility = View.VISIBLE
+                                binding.topStrip.visibility = View.GONE
+                                binding.bottomStrip.visibility = View.GONE
                             }
                         }
 
@@ -199,12 +221,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
     }
 
 
-    fun downfile(urll:String,fileName:String){
-
-
-
-
-
+    fun downfile(urll: String, fileName: String) {
 
 
 //        if(!isFilePresent(fileName)) {

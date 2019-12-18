@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -156,7 +157,11 @@ class TrialBalanceListingActivites : BaseActivity() {
                                         override fun onDownloadComplete() {
                                             Log.d("pdfStatus","complete")
                                             showLoadingView(false, binding.loadingView.loadingIndicator, binding.loadingView.container)
-                                            Utility.showSnackBar(binding.root,"Pdf download successfully.")
+                                            //Utility.showSnackBar(binding.root,"Pdf download successfully.")
+
+                                            Toast.makeText(applicationContext,"Pdf download successfully.",
+                                                Toast.LENGTH_LONG).show()
+                                            Utility.openPdfWithIntent( dirPath+"/" + "TrialBalance-"+Prefences.getGST_No(mContext) + ".pdf",mContext)
 //                                            val file = File(dirPath, ""+companyName+".pdf")
 //                                            val path = Uri.fromFile(file)
 //                                            val pdfOpenintent = Intent(Intent.ACTION_VIEW)

@@ -2,6 +2,7 @@ package com.accountapp.accounts.utils
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -18,12 +19,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.accountapp.accounts.R
 import com.accountapp.accounts.ui.home.HomeActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -312,6 +315,32 @@ class Utility {
 
         private fun getBytesToMBString(bytes: Long): String {
             return String.format(Locale.ENGLISH, "%.2fMb", bytes / (1024.00 * 1024.00))
+        }
+
+
+
+        fun openPdfWithIntent(filePath: String,context: Context) {
+            val file = File(filePath)
+            val context = context
+            val pdfViewIntent = Intent(Intent.ACTION_VIEW)
+
+            val apkURI = FileProvider.getUriForFile(
+                context,
+                context.getApplicationContext()
+                    .getPackageName() + ".provider", file
+            )
+
+            pdfViewIntent.setDataAndType(apkURI, "application/pdf")
+            pdfViewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            val intent = Intent.createChooser(pdfViewIntent, "Open Account Pdf")
+            try {
+                context.startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                // Instruct the user to install a PDF reader here, or something
+                Toast.makeText(context,"No suitable App Found to view pdf",Toast.LENGTH_LONG).show()
+            }
+
         }
 
     }

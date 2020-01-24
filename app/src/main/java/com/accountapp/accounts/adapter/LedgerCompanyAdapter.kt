@@ -57,7 +57,7 @@ class LedgerCompanyAdapter() : RecyclerView.Adapter<LedgerCompanyAdapter.MyViewH
 
             var credit=list!!.get(position).CREDIT.toString().toDouble()
             var debit=list!!.get(position).DEBIT.toString().toDouble()
-            var balance=list!!.get(position).BALANCE.toString().toInt()
+            var balance=list!!.get(position).BALANCE.toString().toDouble()
             crTotal=crTotal+credit
             drTotal=drTotal+debit
             balTotal=balTotal+balance

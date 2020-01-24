@@ -179,7 +179,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
                                     drTotal = drTotal + resp.data.get(x).DEBIT.toDouble()
                                     crTotal = crTotal + resp.data.get(x).CREDIT.toDouble()
-                                    balTotal = balTotal + resp.data.get(x).BALANCE.toInt()
+                                    balTotal = balTotal + resp.data.get(x).BALANCE.toDouble()
 
                                     x++ // Same as x += 1
                                 }

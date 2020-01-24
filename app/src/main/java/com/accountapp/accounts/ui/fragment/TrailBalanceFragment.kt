@@ -1,6 +1,7 @@
 package com.accountapp.accounts.ui.fragment
 
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +20,8 @@ import com.accountapp.accounts.ui.ladgerList.CompanyListActiity
 import com.accountapp.accounts.ui.ladgerList.TrialBalanceListingActivites
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -44,6 +47,8 @@ class TrailBalanceFragment : BaseFragment() {
     lateinit var binding: FragmentTrailBalanceBinding
     val mContext by lazy { context }
     val mViewModel by lazy { ViewModelProviders.of(this).get(HomeViewModel::class.java) }
+    private var fromDatePickerDialog: DatePickerDialog? = null
+    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
 
 
     override fun onCreateView(
@@ -69,30 +74,74 @@ class TrailBalanceFragment : BaseFragment() {
 //            )
         })
 
+        binding.fromDate.setOnClickListener {
+
+            val newCalendar = Calendar.getInstance()
+            fromDatePickerDialog = mContext?.let { it1 ->
+                DatePickerDialog(
+                    it1,
+                    R.style.datepicker,
+                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                        val newDate = Calendar.getInstance()
+                        newDate.set(year, monthOfYear, dayOfMonth)
+                        binding.fromDate.setText(dateFormatter.format(newDate.getTime()))
+                    },
+                    newCalendar.get(Calendar.YEAR),
+                    newCalendar.get(Calendar.MONTH),
+                    newCalendar.get(
+                        Calendar.DAY_OF_MONTH
+                    )
+                )
+            }
+//            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis
+            fromDatePickerDialog!!.show()
+        }
+
+        binding.toDate.setOnClickListener {
+            val newCalendar = Calendar.getInstance()
+            fromDatePickerDialog = mContext?.let { it1 ->
+                DatePickerDialog(
+                    it1,
+                    R.style.datepicker,
+                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                        val newDate = Calendar.getInstance()
+                        newDate.set(year, monthOfYear, dayOfMonth)
+                        binding.toDate.setText(dateFormatter.format(newDate.getTime()))
+                    },
+                    newCalendar.get(Calendar.YEAR),
+                    newCalendar.get(Calendar.MONTH),
+                    newCalendar.get(
+                        Calendar.DAY_OF_MONTH
+                    )
+                )
+            }
+//            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis
+            fromDatePickerDialog!!.show()
+        }
 
         return binding.root
     }
-    private fun callReadCompanyApi() {
-        showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callReadCompany(Prefences.getGST_No(mContext!!))
-            .observe(this, object : Observer<SignUpResponse> {
-                override fun onChanged(resp: SignUpResponse?) {
-                    showLoadingView(false, binding.loadingView.loadingIndicator, binding.loadingView.container)
-                    if (resp != null) {
-                        if (resp.status.equals("success")) {
-                            Utility.startActivityWithLeftToRightAnimation(activity,
-                                Intent(activity, CompanyListActiity::class.java)
-                            )
-                        } else {
-                        }
-                    } else {
-                        Utility.showSnackBar(binding.root,"File not Exist, Please connect to Admin")
-                    }
-                }
-
-            })
-
-    }
+//    private fun callReadCompanyApi() {
+//        showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
+//        mViewModel.callReadCompany(Prefences.getGST_No(mContext!!))
+//            .observe(this, object : Observer<SignUpResponse> {
+//                override fun onChanged(resp: SignUpResponse?) {
+//                    showLoadingView(false, binding.loadingView.loadingIndicator, binding.loadingView.container)
+//                    if (resp != null) {
+//                        if (resp.status.equals("success")) {
+//                            Utility.startActivityWithLeftToRightAnimation(activity,
+//                                Intent(activity, CompanyListActiity::class.java)
+//                            )
+//                        } else {
+//                        }
+//                    } else {
+//                        Utility.showSnackBar(binding.root,"File not Exist, Please connect to Admin")
+//                    }
+//                }
+//
+//            })
+//
+//    }
 
 
 }

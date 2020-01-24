@@ -28,7 +28,7 @@ class ListViewModel: ViewModel() {
         return mRepo.callCompanyList(mobileNo)
     }
 
-// Trailbalance Api
+// Trail balance Api
     fun callTrialBalanceList(gstNo: String?,fromDate: String,endDate: String): LiveData<TrialBalanceRespone> {
         return mRepo.callTrialBalanceList(gstNo!!,fromDate,endDate)
     }

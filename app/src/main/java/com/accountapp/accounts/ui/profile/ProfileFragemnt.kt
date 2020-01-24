@@ -41,6 +41,8 @@ class ProfileFragemnt : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.activity_profile, container, false)
 
+
+
         binding.txtName.setText(""+ Prefences.getUserName(mContext!!))
         binding.mobileNo.setText("Mobile No: "+ Prefences.getUserMobile(mContext!!))
         binding.emailId.setText("Email ID: "+ Prefences.getUserEmailId(mContext!!))
@@ -48,6 +50,7 @@ class ProfileFragemnt : BaseFragment() {
         binding.gstNo.setText("GST: "+ Prefences.getGST_No(mContext!!))
         binding.addresses.setText("Address: "+ Prefences.getAddress(mContext!!))
         binding.city.setText("City: "+ Prefences.getCity(mContext!!))
+
 
         binding.logout.setOnClickListener {
 

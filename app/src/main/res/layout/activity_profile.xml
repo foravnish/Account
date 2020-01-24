@@ -17,7 +17,10 @@
             android:fitsSystemWindows="true"
             app:title="Profile"
             app:titleMarginStart="30dp"
-            app:titleTextColor="@android:color/black" />
+            app:titleTextColor="@android:color/black" >
+
+
+        </androidx.appcompat.widget.Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -198,6 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:orientation="vertical"
+                        android:layout_marginTop="10dp"
                         android:textColor="@android:color/white"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
                         app:layout_constraintTop_toTopOf="@+id/view2">
@@ -209,7 +213,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:text=""
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/color_424242"
                             android:textSize="18sp" />
 
 

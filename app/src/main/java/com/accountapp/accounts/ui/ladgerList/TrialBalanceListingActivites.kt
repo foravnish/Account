@@ -106,8 +106,8 @@ class TrialBalanceListingActivites : BaseActivity() {
 
                                     x++ // Same as x += 1
                                 }
-                                binding.txtDrTotal.setText("" + drTotal)
-                                binding.txtCrTotal.setText(""+crTotal)
+                                binding.txtDrTotal.setText("" +String.format("%.2f", drTotal) )
+                                binding.txtCrTotal.setText(""+String.format("%.2f",crTotal))
                                 if (drTotal>crTotal){
                                     totalBlalance=drTotal-crTotal
                                     binding.txtBalTotal.setText(""+totalBlalance+"(Dr)")

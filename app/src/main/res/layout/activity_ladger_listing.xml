@@ -28,7 +28,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="9">
+                android:layout_weight="7">
             <LinearLayout
                 android:id="@+id/topStrip"
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                     android:text="Narration"
                     android:textStyle="bold"
                     android:textColor="@color/app_black"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:textSize="12dp"
                     />
 
@@ -116,11 +116,16 @@
 <!--                android:background="@color/hint_color"/>-->
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
                 android:id="@+id/bottomStrip"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:padding="10dp"
-                android:layout_weight="1.2"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <TextView
@@ -150,7 +155,8 @@
                     android:layout_height="wrap_content"
                     tools:text="0"
                     android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="-10dp"
                     android:textColor="@color/red_color"
                     android:layout_weight="1"
                     android:textSize="8dp"
@@ -162,20 +168,61 @@
                     android:layout_height="wrap_content"
                     tools:text="0"
                     android:textStyle="bold"
+                    android:layout_marginTop="-10dp"
                     android:textColor="@color/green_color"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="3"
                     android:textSize="8dp" />
 
-                <TextView
-                    android:id="@+id/txtBalTotal"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/app_black"
-                    android:layout_height="wrap_content"
-                    tools:text="0"
-                    android:textStyle="bold"
-                    android:textSize="8dp" />
+
+            </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:padding="10dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Date"
+                        android:textColor="@color/app_black"
+                        android:textStyle="bold"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:textSize="14dp"
+                        />
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Balance"
+                        android:textStyle="bold"
+                        android:textColor="@color/app_black"
+                        android:layout_weight="2"
+                        android:layout_marginRight="40dp"
+                        android:textSize="24dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/txtBalTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="140dp"
+                        android:layout_weight="1"
+                        android:text="22sp"
+                        android:textColor="@color/app_black"
+                        android:textSize="8dp"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

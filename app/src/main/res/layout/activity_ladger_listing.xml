@@ -63,7 +63,7 @@
                     android:text="Debit(₹)"
                     android:textColor="@color/red_color"
                     android:textStyle="bold"
-                    android:layout_marginLeft="7dp"
+                    android:gravity="right"
                     android:layout_weight="1"
                     android:textSize="10dp"
                     />
@@ -74,6 +74,7 @@
                     android:text="Credit(₹)"
                     android:textColor="@color/green_color"
                     android:textStyle="bold"
+                    android:gravity="right"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:textSize="10dp"
@@ -83,6 +84,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Balance"
+                    android:gravity="right"
                     android:textColor="@color/app_black"
                     android:textStyle="bold"
                     android:textSize="10dp"
@@ -120,105 +122,106 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/bottomStrip"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:padding="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textColor="@color/app_black"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    android:layout_weight="1"
-                    android:textSize="14dp"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Total"
-                    android:textStyle="bold"
-                    android:textColor="@color/app_black"
-                    android:layout_weight="3"
-                    android:textSize="20dp"
-                    />
-
-                <TextView
-                    android:id="@+id/txtDrTotal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    tools:text="0"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="-10dp"
-                    android:textColor="@color/red_color"
-                    android:layout_weight="1"
-                    android:textSize="8dp"
-                    />
-
-                <TextView
-                    android:id="@+id/txtCrTotal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    tools:text="0"
-                    android:textStyle="bold"
-                    android:layout_marginTop="-10dp"
-                    android:textColor="@color/green_color"
-                    android:layout_marginLeft="30dp"
-                    android:layout_weight="3"
-                    android:textSize="8dp" />
-
-
-            </LinearLayout>
-
-
                 <LinearLayout
+                    android:id="@+id/bottomStrip"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:layout_weight="2"
                     android:orientation="horizontal">
+
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Date"
+                        android:text=""
                         android:textColor="@color/app_black"
                         android:textStyle="bold"
-                        android:visibility="invisible"
                         android:layout_weight="1"
-                        android:textSize="14dp"
+                        android:visibility="visible"
+                        android:textSize="12dp"
                         />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_weight="2"
+
+
+                        android:text="Total"
+                        android:textColor="@color/app_black"
+                        android:textSize="24dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtDrTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red_color"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:textSize="10dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtCrTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/green_color"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:textSize="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="right"
+                        android:textColor="@color/app_black"
+                        android:visibility="visible"
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/hint_color"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
 
 
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Balance"
                         android:textStyle="bold"
                         android:textColor="@color/app_black"
-                        android:layout_weight="2"
-                        android:layout_marginRight="40dp"
                         android:textSize="24dp"
-                        />
+                        android:layout_marginLeft="65dp"/>
 
 
                     <TextView
                         android:id="@+id/txtBalTotal"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="140dp"
-                        android:layout_weight="1"
-                        android:text="22sp"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="30dp"
                         android:textColor="@color/app_black"
-                        android:textSize="8dp"
                         android:textStyle="bold"
                         tools:text="0" />
 
@@ -226,10 +229,7 @@
 
             </LinearLayout>
 
-<!--            <View-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="1dp"-->
-<!--                android:background="@color/hint_color"/>-->
+
 
             <LinearLayout
                 android:id="@+id/li_empty_layout"

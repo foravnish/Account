@@ -63,7 +63,8 @@
                             android:text="Debit(₹)"
                             android:textColor="@color/red_color"
                             android:textStyle="bold"
-                            android:layout_marginLeft="7dp"
+                            android:gravity="right"
+                            android:layout_marginLeft="30dp"
                             android:layout_weight="1"
                             android:textSize="10dp"
                             />
@@ -72,6 +73,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="Credit(₹)"
+                            android:gravity="right"
                             android:textColor="@color/green_color"
                             android:textStyle="bold"
                             android:layout_marginLeft="10dp"
@@ -119,72 +121,71 @@
                 <LinearLayout
                     android:id="@+id/bottomStrip"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:gravity="top"
-                    android:layout_weight="1.2"
                     android:orientation="horizontal">
+
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Code"
+                        android:text=""
                         android:textColor="@color/app_black"
                         android:textStyle="bold"
-                        android:visibility="invisible"
                         android:layout_weight="1"
-                        android:textSize="14dp"
+                        android:visibility="visible"
+                        android:textSize="12dp"
                         />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Total"
                         android:textStyle="bold"
+                        android:layout_weight="2"
+
+
+                        android:text="Total"
                         android:textColor="@color/app_black"
-                        android:layout_weight="3"
-                        android:textSize="20dp"
+                        android:textSize="24dp"
                         />
 
                     <TextView
                         android:id="@+id/txtDrTotal"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        tools:text="0"
-                        android:layout_gravity="top"
-                        android:gravity="top"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"
                         android:textColor="@color/red_color"
+                        android:textStyle="bold"
+                        android:gravity="right"
                         android:layout_weight="1"
-                        android:layout_marginTop="-15dp"
-                        android:textSize="8dp"
+                        android:textSize="10dp"
                         />
 
                     <TextView
                         android:id="@+id/txtCrTotal"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        tools:text="0"
-                        android:layout_marginTop="-15dp"
-                        android:textStyle="bold"
                         android:textColor="@color/green_color"
+                        android:textStyle="bold"
+                        android:gravity="right"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:textSize="8dp" />
-
+                        android:textSize="10dp"
+                        />
                     <TextView
-                        android:id="@+id/txtBalTotal"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:textColor="@color/app_black"
                         android:layout_height="wrap_content"
-                        tools:text="0"
-                        android:visibility="gone"
+                        android:text=""
+                        android:gravity="right"
+                        android:textColor="@color/app_black"
+                        android:visibility="visible"
                         android:textStyle="bold"
-                        android:textSize="8dp" />
+                        android:textSize="10dp"
+                        />
 
                 </LinearLayout>
+
+
 
                 <!--            <View-->
                 <!--                android:layout_width="match_parent"-->

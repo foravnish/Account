@@ -199,6 +199,8 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                 binding.topStrip.visibility = View.GONE
                                 binding.bottomStrip.visibility = View.GONE
                             }
+                        }else {
+                            Utility.showSnackBar(binding.root, "No record found")
                         }
 
                     }

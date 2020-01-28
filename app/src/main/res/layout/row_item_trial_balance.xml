@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/app_black"
-                android:layout_weight="1.2"
+                android:layout_weight="1"
                 android:textSize="10dp"
                 />
 
@@ -37,11 +37,13 @@
                 android:textSize="14dp"
                 />
 
+
             <TextView
                 android:id="@+id/txtAmount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:gravity="right"
                 android:textColor="@color/red_color"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -52,23 +54,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="dfdf"
+                android:gravity="right"
                 android:textColor="@color/green_color"
-                android:textSize="8dp"
+                android:textSize="10dp"
                 />
-
-
-            <TextView
-                android:id="@+id/txtBalance"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/app_black"
-                android:textSize="8dp"
-                />
-
-
 
         </LinearLayout>
         <View

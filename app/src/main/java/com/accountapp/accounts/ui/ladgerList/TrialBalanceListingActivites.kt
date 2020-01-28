@@ -110,10 +110,10 @@ class TrialBalanceListingActivites : BaseActivity() {
                                 binding.txtCrTotal.setText(""+String.format("%.2f",crTotal))
                                 if (drTotal>crTotal){
                                     totalBlalance=drTotal-crTotal
-                                    binding.txtBalTotal.setText(""+totalBlalance+"(Dr)")
+                                   // binding.txtBalTotal.setText(""+totalBlalance+"(Dr)")
                                 }else{
                                     totalBlalance=crTotal-drTotal
-                                    binding.txtBalTotal.setText(""+totalBlalance+"(Cr)")
+                                   // binding.txtBalTotal.setText(""+totalBlalance+"(Cr)")
                                 }
 
                             } else {
@@ -122,6 +122,8 @@ class TrialBalanceListingActivites : BaseActivity() {
                                 binding.topStrip.visibility= View.GONE
                                 binding.bottomStrip.visibility= View.GONE
                             }
+                        }else{
+                            Utility.showSnackBar(binding.root, "No record found")
                         }
 
                     }

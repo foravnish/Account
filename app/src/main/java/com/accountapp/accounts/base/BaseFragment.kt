@@ -1,6 +1,7 @@
 package com.accountapp.accounts.base
 
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 
 import com.accountapp.accounts.R
 import com.accountapp.accounts.callback.OnFragmentInteractionListener
+import com.accountapp.accounts.utils.Utility
 import com.ithe1percent.ithe1.utils.Lg
 
 /**
@@ -47,5 +49,14 @@ abstract class BaseFragment : Fragment() {
             view.visibility = View.GONE
         }
 
+    }
+
+    fun isInternetAvailable(parentLayout: View?,context: Context): Boolean{
+        if (Utility.isNetworkAvailable(context))
+            return true
+        else {
+            Utility.showSnackBar(parentLayout, "" + getString(R.string.err_check_interner))
+            return false
+        }
     }
 }

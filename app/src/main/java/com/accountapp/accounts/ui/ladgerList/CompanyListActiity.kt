@@ -41,17 +41,10 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
 
     override fun initUI() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ladger_list_actiity)
-//        setToolbarWithBackIcon(
-//            binding.includedToolbar.findViewById(R.id.toolbar),
-//            getString(R.string.com_list) )
-
-//        if (!Utility.isLadger){
-//            binding.albumCard.setVisibility(View.GONE)
-//            binding.rcSearchProduct.setVisibility(View.GONE)
-//            binding.dateLayout.setVisibility(View.VISIBLE)
-//        }
         binding.closePress.setOnClickListener {
             binding.searchEdit.setText("")
+            binding.fromDate.setText("");
+            binding.toDate.setText("");
             callSearchProductApi("")
             binding.dateLayout.setVisibility(View.GONE)
             binding.rcSearchProduct.visibility = View.VISIBLE

@@ -55,7 +55,9 @@ class LedgerFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ledger, container, false)
         binding.btnGetCom!!.setOnClickListener(View.OnClickListener {
-            callReadCompanyApi()
+            if (this!!.mContext?.let { it1 -> isInternetAvailable(binding.root, it1) }!!) {
+                callReadCompanyApi()
+            }
 
         })
 

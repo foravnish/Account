@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.ladgerList.TrialBalanceListingActivites"></activity>
+        <activity android:name=".ui.sundryDrCr.SundryCrDrActivities"></activity>
+        <activity android:name=".ui.ladgerList.TrialBalanceListingActivites" />
         <activity android:name=".ui.companies.AddCompanyActivity" />
         <activity android:name=".ui.companies.MyCompaniesActivity" />
         <activity android:name=".ui.changePassword.ChangePasswordActivity" />
@@ -30,6 +31,7 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.signup.RegistrationActivity" />
+        <activity android:name=".ui.profile.ProfileFragemnt" />
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,8 +49,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
-
     </application>
 
 </manifest>

@@ -54,7 +54,9 @@ class TrialBalanceListingActivites : BaseActivity() {
         getCompanyTrialBalanceData(fromDate,endDate)
 
         binding.fab.setOnClickListener {
-            callPdfDownlaod(fromDate,endDate)
+            if (isInternetAvailable(binding.root, mContext)) {
+                callPdfDownlaod(fromDate, endDate)
+            }
         }
 
     }

@@ -79,18 +79,16 @@ class TrialBalanceAdapter() : RecyclerView.Adapter<TrialBalanceAdapter.MyViewHol
 
             //  holder.itemView.txtTitle.setText(""+list!!.get(position).accode)
             holder.itemView.txtTitle.setText("" + list!!.get(position).acname)
-            holder.itemView.txtDate.setText("" + list!!.get(position).accode)
+//            holder.itemView.txtDate.setText("" + list!!.get(position).accode)
             holder.itemView.txtAmount.setText("" + list!!.get(position).dr)
             holder.itemView.txtCredit.setText("" + list!!.get(position).cr)
             //  holder.itemView.txtBalance.setText("" + list!!.get(position).BALANCE)
 
-//            for (i in 0 until list!!.size) {
             if (position % 2 == 1) {
                 holder.itemView.linearBackColor.setBackgroundColor(Color.parseColor("#BBCFD1"))
             } else {
                 holder.itemView.linearBackColor.setBackgroundColor(Color.parseColor("#FFFFFF"))
             }
-//            }
 
 
         }

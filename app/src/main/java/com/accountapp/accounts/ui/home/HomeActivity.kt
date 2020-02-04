@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.accountapp.accounts.R
-import com.accountapp.accounts.base.BaseActivity
 import com.accountapp.accounts.base.BaseFragment
 import com.accountapp.accounts.base.BaseFragmentActivity
 import com.accountapp.accounts.databinding.ActivityHomeBinding
 import com.accountapp.accounts.ui.fragment.LedgerFragment
 import com.accountapp.accounts.ui.fragment.TrailBalanceFragment
-import com.accountapp.accounts.ui.profile.ProfileFragemnt
-import com.accountapp.accounts.utils.Prefences
+import com.accountapp.accounts.ui.sundryDrCr.SundryCredatorFragment
+import com.accountapp.accounts.ui.sundryDrCr.SundryDebatorsFragment
 import com.accountapp.accounts.utils.Utility
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -78,15 +77,24 @@ class HomeActivity : BaseFragmentActivity() {
                             }
                             return true
                         }
-                        R.id.navigation_profile -> {
-                            if (currentlyLoadedFragment != ProfileFragemnt.TAG) {
-                                TAG = ProfileFragemnt.TAG
+                        R.id.navigation_s_cr -> {
+                            if (currentlyLoadedFragment != SundryCredatorFragment.TAG) {
+                                TAG = SundryCredatorFragment.TAG
                                 currentlyLoadedFragment = TAG
 
                                 showFragment(TAG, null, true, true)
-                                //supportActionBar!!.setTitle("Profile")
                             }
-//
+
+                            return true
+                        }
+                        R.id.navigation_s_dr -> {
+                            if (currentlyLoadedFragment != SundryDebatorsFragment.TAG) {
+                                TAG = SundryDebatorsFragment.TAG
+                                currentlyLoadedFragment = TAG
+
+                                showFragment(TAG, null, true, true)
+                            }
+
                             return true
                         }
                     }
@@ -98,12 +106,7 @@ class HomeActivity : BaseFragmentActivity() {
 
         binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-
-
     }
-
-
-
 
 
     override fun showFragment(tag: String, args: Bundle?, addToBackStack: Boolean, replace: Boolean) {
@@ -124,12 +127,12 @@ class HomeActivity : BaseFragmentActivity() {
             TrailBalanceFragment.TAG -> {
                 frag = TrailBalanceFragment.newInstance(args)
             }
-            ProfileFragemnt.TAG -> {
-                frag = ProfileFragemnt.newInstance(args)
+            SundryCredatorFragment.TAG -> {
+                frag = SundryCredatorFragment.newInstance(args)
             }
-//            FragmentNotifications.TAG -> {
-//                frag = FragmentNotifications.newInstance(args)
-//            }
+            SundryDebatorsFragment.TAG -> {
+                frag = SundryDebatorsFragment.newInstance(args)
+            }
 
         }
 

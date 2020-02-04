@@ -11,70 +11,93 @@ import retrofit2.Response
 
 class ListReposatory {
 
-    fun callSearchData(gstNo: String?, search:String): LiveData<SearchCompanyList> {
+    fun callSearchData(gstNo: String?, search: String): LiveData<SearchCompanyList> {
         val data = MutableLiveData<SearchCompanyList>()
-        AppRetrofit.instance.callSearchData(gstNo,search).enqueue(object : Callback<SearchCompanyList> {
-            override fun onFailure(call: Call<SearchCompanyList>, t: Throwable) {
-                data.value = null
-            }
-
-            override fun onResponse(call: Call<SearchCompanyList>, response: Response<SearchCompanyList>) {
-                if (response.isSuccessful) {
-                    data.value = if (response != null && response.body() != null) response.body() else null
-                } else {
-                    val gson = Gson()
-                    val adapter = gson.getAdapter(SearchCompanyList::class.java)
-                    if (response.errorBody() != null)
-                        data.value = adapter.fromJson(response.errorBody()!!.string())
+        AppRetrofit.instance.callSearchData(gstNo, search)
+            .enqueue(object : Callback<SearchCompanyList> {
+                override fun onFailure(call: Call<SearchCompanyList>, t: Throwable) {
+                    data.value = null
                 }
-                data.value = null
 
-            }
-        })
+                override fun onResponse(
+                    call: Call<SearchCompanyList>,
+                    response: Response<SearchCompanyList>
+                ) {
+                    if (response.isSuccessful) {
+                        data.value =
+                            if (response != null && response.body() != null) response.body() else null
+                    } else {
+                        val gson = Gson()
+                        val adapter = gson.getAdapter(SearchCompanyList::class.java)
+                        if (response.errorBody() != null)
+                            data.value = adapter.fromJson(response.errorBody()!!.string())
+                    }
+                    data.value = null
+
+                }
+            })
 
         return data
     }
 
 
-//  Ledger Listing
-    fun callLadgerList(gstNo: String?, acc_no:String,fromDate:String,endDate:String): LiveData<LadgerListResponse> {
+    //  Ledger Listing
+    fun callLadgerList(
+        gstNo: String?,
+        acc_no: String,
+        fromDate: String,
+        endDate: String
+    ): LiveData<LadgerListResponse> {
         val data = MutableLiveData<LadgerListResponse>()
-        AppRetrofit.instance.callLadgerList(gstNo,acc_no,fromDate,endDate).enqueue(object : Callback<LadgerListResponse> {
-            override fun onFailure(call: Call<LadgerListResponse>, t: Throwable) {
-                data.value = null
-            }
-
-            override fun onResponse(call: Call<LadgerListResponse>, response: Response<LadgerListResponse>) {
-                if (response.isSuccessful) {
-                    data.value = if (response != null && response.body() != null) response.body() else null
-                } else {
-                    val gson = Gson()
-                    val adapter = gson.getAdapter(LadgerListResponse::class.java)
-                    if (response.errorBody() != null)
-                        data.value = adapter.fromJson(response.errorBody()!!.string())
+        AppRetrofit.instance.callLadgerList(gstNo, acc_no, fromDate, endDate)
+            .enqueue(object : Callback<LadgerListResponse> {
+                override fun onFailure(call: Call<LadgerListResponse>, t: Throwable) {
+                    data.value = null
                 }
-                data.value = null
 
-            }
-        })
+                override fun onResponse(
+                    call: Call<LadgerListResponse>,
+                    response: Response<LadgerListResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        data.value =
+                            if (response != null && response.body() != null) response.body() else null
+                    } else {
+                        val gson = Gson()
+                        val adapter = gson.getAdapter(LadgerListResponse::class.java)
+                        if (response.errorBody() != null)
+                            data.value = adapter.fromJson(response.errorBody()!!.string())
+                    }
+                    data.value = null
+
+                }
+            })
 
         return data
     }
 
-    fun callPdffGenerateApi(gstNo: String,acc_no:String,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
+    fun callPdffGenerateApi(
+        gstNo: String,
+        acc_no: String,
+        fromDate: String,
+        endDate: String
+    ): LiveData<PDFGeneratorReponse> {
         val data = MutableLiveData<PDFGeneratorReponse>()
-        AppRetrofit.instance.callPdffGenerateApi(gstNo,acc_no,fromDate,endDate).enqueue(object :
+        AppRetrofit.instance.callPdffGenerateApi(gstNo, acc_no, fromDate, endDate).enqueue(object :
             Callback<PDFGeneratorReponse> {
             override fun onFailure(call: Call<PDFGeneratorReponse>, t: Throwable) {
                 data.value = null
             }
 
-            override fun onResponse(call: Call<PDFGeneratorReponse>, response: Response<PDFGeneratorReponse>) {
+            override fun onResponse(
+                call: Call<PDFGeneratorReponse>,
+                response: Response<PDFGeneratorReponse>
+            ) {
 
-                if (response.isSuccessful){
-                    data.value = if (response != null && response.body() != null) response!!.body() else null
-                }
-                else {
+                if (response.isSuccessful) {
+                    data.value =
+                        if (response != null && response.body() != null) response!!.body() else null
+                } else {
                     val gson = Gson()
                     val adapter = gson.getAdapter(PDFGeneratorReponse::class.java)
                     if (response.errorBody() != null)
@@ -87,7 +110,6 @@ class ListReposatory {
     }
 
 
-
     // My Company listing Repo
     fun callCompanyList(mobileNo: String?): LiveData<CompanyListingResponse> {
         val data = MutableLiveData<CompanyListingResponse>()
@@ -97,12 +119,15 @@ class ListReposatory {
                 data.value = null
             }
 
-            override fun onResponse(call: Call<CompanyListingResponse>, response: Response<CompanyListingResponse>) {
+            override fun onResponse(
+                call: Call<CompanyListingResponse>,
+                response: Response<CompanyListingResponse>
+            ) {
 
-                if (response.isSuccessful){
-                    data.value = if (response != null && response.body() != null) response!!.body() else null
-                }
-                else {
+                if (response.isSuccessful) {
+                    data.value =
+                        if (response != null && response.body() != null) response!!.body() else null
+                } else {
                     val gson = Gson()
                     val adapter = gson.getAdapter(CompanyListingResponse::class.java)
                     if (response.errorBody() != null)
@@ -115,48 +140,63 @@ class ListReposatory {
     }
 
 
-
     // Trail balance
-    fun callTrialBalanceList(gstNo: String,fromDate: String,endDate: String): LiveData<TrialBalanceRespone> {
+    fun callTrialBalanceList(
+        gstNo: String,
+        fromDate: String,
+        endDate: String
+    ): LiveData<TrialBalanceRespone> {
         val data = MutableLiveData<TrialBalanceRespone>()
-        AppRetrofit.instance.callTrialBalanceList(gstNo,fromDate,endDate).enqueue(object : Callback<TrialBalanceRespone> {
-            override fun onFailure(call: Call<TrialBalanceRespone>, t: Throwable) {
-                data.value = null
-            }
-
-            override fun onResponse(call: Call<TrialBalanceRespone>, response: Response<TrialBalanceRespone>) {
-                if (response.isSuccessful) {
-                    data.value = if (response != null && response.body() != null) response.body() else null
-                } else {
-                    val gson = Gson()
-                    val adapter = gson.getAdapter(TrialBalanceRespone::class.java)
-                    if (response.errorBody() != null)
-                        data.value = adapter.fromJson(response.errorBody()!!.string())
+        AppRetrofit.instance.callTrialBalanceList(gstNo, fromDate, endDate)
+            .enqueue(object : Callback<TrialBalanceRespone> {
+                override fun onFailure(call: Call<TrialBalanceRespone>, t: Throwable) {
+                    data.value = null
                 }
-                data.value = null
 
-            }
-        })
+                override fun onResponse(
+                    call: Call<TrialBalanceRespone>,
+                    response: Response<TrialBalanceRespone>
+                ) {
+                    if (response.isSuccessful) {
+                        data.value =
+                            if (response != null && response.body() != null) response.body() else null
+                    } else {
+                        val gson = Gson()
+                        val adapter = gson.getAdapter(TrialBalanceRespone::class.java)
+                        if (response.errorBody() != null)
+                            data.value = adapter.fromJson(response.errorBody()!!.string())
+                    }
+                    data.value = null
+
+                }
+            })
 
         return data
     }
 
 
-/// Generate Tb PDF
-    fun callPdffGenerateTrialBalance(gstNo: String,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
+    /// Generate Tb PDF
+    fun callPdffGenerateTrialBalance(
+        gstNo: String,
+        fromDate: String,
+        endDate: String
+    ): LiveData<PDFGeneratorReponse> {
         val data = MutableLiveData<PDFGeneratorReponse>()
-        AppRetrofit.instance.callPdffGenerateTrialBalance(gstNo,fromDate,endDate).enqueue(object :
+        AppRetrofit.instance.callPdffGenerateTrialBalance(gstNo, fromDate, endDate).enqueue(object :
             Callback<PDFGeneratorReponse> {
             override fun onFailure(call: Call<PDFGeneratorReponse>, t: Throwable) {
                 data.value = null
             }
 
-            override fun onResponse(call: Call<PDFGeneratorReponse>, response: Response<PDFGeneratorReponse>) {
+            override fun onResponse(
+                call: Call<PDFGeneratorReponse>,
+                response: Response<PDFGeneratorReponse>
+            ) {
 
-                if (response.isSuccessful){
-                    data.value = if (response != null && response.body() != null) response!!.body() else null
-                }
-                else {
+                if (response.isSuccessful) {
+                    data.value =
+                        if (response != null && response.body() != null) response!!.body() else null
+                } else {
                     val gson = Gson()
                     val adapter = gson.getAdapter(PDFGeneratorReponse::class.java)
                     if (response.errorBody() != null)

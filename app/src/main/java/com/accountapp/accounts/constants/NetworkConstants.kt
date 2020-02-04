@@ -21,4 +21,9 @@ object NetworkConstants {
     const val MY_COMPANY = "get_my_company"
     const val TRIAL_BALANCE = "make_trail03"
     const val TRIAL_BALANCE_PDF = "trail_pdf_url"
+    const val SUNDRY_CR = "sundry_cr"
+    const val SUNDRY_CR_PDF = "sundry_cr_pdf_url"
+
+    const val SUNDRY_DR = "sundry_dr"
+    const val SUNDRY_DR_PDF = "sundry_dr_pdf_url"
 }

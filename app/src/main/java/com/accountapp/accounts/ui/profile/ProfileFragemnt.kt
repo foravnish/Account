@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 
 import com.accountapp.accounts.R
+import com.accountapp.accounts.base.BaseActivity
 import com.accountapp.accounts.base.BaseFragment
 import com.accountapp.accounts.databinding.ActivityProfileBinding
 import com.accountapp.accounts.ui.changePassword.ChangePasswordActivity
@@ -16,31 +17,17 @@ import com.accountapp.accounts.ui.login.LoginActivity
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
 
-/**
- * A simple [Fragment] subclass.
- */
-class ProfileFragemnt : BaseFragment() {
 
+class ProfileFragemnt : BaseActivity() {
 
     lateinit var binding: ActivityProfileBinding
+    val mContext by lazy { this@ProfileFragemnt }
 
-    val mContext by lazy { context }
+    override fun initUI() {
 
-    companion object {
-        val TAG = "FragmentProfile"
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
 
-        fun newInstance(args: Bundle?): ProfileFragemnt {
-            val fragment = ProfileFragemnt()
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
-        // Inflate the layout for this fragment
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_profile, container, false)
-
+        setToolbarWithBackIcon(binding.includedToolbar.findViewById(R.id.toolbar),"Profile")
 
 
         binding.txtName.setText(""+ Prefences.getUserName(mContext!!))
@@ -51,28 +38,43 @@ class ProfileFragemnt : BaseFragment() {
         binding.addresses.setText("Address: "+ Prefences.getAddress(mContext!!))
         binding.city.setText("City: "+ Prefences.getCity(mContext!!))
 
-
         binding.logout.setOnClickListener {
 
             Prefences.resetUserData(mContext!!)
-            val intent = Intent(activity, LoginActivity::class.java)
-            Utility.startActivityWithLeftToRightAnimation(activity,intent)
-            activity!!.finishAffinity()
+            val intent = Intent(mContext, LoginActivity::class.java)
+            Utility.startActivityWithLeftToRightAnimation(mContext,intent)
+            mContext!!.finishAffinity()
         }
 
 
         binding.txtChangePasword.setOnClickListener {
-            Utility.startActivityWithLeftToRightAnimation(activity, Intent(activity, ChangePasswordActivity::class.java))
+            Utility.startActivityWithLeftToRightAnimation(mContext, Intent(mContext, ChangePasswordActivity::class.java))
 
         }
 
-        return binding.root
-
     }
-    override fun getFragmentTag(): String {
 
-        return TAG
-    }
+
+//    companion object {
+//        val TAG = "FragmentProfile"
+//
+//        fun newInstance(args: Bundle?): ProfileFragemnt {
+//            val fragment = ProfileFragemnt()
+//            fragment.arguments = args
+//            return fragment
+//        }
+//    }
+//    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
+//        // Inflate the layout for this fragment
+//
+//
+//        return binding.root
+//
+//    }
+//    override fun getFragmentTag(): String {
+//
+//        return TAG
+//    }
 
 
     override fun onContextItemSelected(item: MenuItem): Boolean {

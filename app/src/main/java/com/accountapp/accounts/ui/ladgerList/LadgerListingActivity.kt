@@ -60,15 +60,6 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
 
         dirPath = Utility.getRootDirPath(applicationContext)
-//        dirPath= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-//        dirPath= Environment.getExternalStorageDirectory().toString()+ File.separator + Environment.DIRECTORY_DOWNLOADS;
-//        dirPath= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-
-//        val file=Environment.getExternalStorageDirectory()
-//        val mydir = File(file + "/"+"ddd/")
-//        mydir.mkdirs();
-
-//        dirPath=mydir.toString()
 
         pDialog = ProgressDialog(this)
         pDialog!!.setMessage("Please wait...");
@@ -79,7 +70,9 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         getCompanyLadgerData(ACC_ID, fromDate, endDate)
 
         binding.fab.setOnClickListener {
-            callPdfDownlaod(ACC_ID, fromDate, endDate, companyName)
+            if (isInternetAvailable(binding.root, mContext)) {
+                callPdfDownlaod(ACC_ID, fromDate, endDate, companyName)
+            }
         }
     }
 
@@ -101,7 +94,11 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                             //PRDownloader.download(resp.pdfUrl)
 
                             downloadIdTwelve =
-                                PRDownloader.download("" + resp.pdf_url, dirPath, "" + companyName + ".pdf")
+                                PRDownloader.download(
+                                    "" + resp.pdf_url,
+                                    dirPath,
+                                    "" + companyName + ".pdf"
+                                )
                                     .build()
                                     .setOnStartOrResumeListener {
                                         Log.d("pdfStatus", "resume")
@@ -119,20 +116,16 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                                 binding.loadingView.container
                                             )
 //                                            Utility.showSnackBar(binding.root, "Pdf download successfully.")
-                                            Toast.makeText(applicationContext,"Pdf download successfully.",Toast.LENGTH_LONG).show()
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "Pdf download successfully.",
+                                                Toast.LENGTH_LONG
+                                            ).show()
 
-                                            Utility.openPdfWithIntent( dirPath+"/" + companyName + ".pdf",mContext)
-//                                            val file = File(dirPath, ""+companyName+".pdf")
-//                                            val path = Uri.fromFile(file)
-//                                            val pdfOpenintent = Intent(Intent.ACTION_VIEW)
-//                                            pdfOpenintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                                            pdfOpenintent.setDataAndType(path, "application/pdf")
-//                                            try {
-//                                                startActivity(pdfOpenintent)
-//                                            } catch (e: ActivityNotFoundException) {
-//
-//                                            }
-
+                                            Utility.openPdfWithIntent(
+                                                dirPath + "/" + companyName + ".pdf",
+                                                mContext
+                                            )
                                         }
 
                                         override fun onError(error: com.downloader.Error) {
@@ -140,7 +133,6 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                         }
                                     })
 
-//                            DownloadFile(pDialog!!,mContext).execute(""+resp.pdfUrl, companyName+".pdf")
                         } else {
                         }
                     } else {
@@ -199,7 +191,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                 binding.topStrip.visibility = View.GONE
                                 binding.bottomStrip.visibility = View.GONE
                             }
-                        }else {
+                        } else {
                             Utility.showSnackBar(binding.root, "No record found")
                         }
 
@@ -221,125 +213,6 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         }
 
     }
-
-
-    fun downfile(urll: String, fileName: String) {
-
-
-//        if(!isFilePresent(fileName)) {
-//            var mFile2: File? = File(Environment.getExternalStorageDirectory(), "WallpapersBillionaire")
-//            System.out.println("File Foond " + mFile2!!.absolutePath)
-//            var mFile3: File? = File(Environment.getExternalStorageDirectory(), "WallpapersBillionaire")
-//
-//            var downloadId = PRDownloader.download(urll, mFile2!!.absolutePath, fileName)
-//                .build()
-//                .setOnStartOrResumeListener(object : OnStartOrResumeListener {
-//                    override fun onStartOrResume() {
-//                        System.out.println("??????????????????? start")
-//                    }
-//                })
-//                .setOnPauseListener(object : OnPauseListener {
-//                    override fun onPause() {
-//                    }
-//                })
-//                .setOnCancelListener(object : OnCancelListener {
-//                    override fun onCancel() {
-//                    }
-//                })
-//                .setOnProgressListener(object : OnProgressListener {
-//                    override fun onProgress(progress: Progress) {
-//                     //   circlePeView.visibility = View.VISIBLE
-//
-//                        var per = (progress.currentBytes.toFloat() / progress.totalBytes.toFloat()) * 100.00
-//                        //var perint = per*100
-//                        System.out.println("::??????????????????? Per : " + per + " ?? : " + progress.currentBytes + " ?? : " + progress.totalBytes)
-//
-//                        //circlePeView.setProgress(per.toInt())
-//                    }
-//                })
-//                .start(object : OnDownloadListener {
-//                    override fun onDownloadComplete() {
-//
-////                        circlePeView.visibility = View.GONE
-////                        circlePeView.setProgress(0)
-////                        prefs = getSharedPreferences(PREFS_FILENAME, 0)
-//
-//                        val editor = prefs!!.edit()
-//                        editor.putString(wall, "WallpapersBillionaire/" + fileName)
-//                        editor.apply()
-//
-//                        try {
-//                            val myWallpaperManager = WallpaperManager.getInstance(applicationContext)
-//                            try {
-//                                myWallpaperManager.setResource(R.raw.wallp)
-//                            } catch (e: IOException) {
-//                                // TODO Auto-generated catch block
-//                                e.printStackTrace()
-//                            }
-//
-//                            val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                            intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-//                                ComponentName(this@LadgerListingActivity, VideoLiveWallpaperService::class.java)
-//                            )
-//                            startActivity(intent)
-//                        } catch (e: Exception) {
-//                            val intent = Intent()
-//                            intent.setAction(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER)
-//                            try {
-//                                startActivity(intent)
-//                            }catch (e2: java.lang.Exception){
-//                                Toast.makeText(applicationContext,"Please long click on your home screen. Select Video Live Wallpapers form thier. Thanks",Toast.LENGTH_LONG).show()
-//                            }
-//
-//                        }
-//                        System.out.println("??????????????????? complete")
-//                    }
-//
-//                    override fun onError(error: Error) {
-//                        System.out.println("??????????????????? error " + error)
-//                    }
-//                })
-//            System.out.println("??????????????????? called")
-//        }else{
-//            System.out.println("File Foond ")
-//            circlePeView.visibility = View.GONE
-//            circlePeView.setProgress(0)
-//            prefs = getSharedPreferences(PREFS_FILENAME, 0)
-//
-//            val editor = prefs!!.edit()
-//            editor.putString(wall, "WallpapersBillionaire/" + fileName)
-//            editor.apply()
-//
-//            try {
-//                val myWallpaperManager = WallpaperManager.getInstance(applicationContext)
-//                try {
-//                    myWallpaperManager.setResource(R.raw.wallp)
-//                } catch (e: IOException) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace()
-//                }
-//
-//                val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-//                    ComponentName(this@LadgerListingActivity, VideoLiveWallpaperService::class.java))
-//                startActivity(intent)
-//            } catch (e: Exception) {
-//                val intent = Intent()
-//                intent.setAction(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER)
-//
-//                try {
-//                    startActivity(intent)
-//                }catch (e2: java.lang.Exception){
-//                    Toast.makeText(applicationContext,"Please long click on your home screen. Select Video Live Wallpapers form thier. Thanks",Toast.LENGTH_LONG).show()
-//                }
-//
-//            }
-//            System.out.println("??????????????????? complete")
-//        }
-    }
-
 
 
 }

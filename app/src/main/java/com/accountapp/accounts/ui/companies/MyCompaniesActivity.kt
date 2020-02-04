@@ -33,8 +33,10 @@ class MyCompaniesActivity : BaseActivity() , MyCompanyAdapter.SelectionCallback 
         setToolbarWithBackIcon(binding.includedToolbar.findViewById(R.id.toolbar),"My Companies")
 
         fabAdd.setOnClickListener {
-            val intent = Intent(mContext, AddCompanyActivity::class.java)
-            Utility.startActivityWithLeftToRightAnimation(mContext,intent)
+            if (isInternetAvailable(binding.root, mContext)) {
+                val intent = Intent(mContext, AddCompanyActivity::class.java)
+                Utility.startActivityWithLeftToRightAnimation(mContext, intent)
+            }
         }
 
         setAdapterCompany()

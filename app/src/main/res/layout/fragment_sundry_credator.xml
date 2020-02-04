@@ -46,7 +46,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textAppearance="@android:style/TextAppearance.Material.Title"
-                            android:text="Trail Balance" />
+                            android:text="Sundry Creditor" />
 
                     </LinearLayout>
                 </androidx.appcompat.widget.Toolbar>
@@ -159,7 +159,7 @@
                                 android:background="@color/colorAccent"
                                 android:backgroundTint="@color/colorAccent"
                                 android:stateListAnimator="@drawable/state_list_animator_z"
-                                android:text="Get Trail Balance"
+                                android:text="Get Sundry Creditor"
                                 android:textColor="@color/white_color" />
 
                         </androidx.cardview.widget.CardView>

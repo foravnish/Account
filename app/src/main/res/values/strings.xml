@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Account</string>
+    <string name="app_name">Evershine Software</string>
 
     <string name="login_success">login success</string>
     <string name="login">LOGIN</string>
@@ -42,7 +42,9 @@
     <string name="title_home">Home</string>
     <string name="title_ledger">Ledger</string>
     <string name="title_trail_bal">Trial Balance</string>
-    <string name="title_profile">Profile</string>
+    <!--    <string name="title_profile">Profile</string>-->
+    <string name="title_sun_cr">Sundry Cr</string>
+    <string name="title_sun_dr">Sundry Dr</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -83,6 +85,7 @@
     </string>
 
     <string name="change_pwd"><u>Change Password</u>.</string>
+    <string name="till_date">As On Date</string>
 
 
 </resources>

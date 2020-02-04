@@ -8,19 +8,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white_color"
-            android:elevation="1dp"
-            android:fitsSystemWindows="true"
-            app:title="Profile"
-            app:titleMarginStart="30dp"
-            app:titleTextColor="@android:color/black" >
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="@color/white_color"-->
+<!--            android:elevation="1dp"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            app:title="Profile"-->
+<!--            app:titleMarginStart="30dp"-->
+<!--            app:titleTextColor="@android:color/black" >-->
 
 
-        </androidx.appcompat.widget.Toolbar>
+<!--        </androidx.appcompat.widget.Toolbar>-->
+
+        <include
+            android:id="@+id/included_toolbar"
+            layout="@layout/layout_toolbar" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -75,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.9557292" />
+                        app:layout_constraintGuide_begin="393dp" />
 
                     <View
                         android:id="@+id/view"

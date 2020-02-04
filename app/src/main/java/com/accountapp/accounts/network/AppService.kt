@@ -90,4 +90,21 @@ interface AppService {
     fun callPdffGenerateTrialBalance(@Path("gstNo") gstNo: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
 
 
+    //   Sundry Cradator
+    @GET(NetworkConstants.SUNDRY_CR +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
+    fun callSundryCradator(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<TrialBalanceRespone>
+
+    //   Sundry Cradator PDF
+    @GET(NetworkConstants.SUNDRY_CR_PDF +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
+    fun callSundryCradatorPDF(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
+
+
+    //   Sundry Dabator
+    @GET(NetworkConstants.SUNDRY_DR +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
+    fun callSundryDebator(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<TrialBalanceRespone>
+
+    //   Sundry Dabator pdf
+    @GET(NetworkConstants.SUNDRY_DR_PDF +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
+    fun callSundryDebatorPDF(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
+
 }

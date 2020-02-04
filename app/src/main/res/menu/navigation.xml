@@ -17,8 +17,12 @@
         android:title="@string/title_trail_bal" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_bottom_profile"
-        android:title="@string/title_profile" />
+        android:id="@+id/navigation_s_cr"
+        android:icon="@drawable/ic_creditor"
+        android:title="@string/title_sun_cr" />
+    <item
+        android:id="@+id/navigation_s_dr"
+        android:icon="@drawable/ic_debator"
+        android:title="@string/title_sun_dr" />
 
 </menu>

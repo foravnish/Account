@@ -37,7 +37,7 @@ class SundryCrDrActivities : BaseActivity() {
     var balTotal = 0.0
     var totalBlalance = 0.0
     var x = 0
-
+    var selectedDate: String = ""
     override fun initUI() {
 
         binding= DataBindingUtil.setContentView(this, R.layout.activity_sundry_cr_dr_activities)
@@ -61,6 +61,16 @@ class SundryCrDrActivities : BaseActivity() {
                 "Sundry Debtor"
             )
         }
+
+        if (fromDate.equals("") && endDate.equals("")){
+            selectedDate="No Date Selected"
+        }else{
+            selectedDate = "As on Date " + endDate
+        }
+        setToolbarWithBackIconSubTitle(
+            binding.includedToolbar.findViewById(R.id.toolbar),
+            selectedDate
+        )
         setAdapterSundryCrDrBalance()
 
             binding.fab.setOnClickListener {

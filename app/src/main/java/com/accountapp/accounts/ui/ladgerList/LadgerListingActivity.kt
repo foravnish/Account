@@ -46,7 +46,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
     lateinit var mLedgerCompany: LedgerCompanyAdapter
     var mResultLedgerData: MutableList<DataItemLadger>? = null
     private var dirPath: String? = null
-
+    var ledgerDate: String = ""
     override fun initUI() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ladger_listing)
         setToolbarWithBackIcon(
@@ -58,6 +58,16 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         var fromDate = intent.getStringExtra("fromdate")
         var endDate = intent.getStringExtra("todate")
 
+
+        if (fromDate.equals("") && endDate.equals("")){
+            ledgerDate="No Date Selected"
+        }else{
+            ledgerDate = "From date- " + fromDate + " to- " + endDate
+        }
+        setToolbarWithBackIconSubTitle(
+            binding.includedToolbar.findViewById(R.id.toolbar),
+            ledgerDate
+        )
 
         dirPath = Utility.getRootDirPath(applicationContext)
 
@@ -175,14 +185,14 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
                                     x++ // Same as x += 1
                                 }
-                                binding.txtDrTotal.setText("" + drTotal)
-                                binding.txtCrTotal.setText("" + crTotal)
+                                binding.txtDrTotal.setText("" +String.format("%.2f", drTotal))
+                                binding.txtCrTotal.setText("" + String.format("%.2f",crTotal))
                                 if (drTotal > crTotal) {
                                     totalBlalance = drTotal - crTotal
-                                    binding.txtBalTotal.setText("" + totalBlalance + "(Dr)")
+                                    binding.txtBalTotal.setText("" + String.format("%.2f",totalBlalance) + "(Dr)")
                                 } else {
                                     totalBlalance = crTotal - drTotal
-                                    binding.txtBalTotal.setText("" + totalBlalance + "(Cr)")
+                                    binding.txtBalTotal.setText("" + String.format("%.2f",totalBlalance )+ "(Cr)")
                                 }
 
                             } else {

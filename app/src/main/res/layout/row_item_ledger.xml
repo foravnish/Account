@@ -24,7 +24,7 @@
                 android:text=""
                 android:textColor="@color/app_black"
                 android:layout_weight="1"
-                android:textSize="10dp"
+                android:textSize="8dp"
                 />
 
             <TextView
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/app_black"
-                android:layout_weight="2"
+                android:layout_weight="1.6"
                 android:textSize="10dp"
                 />
 
@@ -43,19 +43,19 @@
                 android:layout_height="wrap_content"
                 android:text="87484808"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/red_color"
-                android:layout_weight="1"
+                android:textColor="@color/app_black"
+                android:layout_weight="1.2"
                 android:gravity="right"
                 android:textSize="10dp"
                 />
             <TextView
                 android:id="@+id/txtCredit"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:gravity="right"
-                android:textColor="@color/green_color"
+                android:textColor="@color/app_black"
                 android:textSize="10dp"
                 />
 
@@ -63,7 +63,7 @@
             <TextView
                 android:id="@+id/txtBalance"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:gravity="right"

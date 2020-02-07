@@ -36,18 +36,31 @@ class TrialBalanceListingActivites : BaseActivity() {
     var balTotal = 0.0
     var totalBlalance=0.0
     var x = 0
-
+    var selectedDate: String = ""
     override fun initUI() {
 
         binding= DataBindingUtil.setContentView(this, R.layout.activity_trial_balance_listing_activites)
         setToolbarWithBackIcon(
             binding.includedToolbar.findViewById(R.id.toolbar), "Trial Balance")
 
+
+
+
       //  var companyName=intent.getStringExtra("COM_NAME")
        // var ACC_ID=intent.getStringExtra("ACC_ID")
         var fromDate=intent.getStringExtra("fromdate")
         var endDate=intent.getStringExtra("todate")
         dirPath = Utility.getRootDirPath(applicationContext)
+
+        if (fromDate.equals("") && endDate.equals("")){
+            selectedDate="No Date Selected"
+        }else{
+            selectedDate = "As on Date " + endDate
+        }
+        setToolbarWithBackIconSubTitle(
+            binding.includedToolbar.findViewById(R.id.toolbar),
+            selectedDate
+        )
 
         setAdapterTrialBalance()
       //  mLedgerCompany.setViewCallback(this)

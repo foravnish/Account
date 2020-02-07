@@ -31,6 +31,12 @@ open abstract class BaseActivity : AppCompatActivity(), BaseInterface {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { onBackPressed() }
     }
+    fun setToolbarWithBackIconSubTitle(toolbar: Toolbar, subTitle: String) {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.subtitle = subTitle
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+    }
 
     fun setBackIcon(toolbar: Toolbar) {
         setSupportActionBar(toolbar)

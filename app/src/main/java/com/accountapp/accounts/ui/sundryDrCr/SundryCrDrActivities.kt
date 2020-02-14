@@ -41,28 +41,30 @@ class SundryCrDrActivities : BaseActivity() {
     override fun initUI() {
 
         binding= DataBindingUtil.setContentView(this, R.layout.activity_sundry_cr_dr_activities)
-        var fromDate = intent.getStringExtra("fromdate")
+     //   var fromDate = intent.getStringExtra("fromdate")
         var endDate = intent.getStringExtra("todate")
         var type = intent.getStringExtra("type")
+        var endDateForApi=intent.getStringExtra("todateForApi")
+
         dirPath = Utility.getRootDirPath(applicationContext)
 
 
         if (type.equals("CR")) {
             setToolbarWithBackIcon(
                 binding.includedToolbar.findViewById(R.id.toolbar),
-                "Sundry Creditor"
+                "Sundry Creditors"
             )
-            getSundryCr(fromDate, endDate)
+            getSundryCr("", endDateForApi)
         }
         else{
-            getSundryDr(fromDate, endDate)
+            getSundryDr("", endDateForApi)
             setToolbarWithBackIcon(
                 binding.includedToolbar.findViewById(R.id.toolbar),
-                "Sundry Debtor"
+                "Sundry Debtors"
             )
         }
 
-        if (fromDate.equals("") && endDate.equals("")){
+        if ( endDate.equals("")){
             selectedDate="No Date Selected"
         }else{
             selectedDate = "As on Date " + endDate
@@ -76,9 +78,9 @@ class SundryCrDrActivities : BaseActivity() {
             binding.fab.setOnClickListener {
                 if (isInternetAvailable(binding.root, mContext)) {
                     if (type.equals("CR"))
-                        callSundryCrPdfDownlaod(fromDate, endDate)
+                        callSundryCrPdfDownlaod("", endDateForApi)
                     else
-                        callSundryDrPdfDownlaod(fromDate, endDate)
+                        callSundryDrPdfDownlaod("", endDateForApi)
                 }
             }
     }

@@ -41,7 +41,7 @@
                 android:id="@+id/txtAmount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="87484808"
+                android:text=""
                 android:layout_marginRight="10dp"
                 android:textColor="@color/app_black"
                 android:layout_weight="1.2"

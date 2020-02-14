@@ -25,7 +25,6 @@
         <activity android:name=".ui.changePassword.ChangePasswordActivity" />
         <activity android:name=".ui.forgotPassword.ForgotPasswordActivity" />
         <activity android:name=".base.BaseFragmentActivity" />
-        <activity android:name=".ui.ladgerList.DateSelectionActivity" />
         <activity android:name=".ui.ladgerList.LadgerListingActivity" />
         <activity android:name=".ui.ladgerList.CompanyListActiity" />
         <activity android:name=".ui.login.LoginActivity" />

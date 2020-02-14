@@ -48,8 +48,9 @@ class TrailBalanceFragment : BaseFragment() {
     val mContext by lazy { context }
     val mViewModel by lazy { ViewModelProviders.of(this).get(HomeViewModel::class.java) }
     private var fromDatePickerDialog: DatePickerDialog? = null
-    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
-
+    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US) //2018-10-18 MM-dd-yyyy
+    private val dateFormatterForApi: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
+    var apiDate:String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,35 +63,36 @@ class TrailBalanceFragment : BaseFragment() {
 //            callReadCompanyApi()
             if (this!!.mContext?.let { it1 -> isInternetAvailable(binding.root, it1) }!!) {
                 val intent = Intent(activity, TrialBalanceListingActivites::class.java)
-                intent.putExtra("fromdate", binding.fromDate.text.toString())
+//                intent.putExtra("fromdate", binding.fromDate.text.toString())
                 intent.putExtra("todate", binding.toDate.text.toString())
+                intent.putExtra("todateForApi", apiDate)
                 Utility.startActivityWithLeftToRightAnimation(activity, intent)
             }
 
         })
 
-        binding.fromDate.setOnClickListener {
-
-            val newCalendar = Calendar.getInstance()
-            fromDatePickerDialog = mContext?.let { it1 ->
-                DatePickerDialog(
-                    it1,
-                    R.style.datepicker,
-                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                        val newDate = Calendar.getInstance()
-                        newDate.set(year, monthOfYear, dayOfMonth)
-                        binding.fromDate.setText(dateFormatter.format(newDate.getTime()))
-                    },
-                    newCalendar.get(Calendar.YEAR),
-                    newCalendar.get(Calendar.MONTH),
-                    newCalendar.get(
-                        Calendar.DAY_OF_MONTH
-                    )
-                )
-            }
-//            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis
-            fromDatePickerDialog!!.show()
-        }
+//        binding.fromDate.setOnClickListener {
+//
+//            val newCalendar = Calendar.getInstance()
+//            fromDatePickerDialog = mContext?.let { it1 ->
+//                DatePickerDialog(
+//                    it1,
+//                    R.style.datepicker,
+//                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+//                        val newDate = Calendar.getInstance()
+//                        newDate.set(year, monthOfYear, dayOfMonth)
+//                        binding.fromDate.setText(dateFormatter.format(newDate.getTime()))
+//                    },
+//                    newCalendar.get(Calendar.YEAR),
+//                    newCalendar.get(Calendar.MONTH),
+//                    newCalendar.get(
+//                        Calendar.DAY_OF_MONTH
+//                    )
+//                )
+//            }
+////            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis
+//            fromDatePickerDialog!!.show()
+//        }
 
         binding.toDate.setOnClickListener {
             val newCalendar = Calendar.getInstance()
@@ -102,6 +104,8 @@ class TrailBalanceFragment : BaseFragment() {
                         val newDate = Calendar.getInstance()
                         newDate.set(year, monthOfYear, dayOfMonth)
                         binding.toDate.setText(dateFormatter.format(newDate.getTime()))
+                        apiDate=dateFormatterForApi.format(newDate.getTime())
+
                     },
                     newCalendar.get(Calendar.YEAR),
                     newCalendar.get(Calendar.MONTH),

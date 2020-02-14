@@ -22,7 +22,7 @@ import com.downloader.PRDownloader;
 import com.downloader.PRDownloaderConfig;
 
 /**
- * Created by amitshekhar on 13/11/17.
+ * Created by Avnish Kumar on 13/11/17.
  */
 
 public class SampleApp extends Application {

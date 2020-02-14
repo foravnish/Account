@@ -5,7 +5,8 @@ package network
  */
 object NetworkConstants {
 
-    const val BASE_URL: String = "https://murtifood.com/api/"         // Staging
+    const val BASE_URL: String = "https://evershinesoftwares.com/Api/"
+//    const val BASE_URL: String = "https://murtifood.com/api/"
 
     //   Note:  Be remember Base URL must be change in 'network_security_config.xml' file as well.
 
@@ -23,7 +24,6 @@ object NetworkConstants {
     const val TRIAL_BALANCE_PDF = "trail_pdf_url"
     const val SUNDRY_CR = "sundry_cr"
     const val SUNDRY_CR_PDF = "sundry_cr_pdf_url"
-
     const val SUNDRY_DR = "sundry_dr"
     const val SUNDRY_DR_PDF = "sundry_dr_pdf_url"
 }

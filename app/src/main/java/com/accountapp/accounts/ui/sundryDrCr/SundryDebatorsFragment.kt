@@ -30,8 +30,9 @@ class SundryDebatorsFragment : BaseFragment() {
     val mContext by lazy { context }
     val mViewModel by lazy { ViewModelProviders.of(this).get(SundryViewModel::class.java) }
     private var fromDatePickerDialog: DatePickerDialog? = null
-    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
-
+    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
+    private val dateFormatterForApi: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
+    var apiDate:String = ""
     val TAG = "SundryDebatorsFragment"
 
     companion object {
@@ -57,8 +58,9 @@ class SundryDebatorsFragment : BaseFragment() {
             if (this!!.mContext?.let { it1 -> isInternetAvailable(binding.root, it1) }!!) {
                 val intent = Intent(activity, SundryCrDrActivities::class.java)
                 intent.putExtra("type", "DR")
-                intent.putExtra("fromdate", binding.fromDate.text.toString())
+//                intent.putExtra("fromdate", binding.fromDate.text.toString())
                 intent.putExtra("todate", binding.toDate.text.toString())
+                intent.putExtra("todateForApi", apiDate)
                 Utility.startActivityWithLeftToRightAnimation(activity, intent)
             }
 
@@ -74,6 +76,7 @@ class SundryDebatorsFragment : BaseFragment() {
                         val newDate = Calendar.getInstance()
                         newDate.set(year, monthOfYear, dayOfMonth)
                         binding.toDate.setText(dateFormatter.format(newDate.getTime()))
+                        apiDate=dateFormatterForApi.format(newDate.getTime())
                     },
                     newCalendar.get(Calendar.YEAR),
                     newCalendar.get(Calendar.MONTH),

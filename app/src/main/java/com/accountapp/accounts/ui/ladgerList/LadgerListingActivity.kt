@@ -57,7 +57,8 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         var ACC_ID = intent.getStringExtra("ACC_ID")
         var fromDate = intent.getStringExtra("fromdate")
         var endDate = intent.getStringExtra("todate")
-
+        var fromDateAPi = intent.getStringExtra("fromdateApi")
+        var endDateApi = intent.getStringExtra("todateApi")
 
         if (fromDate.equals("") && endDate.equals("")){
             ledgerDate="No Date Selected"
@@ -77,11 +78,11 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
         setAdapterSearchProduct()
         mLedgerCompany.setViewCallback(this)
-        getCompanyLadgerData(ACC_ID, fromDate, endDate)
+        getCompanyLadgerData(ACC_ID, fromDateAPi, endDateApi)
 
         binding.fab.setOnClickListener {
             if (isInternetAvailable(binding.root, mContext)) {
-                callPdfDownlaod(ACC_ID, fromDate, endDate, companyName)
+                callPdfDownlaod(ACC_ID, fromDateAPi, endDateApi, companyName)
             }
         }
     }

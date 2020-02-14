@@ -37,7 +37,10 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
     var comName: String = ""
 
     private var fromDatePickerDialog: DatePickerDialog? = null
-    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
+    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US) //2018-10-18 MM-dd-yyyy
+    private val dateFormatterForApi: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
+    var apiDateTo:String = ""
+    var apiDateFrom:String = ""
 
     override fun initUI() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ladger_list_actiity)
@@ -61,6 +64,8 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
                 intent.putExtra("COM_NAME", comName)
                 intent.putExtra("fromdate", binding.fromDate.text.toString())
                 intent.putExtra("todate", binding.toDate.text.toString())
+                intent.putExtra("fromdateApi", apiDateFrom)
+                intent.putExtra("todateApi", apiDateTo)
                 Utility.startActivityWithLeftToRightAnimation(this@CompanyListActiity, intent)
             }
 //            else{
@@ -137,6 +142,7 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
                     val newDate = Calendar.getInstance()
                     newDate.set(year, monthOfYear, dayOfMonth)
                     binding.fromDate.setText(dateFormatter.format(newDate.getTime()))
+                    apiDateFrom=dateFormatterForApi.format(newDate.getTime())
                 }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(
                     Calendar.DAY_OF_MONTH))
 //            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis
@@ -150,6 +156,7 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
                     val newDate = Calendar.getInstance()
                     newDate.set(year, monthOfYear, dayOfMonth)
                     binding.toDate.setText(dateFormatter.format(newDate.getTime()))
+                    apiDateTo=dateFormatterForApi.format(newDate.getTime())
                 }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(
                     Calendar.DAY_OF_MONTH))
 //            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis

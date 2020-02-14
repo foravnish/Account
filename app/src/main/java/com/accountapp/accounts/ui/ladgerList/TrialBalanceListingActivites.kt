@@ -48,11 +48,13 @@ class TrialBalanceListingActivites : BaseActivity() {
 
       //  var companyName=intent.getStringExtra("COM_NAME")
        // var ACC_ID=intent.getStringExtra("ACC_ID")
-        var fromDate=intent.getStringExtra("fromdate")
+      //  var fromDate=intent.getStringExtra("fromdate")
         var endDate=intent.getStringExtra("todate")
+        var endDateForApi=intent.getStringExtra("todateForApi")
+
         dirPath = Utility.getRootDirPath(applicationContext)
 
-        if (fromDate.equals("") && endDate.equals("")){
+        if ( endDate.equals("")){
             selectedDate="No Date Selected"
         }else{
             selectedDate = "As on Date " + endDate
@@ -64,11 +66,11 @@ class TrialBalanceListingActivites : BaseActivity() {
 
         setAdapterTrialBalance()
       //  mLedgerCompany.setViewCallback(this)
-        getCompanyTrialBalanceData(fromDate,endDate)
+        getCompanyTrialBalanceData("",endDateForApi)
 
         binding.fab.setOnClickListener {
             if (isInternetAvailable(binding.root, mContext)) {
-                callPdfDownlaod(fromDate, endDate)
+                callPdfDownlaod("", endDateForApi)
             }
         }
 

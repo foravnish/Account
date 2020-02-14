@@ -1,6 +1,7 @@
 package com.accountapp.accounts.adapter
 
 import android.graphics.Color
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -66,9 +67,19 @@ class LedgerCompanyAdapter() : RecyclerView.Adapter<LedgerCompanyAdapter.MyViewH
             holder.itemView.txtTitle.setText(""+list!!.get(position).ACNAME)
             holder.itemView.txtTitle.setText("" + list!!.get(position).NARR)
             holder.itemView.txtDate.setText("" + list!!.get(position).DATE)
-            holder.itemView.txtAmount.setText("" + list!!.get(position).DEBIT)
-            holder.itemView.txtCredit.setText("" + list!!.get(position).CREDIT)
-            holder.itemView.txtBalance.setText("" + list!!.get(position).BALANCE)
+
+            if (!TextUtils.isEmpty(list!!.get(position).DEBIT)) {
+                holder.itemView.txtAmount.setText("" + String.format("%.2f", list!!.get(position).DEBIT.toDouble()))
+            }
+            if (!TextUtils.isEmpty(list!!.get(position).CREDIT)) {
+                holder.itemView.txtCredit.setText("" + String.format("%.2f", list!!.get(position).CREDIT.toDouble()))
+            }
+            if (!TextUtils.isEmpty(list!!.get(position).BALANCE)) {
+                holder.itemView.txtBalance.setText("" + String.format("%.2f", list!!.get(position).BALANCE.toDouble()))
+            }
+
+
+
 
 //            for (i in 0 until list!!.size) {
                 if (position%2==1){

@@ -80,12 +80,11 @@
     <string name="err_otp">Please enter one-time code</string>
     <string name="err_invalid_itp">The one-time code you have entered in invalid</string>
     <string name="err_otp_icnorrent">The one-time code you have entered is in-correct</string>
-    <string name="err_invalid_password">The password should contain at least 1 capital letter, 1 special character and 1
-        number.
+    <string name="err_invalid_password">The password should contain at least 1 capital letter, 1 special character and 1 number.
     </string>
 
     <string name="change_pwd"><u>Change Password</u>.</string>
-    <string name="till_date">As On Date</string>
+    <string name="till_date">Select Date</string>
 
 
 </resources>

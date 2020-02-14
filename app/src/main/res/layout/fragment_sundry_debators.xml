@@ -74,26 +74,23 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="150dp"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:visibility="visible">
 
-                        <EditText
-                            android:id="@+id/fromDate"
-                            android:layout_width="0dp"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/strock"
-                            android:focusable="false"
-                            android:hint="Select From Date"
-                            android:padding="12dp"
-                            android:text=""
-                            android:visibility="gone"
-                            android:textSize="10sp" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="center"
+                            android:text="As on Date"
+                            android:textAppearance="@android:style/TextAppearance.Material.Title" />
+
 
                         <EditText
                             android:id="@+id/toDate"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:layout_weight="1"

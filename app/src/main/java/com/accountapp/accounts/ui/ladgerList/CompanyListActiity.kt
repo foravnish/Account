@@ -68,14 +68,7 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
                 intent.putExtra("todateApi", apiDateTo)
                 Utility.startActivityWithLeftToRightAnimation(this@CompanyListActiity, intent)
             }
-//            else{
-//                val intent = Intent(this@CompanyListActiity, TrialBalanceListingActivites::class.java)
-//                intent.putExtra("ACC_ID", comId)
-//                intent.putExtra("COM_NAME", comName)
-//                intent.putExtra("fromdate", binding.fromDate.text.toString())
-//                intent.putExtra("todate", binding.toDate.text.toString())
-//                Utility.startActivityWithLeftToRightAnimation(this@CompanyListActiity, intent)
-//            }
+
 
         }
 

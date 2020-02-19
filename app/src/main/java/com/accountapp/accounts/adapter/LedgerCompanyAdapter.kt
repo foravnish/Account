@@ -30,7 +30,6 @@ class LedgerCompanyAdapter() : RecyclerView.Adapter<LedgerCompanyAdapter.MyViewH
 
     }
 
-
     fun setViewCallback(callback:TotalCallback){
         this.callback=callback
     }

@@ -46,7 +46,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textAppearance="@android:style/TextAppearance.Material.Title"
-                            android:text="Sundry Creditor" />
+                            android:text="Sundry Creditors" />
 
                     </LinearLayout>
                 </androidx.appcompat.widget.Toolbar>

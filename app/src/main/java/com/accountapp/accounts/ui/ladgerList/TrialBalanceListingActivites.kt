@@ -20,6 +20,9 @@ import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
 import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TrialBalanceListingActivites : BaseActivity() {
 
@@ -37,6 +40,10 @@ class TrialBalanceListingActivites : BaseActivity() {
     var totalBlalance=0.0
     var x = 0
     var selectedDate: String = ""
+    var currentDate:String=""
+    var currentYear:String=""
+    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US) //2018-10-18 MM-dd-yyyy
+
     override fun initUI() {
 
         binding= DataBindingUtil.setContentView(this, R.layout.activity_trial_balance_listing_activites)
@@ -44,18 +51,19 @@ class TrialBalanceListingActivites : BaseActivity() {
             binding.includedToolbar.findViewById(R.id.toolbar), "Trial Balance")
 
 
+        val newDate = Calendar.getInstance()
+        currentDate=dateFormatter.format(newDate.getTime())
+        currentYear= (Calendar.getInstance().get(Calendar.YEAR)-1).toString()
 
-
-      //  var companyName=intent.getStringExtra("COM_NAME")
-       // var ACC_ID=intent.getStringExtra("ACC_ID")
-      //  var fromDate=intent.getStringExtra("fromdate")
         var endDate=intent.getStringExtra("todate")
         var endDateForApi=intent.getStringExtra("todateForApi")
 
         dirPath = Utility.getRootDirPath(applicationContext)
 
         if ( endDate.equals("")){
-            selectedDate="No Date Selected"
+//            selectedDate="No Date Selected"
+            selectedDate="1-Apr-"+currentYear+" to- "+ currentDate
+
         }else{
             selectedDate = "As on Date " + endDate
         }

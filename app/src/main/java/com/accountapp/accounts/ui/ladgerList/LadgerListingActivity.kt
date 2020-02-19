@@ -1,13 +1,14 @@
 package com.accountapp.accounts.ui.ladgerList
 
 import android.app.ProgressDialog
-import android.content.ActivityNotFoundException
-import android.content.Intent
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.accountapp.accounts.R
 import com.accountapp.accounts.adapter.LedgerCompanyAdapter
 import com.accountapp.accounts.base.BaseActivity
 import com.accountapp.accounts.databinding.ActivityLadgerListingBinding
@@ -16,13 +17,11 @@ import com.accountapp.accounts.model.response.LadgerListResponse
 import com.accountapp.accounts.model.response.PDFGeneratorReponse
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
-import com.accountapp.accounts.R
 import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.FileProvider
-import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback {
@@ -47,6 +46,10 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
     var mResultLedgerData: MutableList<DataItemLadger>? = null
     private var dirPath: String? = null
     var ledgerDate: String = ""
+    var currentDate:String=""
+    var currentYear:String=""
+    private val dateFormatter: SimpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US) //2018-10-18 MM-dd-yyyy
+
     override fun initUI() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ladger_listing)
         setToolbarWithBackIcon(
@@ -60,8 +63,13 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         var fromDateAPi = intent.getStringExtra("fromdateApi")
         var endDateApi = intent.getStringExtra("todateApi")
 
+        val newDate = Calendar.getInstance()
+        currentDate=dateFormatter.format(newDate.getTime())
+        currentYear= (Calendar.getInstance().get(Calendar.YEAR)-1).toString()
+
         if (fromDate.equals("") && endDate.equals("")){
-            ledgerDate="No Date Selected"
+//            ledgerDate="No Date Selected"
+            ledgerDate="1-Apr-"+currentYear+" to- "+ currentDate
         }else{
             ledgerDate = "From date- " + fromDate + " to- " + endDate
         }

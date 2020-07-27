@@ -2,7 +2,8 @@ package com.accountapp.accounts.model.response
 
 data class LadgerListResponse(
     val data: List<DataItemLadger>?,
-    val status: String = ""
+    val status: String = "",
+    val msg: String = ""
 )
 
 

@@ -70,6 +70,7 @@
                                 android:background="@drawable/selector_bg_edit"
                                 android:hint="@string/mobile_no"
                                 android:inputType="phone"
+                                android:maxLength="10"
                                 android:paddingBottom="2dp"
                                 android:textColor="#2fa881"
                                 android:textCursorDrawable="@drawable/bg_input_cursor"

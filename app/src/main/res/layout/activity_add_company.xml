@@ -95,9 +95,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/selector_bg_edit"
-                                android:hint="GST No"
-                                android:inputType="textCapCharacters"
-                                android:paddingBottom="2dp"
+                                android:hint="@string/gst"
+                                android:inputType="textPersonName"                                android:paddingBottom="2dp"
+                                android:maxLength="15"
                                 android:textColor="#2fa881"
                                 android:textCursorDrawable="@drawable/bg_input_cursor"
                                 android:textSize="18sp" />

@@ -12,7 +12,6 @@ import com.accountapp.accounts.databinding.ActivityMainBinding
 import com.accountapp.accounts.model.response.LoginResponse
 import com.accountapp.accounts.ui.companies.MyCompaniesActivity
 import com.accountapp.accounts.ui.forgotPassword.ForgotPasswordActivity
-import com.accountapp.accounts.ui.home.HomeActivity
 import com.accountapp.accounts.ui.signup.RegistrationActivity
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility

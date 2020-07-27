@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.sundryDrCr.SundryCrDrActivities"></activity>
+        <activity android:name=".ui.profile.EditProfileActivity"></activity>
+        <activity android:name=".ui.sundryDrCr.SundryCrDrActivities" />
         <activity android:name=".ui.ladgerList.TrialBalanceListingActivites" />
         <activity android:name=".ui.companies.AddCompanyActivity" />
         <activity android:name=".ui.companies.MyCompaniesActivity" />

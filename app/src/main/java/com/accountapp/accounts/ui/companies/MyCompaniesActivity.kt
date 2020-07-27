@@ -80,7 +80,6 @@ class MyCompaniesActivity : BaseActivity() , MyCompanyAdapter.SelectionCallback 
     }
 
     override fun onSelectCompany(company: String,gst: String) {
-        Log.d("sdfsdfsdfsd",gst)
         Prefences.setCompany(mContext,company)
         Prefences.setGST_No(mContext,gst)
         val intent = Intent(this@MyCompaniesActivity, HomeActivity::class.java)

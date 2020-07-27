@@ -76,8 +76,8 @@ class SundryCrDrActivities : BaseActivity() {
         }
 
         if ( endDate.equals("")){
-//            selectedDate="No Date Selected"
-            selectedDate="1-Apr-"+currentYear+" to- "+ currentDate
+//            selectedDate="1-Apr-"+currentYear+" to- "+ currentDate
+            selectedDate = "As on Date " + currentDate
         }else{
             selectedDate = "As on Date " + endDate
         }
@@ -166,7 +166,7 @@ class SundryCrDrActivities : BaseActivity() {
                                 binding.bottomStrip.visibility = View.GONE
                             }
                         } else {
-                            Utility.showSnackBar(binding.root, "No record found")
+                            Utility.showSnackBar(binding.root, ""+resp.msg)
                         }
 
                     }
@@ -230,7 +230,7 @@ class SundryCrDrActivities : BaseActivity() {
                                 binding.bottomStrip.visibility = View.GONE
                             }
                         } else {
-                            Utility.showSnackBar(binding.root, "No record found")
+                            Utility.showSnackBar(binding.root, ""+resp.msg)
                         }
 
                     }

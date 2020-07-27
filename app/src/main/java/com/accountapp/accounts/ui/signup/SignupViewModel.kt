@@ -2,6 +2,7 @@ package com.accountapp.accounts.ui.signup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.accountapp.accounts.model.response.LoginResponse
 import com.accountapp.accounts.model.response.SignUpResponse
 
 class SignupViewModel: ViewModel() {
@@ -18,5 +19,9 @@ class SignupViewModel: ViewModel() {
 
     fun callAddCompany(comName: String,gst: String,status: String,mobile:String): LiveData<SignUpResponse> {
         return mRepo.callAddCompany(comName,gst,status,mobile)
+    }
+
+    fun callEditProfile(id: String,name: String,com_name: String,email: String,address: String,city:String): LiveData<LoginResponse> {
+        return mRepo.callEditProfile(id,name,com_name,email,address,city)
     }
 }

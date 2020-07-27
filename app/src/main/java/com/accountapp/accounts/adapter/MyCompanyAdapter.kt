@@ -85,7 +85,6 @@ class MyCompanyAdapter() : RecyclerView.Adapter<MyCompanyAdapter.MyViewHolder>()
                         radiobtn.isChecked=false
                     }
 
-
                     if (liLayout != null) {
                         liLayout!!.visibility = View.GONE
                         holder.itemView.btn_edit2.visibility = View.VISIBLE
@@ -96,7 +95,7 @@ class MyCompanyAdapter() : RecyclerView.Adapter<MyCompanyAdapter.MyViewHolder>()
                         liLayout = holder.itemView.btn_edit2
                     }
                     lastCheckedRadioGroup = radioGroup!!
-                }
+                    }
 
             })
 

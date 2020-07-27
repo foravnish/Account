@@ -26,4 +26,5 @@ object NetworkConstants {
     const val SUNDRY_CR_PDF = "sundry_cr_pdf_url"
     const val SUNDRY_DR = "sundry_dr"
     const val SUNDRY_DR_PDF = "sundry_dr_pdf_url"
+    const val EDIT_PROFILE = "edit_comapny"
 }

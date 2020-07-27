@@ -107,4 +107,16 @@ interface AppService {
     @GET(NetworkConstants.SUNDRY_DR_PDF +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
     fun callSundryDebatorPDF(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
 
+    @FormUrlEncoded
+    @POST(NetworkConstants.EDIT_PROFILE)
+    fun callEditProfile(
+        @Field("id") id: String,
+        @Field("name") name: String,
+        @Field("company_name") company_name: String,
+        @Field("email") status: String,
+        @Field("address") mobile: String,
+        @Field("city") city: String
+
+    ): Call<LoginResponse>
+
 }

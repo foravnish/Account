@@ -40,7 +40,7 @@ class AddCompanyActivity : BaseActivity() {
         binding.btAddCompany.setOnClickListener {
             if (isInternetAvailable(binding.root, mContext)) {
                 if (isValidate()) {
-                    hitAddCompanyAPi(false)
+                    hitAddCompanyAPi(true)
                 }
             }
         }
@@ -56,7 +56,11 @@ class AddCompanyActivity : BaseActivity() {
             if (ValidationHelper.isDataFilled(
                     binding.etGst,
                     getString(R.string.err_gst), binding.root)){
-                return true
+                if (binding.etGst.text.toString().length<15){
+                    Utility.showSnackBar(binding.root, getString(R.string.err_gst_alpha))
+                }else{
+                    return true
+                }
             }
         }
 

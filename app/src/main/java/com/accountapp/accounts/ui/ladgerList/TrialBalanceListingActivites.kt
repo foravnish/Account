@@ -1,5 +1,6 @@
 package com.accountapp.accounts.ui.ladgerList
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TrialBalanceListingActivites : BaseActivity() {
+class TrialBalanceListingActivites : BaseActivity() , TrialBalanceAdapter.TotalCallback {
 
     lateinit var binding: ActivityTrialBalanceListingActivitesBinding
     val mContext by lazy { this@TrialBalanceListingActivites }
@@ -61,8 +62,9 @@ class TrialBalanceListingActivites : BaseActivity() {
         dirPath = Utility.getRootDirPath(applicationContext)
 
         if ( endDate.equals("")){
-//            selectedDate="No Date Selected"
-            selectedDate="1-Apr-"+currentYear+" to- "+ currentDate
+//            selectedDate="1-Apr-"+currentYear+" to- "+ currentDate
+            selectedDate = "As on Date " + currentDate
+
 
         }else{
             selectedDate = "As on Date " + endDate
@@ -73,7 +75,8 @@ class TrialBalanceListingActivites : BaseActivity() {
         )
 
         setAdapterTrialBalance()
-      //  mLedgerCompany.setViewCallback(this)
+        mTrialBalanceCompany.setViewCallback(this)
+
         getCompanyTrialBalanceData("",endDateForApi)
 
         binding.fab.setOnClickListener {
@@ -148,7 +151,7 @@ class TrialBalanceListingActivites : BaseActivity() {
                                 binding.bottomStrip.visibility= View.GONE
                             }
                         }else{
-                            Utility.showSnackBar(binding.root, "No record found")
+                            Utility.showSnackBar(binding.root, ""+resp.msg)
                         }
 
                     }
@@ -216,6 +219,21 @@ class TrialBalanceListingActivites : BaseActivity() {
                 }
 
             })
+
+    }
+
+    override fun onTotalCallback(accName: String,name:String) {
+
+        Log.d("dsfdgvdgdf",""+accName)
+
+        val intent = Intent(this@TrialBalanceListingActivites, LadgerListingActivity::class.java)
+        intent.putExtra("ACC_ID", accName)
+        intent.putExtra("COM_NAME", name)
+        intent.putExtra("fromdate", "")
+        intent.putExtra("todate", "")
+        intent.putExtra("fromdateApi","")
+        intent.putExtra("todateApi","")
+        Utility.startActivityWithLeftToRightAnimation(this@TrialBalanceListingActivites, intent)
 
     }
 

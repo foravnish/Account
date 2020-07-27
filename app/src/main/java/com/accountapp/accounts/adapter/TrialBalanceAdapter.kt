@@ -56,7 +56,7 @@ class TrialBalanceAdapter() : RecyclerView.Adapter<TrialBalanceAdapter.MyViewHol
 
         if (holder != null) {
             holder.itemView.setOnClickListener {
-                //                callback.onSearchClick(list!!.get(position).ACCODE)
+                callback.onTotalCallback(list!!.get(position).accode,list!!.get(position).acname)
             }
 
 
@@ -76,16 +76,36 @@ class TrialBalanceAdapter() : RecyclerView.Adapter<TrialBalanceAdapter.MyViewHol
             crTotal = crTotal + credit
             drTotal = drTotal + debit
             //  balTotal=balTotal+balance
-           // callback!!.onTotalCallback(crTotal, drTotal, balTotal)
+            // callback!!.onTotalCallback(crTotal, drTotal, balTotal)
 
             //  holder.itemView.txtTitle.setText(""+list!!.get(position).accode)
             holder.itemView.txtTitle.setText("" + list!!.get(position).acname)
-//            holder.itemView.txtDate.setText("" + list!!.get(position).accode)
-            if (!TextUtils.isEmpty(list!!.get(position).dr)){
-                holder.itemView.txtAmount.setText("" + String.format("%.2f", list!!.get(position).dr.toDouble()))
+//            if (!TextUtils.isEmpty(list!!.get(position).dr)){
+//                holder.itemView.txtAmount.setText("" + String.format("%.2f", list!!.get(position).dr.toDouble()))
+//            }
+//            if (!TextUtils.isEmpty(list!!.get(position).cr)){
+//                holder.itemView.txtCredit.setText("" +String.format("%.2f",  list!!.get(position).cr.toDouble()))
+//            }
+
+            if (list!!.get(position).dr.equals("")) {
+                holder.itemView.txtAmount.setText("")
+            } else {
+                holder.itemView.txtAmount.setText(
+                    "" + String.format(
+                        "%.2f",
+                        list!!.get(position).dr.toDouble()
+                    )
+                )
             }
-            if (!TextUtils.isEmpty(list!!.get(position).cr)){
-                holder.itemView.txtCredit.setText("" +String.format("%.2f",  list!!.get(position).cr.toDouble()))
+            if (list!!.get(position).cr.equals("")) {
+                holder.itemView.txtCredit.setText("")
+            } else {
+                holder.itemView.txtCredit.setText(
+                    "" + String.format(
+                        "%.2f",
+                        list!!.get(position).cr.toDouble()
+                    )
+                )
             }
 
 
@@ -104,7 +124,7 @@ class TrialBalanceAdapter() : RecyclerView.Adapter<TrialBalanceAdapter.MyViewHol
 
 
     interface TotalCallback {
-        fun onTotalCallback(crTotal: Double, drTotal: Double, balTotal: Double)
+        fun onTotalCallback(accName: String,name:String)
     }
 
 }

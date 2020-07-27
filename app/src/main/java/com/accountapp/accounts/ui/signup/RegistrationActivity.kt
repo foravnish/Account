@@ -47,7 +47,7 @@ class RegistrationActivity : BaseActivity() {
             //            openDialog()
             if (isInternetAvailable(binding.root, mContext)) {
                 if (isValidate()) {
-                    hitSignUpAPi(false)
+                    hitSignUpAPi(true)
                 }
             }
 
@@ -320,7 +320,12 @@ class RegistrationActivity : BaseActivity() {
                                                             binding.root
                                                         )
                                                     ) {
-                                                        return true
+                                                        if (binding.txtGst.text.toString().length<15){
+                                                            Utility.showSnackBar(binding.root, getString(R.string.err_gst_alpha))
+                                                        }else{
+                                                            return true
+                                                        }
+
                                                     }
                                                 }
                                             }

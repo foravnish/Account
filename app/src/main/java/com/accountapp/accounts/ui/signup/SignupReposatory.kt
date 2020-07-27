@@ -64,5 +64,29 @@ class SignupReposatory {
 
         return data
     }
+    fun callEditProfile(id: String,name: String,com_name: String,email: String,address: String,city:String): LiveData<LoginResponse> {
+        val data = MutableLiveData<LoginResponse>()
+        AppRetrofit.instance.callEditProfile(id,name,com_name,email,address,city).enqueue(object :
+            Callback<LoginResponse> {
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                data.value = null
+            }
+
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+
+                if (response.isSuccessful){
+                    data.value = if (response != null && response.body() != null) response!!.body() else null
+                }
+                else {
+                    val gson = Gson()
+                    val adapter = gson.getAdapter(LoginResponse::class.java)
+                    if (response.errorBody() != null)
+                        data.value = adapter.fromJson(response.errorBody()!!.string())
+                }
+            }
+        })
+
+        return data
+    }
 
 }

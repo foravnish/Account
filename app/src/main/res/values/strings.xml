@@ -85,6 +85,6 @@
 
     <string name="change_pwd"><u>Change Password</u>.</string>
     <string name="till_date">Select Date</string>
-
+    <string name="err_gst_alpha">Please enter 15 alphanumeric GST no.</string>
 
 </resources>

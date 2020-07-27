@@ -136,7 +136,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                             )
 //                                            Utility.showSnackBar(binding.root, "Pdf download successfully.")
                                             Toast.makeText(
-                                                applicationContext,
+                                                    applicationContext,
                                                 "Pdf download successfully.",
                                                 Toast.LENGTH_LONG
                                             ).show()
@@ -211,7 +211,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
                                 binding.bottomStrip.visibility = View.GONE
                             }
                         } else {
-                            Utility.showSnackBar(binding.root, "No record found")
+                            Utility.showSnackBar(binding.root, ""+resp.msg)
                         }
 
                     }

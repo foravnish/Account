@@ -59,16 +59,17 @@ class SundryCrDrActivities : BaseActivity() {
         currentDate=dateFormatter.format(newDate.getTime())
         currentYear= (Calendar.getInstance().get(Calendar.YEAR)-1).toString()
 
+        var financial_year= Prefences.getSessionFull(mContext)!!.substring (3, 7);
 
         if (type.equals("CR")) {
             setToolbarWithBackIcon(
                 binding.includedToolbar.findViewById(R.id.toolbar),
                 "Sundry Creditors"
             )
-            getSundryCr("", endDateForApi)
+            getSundryCr("", endDateForApi!!,financial_year)
         }
         else{
-            getSundryDr("", endDateForApi)
+            getSundryDr("", endDateForApi!!,financial_year)
             setToolbarWithBackIcon(
                 binding.includedToolbar.findViewById(R.id.toolbar),
                 "Sundry Debtors"
@@ -88,11 +89,13 @@ class SundryCrDrActivities : BaseActivity() {
         setAdapterSundryCrDrBalance()
 
             binding.fab.setOnClickListener {
+                var financial_year= Prefences.getSessionFull(mContext)!!.substring (3, 7);
+
                 if (isInternetAvailable(binding.root, mContext)) {
                     if (type.equals("CR"))
-                        callSundryCrPdfDownlaod("", endDateForApi)
+                        callSundryCrPdfDownlaod("", endDateForApi!!,financial_year)
                     else
-                        callSundryDrPdfDownlaod("", endDateForApi)
+                        callSundryDrPdfDownlaod("", endDateForApi!!,financial_year)
                 }
             }
     }
@@ -110,10 +113,10 @@ class SundryCrDrActivities : BaseActivity() {
 
     }
 
-    private fun getSundryCr(fromDate: String, endDate: String) {
+    private fun getSundryCr(fromDate: String, endDate: String,financial_year:String) {
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
 
-        mViewModel.callSundryCredator(Prefences.getGST_No(mContext), fromDate, endDate)
+        mViewModel.callSundryCredator(Prefences.getGST_No(mContext), fromDate, endDate,financial_year)
             .observe(mContext, object : Observer<TrialBalanceRespone> {
                 override fun onChanged(resp: TrialBalanceRespone?) {
                     showLoadingView(
@@ -175,10 +178,10 @@ class SundryCrDrActivities : BaseActivity() {
             })
     }
 
-    private fun getSundryDr(fromDate: String, endDate: String) {
+    private fun getSundryDr(fromDate: String, endDate: String,financial_year:String) {
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-
-        mViewModel.callSundryDebator(Prefences.getGST_No(mContext), fromDate, endDate)
+        var financial_year= Prefences.getSessionFull(mContext)!!.substring (3, 7);
+        mViewModel.callSundryDebator(Prefences.getGST_No(mContext), fromDate, endDate,financial_year)
 //        mViewModel.callTrialBalanceList("03demodemo",fromDate,endDate)
             .observe(mContext, object : Observer<TrialBalanceRespone> {
                 override fun onChanged(resp: TrialBalanceRespone?) {
@@ -240,10 +243,10 @@ class SundryCrDrActivities : BaseActivity() {
     }
 
 
-    private fun callSundryCrPdfDownlaod(fromDate: String, endDate: String) {
+    private fun callSundryCrPdfDownlaod(fromDate: String, endDate: String,financial_year:String) {
 
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callSundryCredatorPDF(Prefences.getGST_No(mContext), fromDate, endDate)
+        mViewModel.callSundryCredatorPDF(Prefences.getGST_No(mContext), fromDate, endDate,financial_year)
             .observe(mContext, object : Observer<PDFGeneratorReponse> {
                 override fun onChanged(resp: PDFGeneratorReponse?) {
 
@@ -303,10 +306,10 @@ class SundryCrDrActivities : BaseActivity() {
 
     }
 
-    private fun callSundryDrPdfDownlaod(fromDate: String, endDate: String) {
+    private fun callSundryDrPdfDownlaod(fromDate: String, endDate: String,financial_year:String) {
 
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callSundryDebatorPDF(Prefences.getGST_No(mContext), fromDate, endDate)
+        mViewModel.callSundryDebatorPDF(Prefences.getGST_No(mContext), fromDate, endDate,financial_year)
 //        mViewModel.callPdffGenerateTrialBalance("03demodemo",fromDate,endDate)
             .observe(mContext, object : Observer<PDFGeneratorReponse> {
                 override fun onChanged(resp: PDFGeneratorReponse?) {

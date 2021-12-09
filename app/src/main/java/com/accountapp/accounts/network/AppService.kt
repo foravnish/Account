@@ -36,8 +36,8 @@ interface AppService {
 
 
 
-    @GET(NetworkConstants.READ_COMPANY + "/{gstNo}")
-    fun callReadCompany(@Path("gstNo") gstNo: String): Call<SignUpResponse>
+    @GET(NetworkConstants.READ_COMPANY + "/{gstNo}"+"/{session}")
+    fun callReadCompany(@Path("gstNo") gstNo: String,@Path("session") session: String): Call<SignUpResponse>
 
     @FormUrlEncoded
     @POST(NetworkConstants.COMPANY_LIST_SEARCH)
@@ -45,11 +45,11 @@ interface AppService {
 
 //    COMPANY_LIST_LADGER Api
     @GET(NetworkConstants.COMPANY_LIST_LADGER + "/{gstNo}"+ "/{acc_no}"+ "/{fromDate}"+ "/{endDate}")
-    fun callLadgerList(@Path("gstNo") gstNo: String?, @Path("acc_no") acc_no: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<LadgerListResponse>
+    fun callLadgerList(@Path("gstNo") gstNo: String?, @Path("acc_no") acc_no: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<LadgerListResponse>
 
 //    PDF_GENERATOR Api
     @GET(NetworkConstants.PDF_GENERATOR + "/{gstNo}"+ "/{acc_no}"+ "/{fromDate}"+ "/{endDate}")
-    fun callPdffGenerateApi(@Path("gstNo") gstNo: String, @Path("acc_no") acc_no: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
+    fun callPdffGenerateApi(@Path("gstNo") gstNo: String, @Path("acc_no") acc_no: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<PDFGeneratorReponse>
 
     //Forgot Password API
     @FormUrlEncoded
@@ -82,30 +82,30 @@ interface AppService {
 
     //   My Trial Blance Api
     @GET(NetworkConstants.TRIAL_BALANCE +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
-    fun callTrialBalanceList(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<TrialBalanceRespone>
+    fun callTrialBalanceList(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<TrialBalanceRespone>
 
 
     //    PDF_GENERATOR Trial Balance Api
     @GET(NetworkConstants.TRIAL_BALANCE_PDF + "/{gstNo}"+ "/{fromDate}"+ "/{endDate}")
-    fun callPdffGenerateTrialBalance(@Path("gstNo") gstNo: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
+    fun callPdffGenerateTrialBalance(@Path("gstNo") gstNo: String,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<PDFGeneratorReponse>
 
 
     //   Sundry Cradator
     @GET(NetworkConstants.SUNDRY_CR +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
-    fun callSundryCradator(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<TrialBalanceRespone>
+    fun callSundryCradator(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<TrialBalanceRespone>
 
     //   Sundry Cradator PDF
     @GET(NetworkConstants.SUNDRY_CR_PDF +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
-    fun callSundryCradatorPDF(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
+    fun callSundryCradatorPDF(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<PDFGeneratorReponse>
 
 
     //   Sundry Dabator
     @GET(NetworkConstants.SUNDRY_DR +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
-    fun callSundryDebator(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<TrialBalanceRespone>
+    fun callSundryDebator(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<TrialBalanceRespone>
 
     //   Sundry Dabator pdf
     @GET(NetworkConstants.SUNDRY_DR_PDF +"/{gstNo}"+ "/{fromDate}"+ "/{endDate}" )
-    fun callSundryDebatorPDF(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String): Call<PDFGeneratorReponse>
+    fun callSundryDebatorPDF(@Path("gstNo") gstNo: String?,@Path("fromDate") fromDate: String?, @Path("endDate") endDate: String,@Query("financial_year") financial_year:String): Call<PDFGeneratorReponse>
 
     @FormUrlEncoded
     @POST(NetworkConstants.EDIT_PROFILE)
@@ -115,7 +115,8 @@ interface AppService {
         @Field("company_name") company_name: String,
         @Field("email") status: String,
         @Field("address") mobile: String,
-        @Field("city") city: String
+        @Field("city") city: String,
+        @Field("mobile") mobileNo: String
 
     ): Call<LoginResponse>
 

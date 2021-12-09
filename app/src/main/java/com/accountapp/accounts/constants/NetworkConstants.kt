@@ -5,8 +5,8 @@ package network
  */
 object NetworkConstants {
 
-    const val BASE_URL: String = "https://evershinesoftwares.com/Api/"
-//    const val BASE_URL: String = "https://murtifood.com/api/"
+//    const val BASE_URL: String = "https://evershinesoftwares.com/Api/"
+    const val BASE_URL: String = "https://testing.evershinesoftwares.com/Api/"
 
     //   Note:  Be remember Base URL must be change in 'network_security_config.xml' file as well.
 

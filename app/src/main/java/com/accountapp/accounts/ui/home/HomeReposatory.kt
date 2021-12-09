@@ -12,9 +12,9 @@ import retrofit2.Response
 
 class HomeReposatory {
 
-    fun callReadCompany(gstNo: String): LiveData<SignUpResponse> {
+    fun callReadCompany(gstNo: String,session:String): LiveData<SignUpResponse> {
         val data = MutableLiveData<SignUpResponse>()
-        AppRetrofit.instance.callReadCompany(gstNo).enqueue(object :
+        AppRetrofit.instance.callReadCompany(gstNo,session).enqueue(object :
             Callback<SignUpResponse> {
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 data.value = null

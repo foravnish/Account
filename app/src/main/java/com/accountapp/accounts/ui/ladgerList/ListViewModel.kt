@@ -15,12 +15,12 @@ class ListViewModel: ViewModel() {
         return mRepo.callSearchData(gstNo,search)
     }
 
-    fun callLadgerList(gstNo: String?, acc_no: String,fromDate:String,endDate:String): LiveData<LadgerListResponse> {
-        return mRepo.callLadgerList(gstNo,acc_no,fromDate,endDate)
+    fun callLadgerList(gstNo: String?, acc_no: String,fromDate:String,endDate:String,financial_year:String): LiveData<LadgerListResponse> {
+        return mRepo.callLadgerList(gstNo,acc_no,fromDate,endDate,financial_year)
     }
 
-    fun callPdffGenerateApi(gstNo: String?,acc_no:String,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
-        return mRepo.callPdffGenerateApi(gstNo!!,acc_no,fromDate,endDate)
+    fun callPdffGenerateApi(gstNo: String?,acc_no:String,fromDate: String,endDate: String,financial_year:String): LiveData<PDFGeneratorReponse> {
+        return mRepo.callPdffGenerateApi(gstNo!!,acc_no,fromDate,endDate,financial_year)
     }
 
     // My Company Listing
@@ -29,12 +29,12 @@ class ListViewModel: ViewModel() {
     }
 
 // Trail balance Api
-    fun callTrialBalanceList(gstNo: String?,fromDate: String,endDate: String): LiveData<TrialBalanceRespone> {
-        return mRepo.callTrialBalanceList(gstNo!!,fromDate,endDate)
+    fun callTrialBalanceList(gstNo: String?,fromDate: String,endDate: String,financial_year:String): LiveData<TrialBalanceRespone> {
+        return mRepo.callTrialBalanceList(gstNo!!,fromDate,endDate,financial_year)
     }
 
 // Generate Tb PDF
-    fun callPdffGenerateTrialBalance(gstNo: String?,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
-        return mRepo.callPdffGenerateTrialBalance(gstNo!!,fromDate,endDate)
+    fun callPdffGenerateTrialBalance(gstNo: String?,fromDate: String,endDate: String,financial_year:String): LiveData<PDFGeneratorReponse> {
+        return mRepo.callPdffGenerateTrialBalance(gstNo!!,fromDate,endDate,financial_year)
     }
 }

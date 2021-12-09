@@ -46,13 +46,14 @@ class EditProfileActivity : BaseActivity() {
         Utility.closeKeyboard(binding.root, mContext)
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
         mViewModel.callEditProfile(
-                "" + Prefences.getUserId(mContext),
-                "" + binding.txtName.text.toString(),
-                "" + binding.txtComName.text.toString(),
-                "" + binding.txtEmail.text.toString(),
-                "" + binding.txtAddress.text.toString(),
-                "" + binding.txtCity.text.toString()
-            )
+            "" + Prefences.getUserId(mContext),
+            "" + binding.txtName.text.toString(),
+            "" + binding.txtComName.text.toString(),
+            "" + binding.txtEmail.text.toString(),
+            "" + binding.txtAddress.text.toString(),
+            "" + binding.txtCity.text.toString(),
+            "" + Prefences.getUserMobile(mContext)
+        )
             .observe(mContext, object : Observer<LoginResponse> {
                 override fun onChanged(resp: LoginResponse?) {
                     showLoadingView(
@@ -62,17 +63,17 @@ class EditProfileActivity : BaseActivity() {
                     )
                     if (resp != null) {
 
-                        Prefences.setUserName(mContext,binding.txtName.text.toString())
-                        Prefences.setUserEmailId(mContext,binding.txtEmail.text.toString())
-                        Prefences.setCompany(mContext,binding.txtComName.text.toString())
-                        Prefences.setAddress(mContext,binding.txtAddress.text.toString())
-                        Prefences.setCity(mContext,binding.txtCity.text.toString())
+                        Prefences.setUserName(mContext, binding.txtName.text.toString())
+                        Prefences.setUserEmailId(mContext, binding.txtEmail.text.toString())
+                        Prefences.setCompany(mContext, binding.txtComName.text.toString())
+                        Prefences.setAddress(mContext, binding.txtAddress.text.toString())
+                        Prefences.setCity(mContext, binding.txtCity.text.toString())
 
                         Utility.showSnackBar(binding.root, "" + resp.message)
 
                         binding.root.postDelayed({
                             val intent = Intent(mContext, ProfileFragemnt::class.java)
-                            Utility.startActivityWithLeftToRightAnimation(mContext,intent)
+                            Utility.startActivityWithLeftToRightAnimation(mContext, intent)
                         }, 1000)
 
                     } else {

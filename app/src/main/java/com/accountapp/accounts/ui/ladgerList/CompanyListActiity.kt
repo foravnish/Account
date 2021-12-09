@@ -38,7 +38,7 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
 
     private var fromDatePickerDialog: DatePickerDialog? = null
     private val dateFormatter: SimpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US) //2018-10-18 MM-dd-yyyy
-    private val dateFormatterForApi: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) //2018-10-18 MM-dd-yyyy
+    private val dateFormatterForApi: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.US) //2018-10-18 MM-dd-yyyy
     var apiDateTo:String = ""
     var apiDateFrom:String = ""
 
@@ -128,7 +128,7 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
 
 
         binding.fromDate.setOnClickListener {
-
+            var mYear= Prefences.getSessionFull(mContext)!!.substring (3, 7); // this only prints out 1 letter instead of 3
             val newCalendar = Calendar.getInstance()
             fromDatePickerDialog = DatePickerDialog(this, R.style.datepicker,
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
@@ -136,13 +136,15 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
                     newDate.set(year, monthOfYear, dayOfMonth)
                     binding.fromDate.setText(dateFormatter.format(newDate.getTime()))
                     apiDateFrom=dateFormatterForApi.format(newDate.getTime())
-                }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(
-                    Calendar.DAY_OF_MONTH))
+                },  mYear.toInt()/*newCalendar.get(Calendar.YEAR)*/,
+                3,/*newCalendar.get(Calendar.MONTH),*/
+                1/*newCalendar.get(Calendar.DAY_OF_MONTH)*/)
 //            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis
             fromDatePickerDialog!!.show()
         }
 
         binding.toDate.setOnClickListener {
+            var mYear= Prefences.getSessionFull(mContext)!!.substring (3, 7); // this only prints out 1 letter instead of 3
             val newCalendar = Calendar.getInstance()
             fromDatePickerDialog = DatePickerDialog(this, R.style.datepicker,
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
@@ -150,8 +152,9 @@ class CompanyListActiity : BaseActivity(), SearchCompanyAdapter.SearchClick {
                     newDate.set(year, monthOfYear, dayOfMonth)
                     binding.toDate.setText(dateFormatter.format(newDate.getTime()))
                     apiDateTo=dateFormatterForApi.format(newDate.getTime())
-                }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(
-                    Calendar.DAY_OF_MONTH))
+                },  mYear.toInt()/*newCalendar.get(Calendar.YEAR)*/,
+                3,/*newCalendar.get(Calendar.MONTH),*/
+                1/*newCalendar.get(Calendar.DAY_OF_MONTH)*/)
 //            fromDatePickerDialog!!.datePicker.minDate = newCalendar.timeInMillis
             fromDatePickerDialog!!.show()
         }

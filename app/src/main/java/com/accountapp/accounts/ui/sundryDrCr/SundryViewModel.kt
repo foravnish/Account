@@ -16,21 +16,21 @@ class SundryViewModel: ViewModel() {
 
 
     //Sundry cradator Api
-    fun callSundryCredator(gstNo: String?,fromDate: String,endDate: String): LiveData<TrialBalanceRespone> {
-        return mRepo.callSundryCredator(gstNo!!,fromDate,endDate)
+    fun callSundryCredator(gstNo: String?,fromDate: String,endDate: String,financial_year:String): LiveData<TrialBalanceRespone> {
+        return mRepo.callSundryCredator(gstNo!!,fromDate,endDate,financial_year)
     }
 
     //Sundry cradator Api PDF
-    fun callSundryCredatorPDF(gstNo: String?,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
-        return mRepo.callSundryCredatorPDF(gstNo!!,fromDate,endDate)
+    fun callSundryCredatorPDF(gstNo: String?,fromDate: String,endDate: String,financial_year:String): LiveData<PDFGeneratorReponse> {
+        return mRepo.callSundryCredatorPDF(gstNo!!,fromDate,endDate,financial_year)
     }
 
     //Sundry Debator Api
-    fun callSundryDebator(gstNo: String?,fromDate: String,endDate: String): LiveData<TrialBalanceRespone> {
-        return mRepo.callSundryDebator(gstNo!!,fromDate,endDate)
+    fun callSundryDebator(gstNo: String?,fromDate: String,endDate: String,financial_year:String): LiveData<TrialBalanceRespone> {
+        return mRepo.callSundryDebator(gstNo!!,fromDate,endDate,financial_year)
     }
     //Sundry Debator Api PDF
-    fun callSundryDebatorPDF(gstNo: String?,fromDate: String,endDate: String): LiveData<PDFGeneratorReponse> {
-        return mRepo.callSundryDebatorPDF(gstNo!!,fromDate,endDate)
+    fun callSundryDebatorPDF(gstNo: String?,fromDate: String,endDate: String,financial_year:String): LiveData<PDFGeneratorReponse> {
+        return mRepo.callSundryDebatorPDF(gstNo!!,fromDate,endDate,financial_year)
     }
 }

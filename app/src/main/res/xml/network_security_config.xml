@@ -2,5 +2,7 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">evershinesoftwares.com</domain>
+        <domain includeSubdomains="true">testing.evershinesoftwares.com</domain>
+
     </domain-config>
 </network-security-config>

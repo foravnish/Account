@@ -21,6 +21,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.accountapp.accounts.R
+import com.accountapp.accounts.model.response.FYModel
 import com.accountapp.accounts.ui.home.HomeActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -45,6 +46,54 @@ class Utility {
 //        } catch (e: Exception) {
 //        }
 //    }
+
+        fun getCurrentDate(format: String): String {
+//        val sdf = SimpleDateFormat("EEE, dd MMMM")
+            val sdf = SimpleDateFormat(format)
+            val currentDate = sdf.format(Date())
+            return currentDate
+        }
+
+        fun convertDateFormat(oldFormat: String?, newFormat: String?, dateString: String?): String? {
+            var sdf = SimpleDateFormat(oldFormat)
+            try {
+                val date: Date = sdf.parse(dateString)
+                sdf = SimpleDateFormat(newFormat, Locale.US)
+                return sdf.format(date)
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+            return ""
+        }
+
+
+        @JvmStatic
+        fun getLastFiveFinancialYear(): ArrayList<FYModel> {
+            val mList = ArrayList<FYModel>()
+            for (i in 0..4) {
+                val mMonth = getCurrentDate("yyyy").toInt()
+                var fy = ""
+                if (i == 0)
+                    fy = "FY " + mMonth + "-${mMonth + 1}"
+                else
+                    fy = "FY " + (mMonth - i) + "-${(mMonth - i) + 1}"
+                mList.add(
+                    FYModel(
+                        fy, "01-APR-${
+                            convertDateFormat(
+                                "yy", "yyyy", (mMonth - i).toString()
+                            )
+                        }", "31-MAR-${
+                            convertDateFormat(
+                                "yy", "yyyy", ((mMonth - i) + 1).toString()
+                            )
+                        }", false
+                    )
+                )
+            }
+            return mList
+        }
+
 
         fun closeKeyboard(view: View, context: Context) {
             if (view != null) {
@@ -125,7 +174,7 @@ class Utility {
 
         fun showSnackBar(parentLayout: View?, msg: String) {
             if (parentLayout != null) {
-                val snackBar = Snackbar.make(parentLayout, msg, Snackbar.LENGTH_SHORT)
+                val snackBar = Snackbar.make(parentLayout, msg, 5000)
                 snackBar.setActionTextColor(Color.WHITE)
 
                 val view = snackBar.view

@@ -60,6 +60,7 @@ class TrialBalanceListingActivites : BaseActivity() , TrialBalanceAdapter.TotalC
         var endDateForApi=intent.getStringExtra("todateForApi")
 
         dirPath = Utility.getRootDirPath(applicationContext)
+        var financial_year= Prefences.getSessionFull(mContext)!!.substring (3, 7);
 
         if ( endDate.equals("")){
 //            selectedDate="1-Apr-"+currentYear+" to- "+ currentDate
@@ -77,11 +78,11 @@ class TrialBalanceListingActivites : BaseActivity() , TrialBalanceAdapter.TotalC
         setAdapterTrialBalance()
         mTrialBalanceCompany.setViewCallback(this)
 
-        getCompanyTrialBalanceData("",endDateForApi)
+        getCompanyTrialBalanceData("",endDateForApi!!,financial_year)
 
         binding.fab.setOnClickListener {
             if (isInternetAvailable(binding.root, mContext)) {
-                callPdfDownlaod("", endDateForApi)
+                callPdfDownlaod("", endDateForApi!!,financial_year)
             }
         }
 
@@ -98,10 +99,10 @@ class TrialBalanceListingActivites : BaseActivity() , TrialBalanceAdapter.TotalC
 
     }
 
-    private fun getCompanyTrialBalanceData(fromDate: String,endDate: String) {
+    private fun getCompanyTrialBalanceData(fromDate: String,endDate: String,financial_year:String) {
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
 
-        mViewModel.callTrialBalanceList(Prefences.getGST_No(mContext),fromDate,endDate)
+        mViewModel.callTrialBalanceList(Prefences.getGST_No(mContext),fromDate,endDate,financial_year)
 //        mViewModel.callTrialBalanceList("03demodemo",fromDate,endDate)
             .observe(mContext, object : Observer<TrialBalanceRespone> {
                 override fun onChanged(resp: TrialBalanceRespone?) {
@@ -160,10 +161,10 @@ class TrialBalanceListingActivites : BaseActivity() , TrialBalanceAdapter.TotalC
             })
     }
 
-    private fun callPdfDownlaod(fromDate: String,endDate: String) {
+    private fun callPdfDownlaod(fromDate: String,endDate: String,financial_year:String) {
 
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callPdffGenerateTrialBalance(Prefences.getGST_No(mContext),fromDate,endDate)
+        mViewModel.callPdffGenerateTrialBalance(Prefences.getGST_No(mContext),fromDate,endDate,financial_year)
 //        mViewModel.callPdffGenerateTrialBalance("03demodemo",fromDate,endDate)
             .observe(mContext, object : Observer<PDFGeneratorReponse> {
                 override fun onChanged(resp: PDFGeneratorReponse?) {

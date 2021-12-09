@@ -21,7 +21,7 @@ class SignupViewModel: ViewModel() {
         return mRepo.callAddCompany(comName,gst,status,mobile)
     }
 
-    fun callEditProfile(id: String,name: String,com_name: String,email: String,address: String,city:String): LiveData<LoginResponse> {
-        return mRepo.callEditProfile(id,name,com_name,email,address,city)
+    fun callEditProfile(id: String,name: String,com_name: String,email: String,address: String,city:String,mobile:String): LiveData<LoginResponse> {
+        return mRepo.callEditProfile(id,name,com_name,email,address,city,mobile)
     }
 }

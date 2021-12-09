@@ -12,13 +12,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.accountapp.accounts.R
-import com.accountapp.accounts.ui.companies.MyCompaniesActivity
 import com.accountapp.accounts.base.BaseFragment
-import com.accountapp.accounts.databinding.FragmentHomeBinding
+import com.accountapp.accounts.databinding.FragmentHomeNewBinding
+import com.accountapp.accounts.ui.fragment.LedgerFragment
+import com.accountapp.accounts.ui.fragment.TrailBalanceFragment
 import com.accountapp.accounts.ui.login.LoginActivity
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
-import com.accountapp.accounts.ui.profile.ProfileFragemnt
+import com.accountapp.accounts.ui.sundryDrCr.SundryCredatorFragment
+import com.accountapp.accounts.ui.sundryDrCr.SundryDebatorsFragment
 
 
 /**
@@ -42,39 +44,82 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    lateinit var binding: FragmentHomeBinding
+    lateinit var binding: FragmentHomeNewBinding
     val mContext by lazy { context }
     val mViewModel by lazy { ViewModelProviders.of(this).get(HomeViewModel::class.java) }
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_new, container, false)
         binding.txtname.setText(""+ Prefences.getCompany(mContext))
+        binding.txtDashboardDate.setText(""+ Utility.getCurrentDate("dd MMM yyyy"))
+        binding.txtFyear.setText(""+ Prefences.getSessionFull(mContext))
+
 //        binding.txtComName.setText(""+Prefences.getCompany(mContext)+"\n"+Prefences.getGST_No(mContext))
 
-        binding.btnLogout.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            Utility.startActivityWithLeftToRightAnimation(activity,intent)
+//        binding.btnLogout.setOnClickListener {
+//            val intent = Intent(activity, LoginActivity::class.java)
+//            Utility.startActivityWithLeftToRightAnimation(activity,intent)
+//
+//        }
+//        binding.btnMyCom.setOnClickListener {
+//            if (this!!.mContext?.let { it1 -> isInternetAvailable(binding.root, it1) }!!) {
+//                val intent = Intent(activity, MyCompaniesActivity::class.java)
+//                Utility.startActivityWithLeftToRightAnimation(activity, intent)
+//            }
+//        }
+//        binding.myProfile.setOnClickListener {
+//            val intent = Intent(activity, ProfileFragemnt::class.java)
+//            Utility.startActivityWithLeftToRightAnimation(activity,intent)
+//        }
+//
+//        binding.logout.setOnClickListener {
+//            openLogoutDialog()
+//
+//        }
 
-        }
-        binding.btnMyCom.setOnClickListener {
-            if (this!!.mContext?.let { it1 -> isInternetAvailable(binding.root, it1) }!!) {
-                val intent = Intent(activity, MyCompaniesActivity::class.java)
+        binding.clickLedger.setOnClickListener {
+
+            if (isInternetAvailable(binding.root,mContext!!)) {
+                val intent = Intent(activity, LedgerFragment::class.java)
                 Utility.startActivityWithLeftToRightAnimation(activity, intent)
             }
         }
-        binding.myProfile.setOnClickListener {
-            val intent = Intent(activity, ProfileFragemnt::class.java)
-            Utility.startActivityWithLeftToRightAnimation(activity,intent)
-        }
+        binding.clickTrailBal.setOnClickListener {
+            if (isInternetAvailable(binding.root,mContext!!)) {
+                val intent = Intent(activity, TrailBalanceFragment::class.java)
+                Utility.startActivityWithLeftToRightAnimation(activity, intent)
+            }
 
-        binding.logout.setOnClickListener {
-            openLogoutDialog()
+        }
+        binding.clickSudrCr.setOnClickListener {
+            if (isInternetAvailable(binding.root,mContext!!)) {
+                val intent = Intent(activity, SundryCredatorFragment::class.java)
+                Utility.startActivityWithLeftToRightAnimation(activity, intent)
+            }
+
+        }
+        binding.clickSudDr.setOnClickListener {
+            if (isInternetAvailable(binding.root,mContext!!)) {
+                val intent = Intent(activity, SundryDebatorsFragment::class.java)
+                Utility.startActivityWithLeftToRightAnimation(activity, intent)
+            }
+
+        }
+        binding.clickSaleBook.setOnClickListener {
+
+        }
+        binding.clickPurchaseBook.setOnClickListener {
+
+        }
+        binding.clickItemLedger.setOnClickListener {
+
+        }
+        binding.clickStockSummary.setOnClickListener {
 
         }
 
         return binding.root
-
 
     }
 

@@ -5,14 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    compileSdkVersion 30
+    buildToolsVersion "30.0"
     defaultConfig {
         applicationId "com.accountapp.accounts"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 6
-        versionName "1.5"
+        targetSdkVersion 30
+        versionCode 7
+        versionName "1.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,6 +24,13 @@ android {
 
     dataBinding {
         enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    kotlinOptions {
+        jvmTarget = '1.6' // Java 7 not supported by kotlinOptions jvmTarget
     }
 
 }
@@ -63,4 +70,8 @@ dependencies {
 
     implementation 'com.mindorks.android:prdownloader:0.5.0'
     implementation 'com.chaos.view:pinview:1.4.2'
+    implementation "com.github.skydoves:elasticviews:2.0.8"
+
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
 }

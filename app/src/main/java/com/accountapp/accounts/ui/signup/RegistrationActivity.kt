@@ -112,7 +112,7 @@ class RegistrationActivity : BaseActivity() {
         val password = binding.txtPasword.text.toString()
         val companyName = binding.txtComName.text.toString()
         val email = binding.txtEmail.text.toString()
-        val gst = binding.txtGst.text.toString()
+        val gst = binding.txtGst.text.toString().toUpperCase()
         val address = binding.txtAddress.text.toString()
         val city = binding.txtCity.text.toString()
         if (b) {
@@ -269,7 +269,6 @@ class RegistrationActivity : BaseActivity() {
                 )
             ) {
 
-                if (ValidationHelper.isValidPassword(binding.txtPasword)) {
                     if (ValidationHelper.isDataFilled(
                             binding.txtPasword,
                             getString(R.string.err_password),
@@ -282,7 +281,6 @@ class RegistrationActivity : BaseActivity() {
                                 binding.root
                             )
                         ) {
-                            if (ValidationHelper.isValidPassword(binding.txtRepeatPass)) {
                                 if (ValidationHelper.validatePasswordSameFields(
                                         binding.txtPasword,
                                         binding.txtRepeatPass,
@@ -336,12 +334,8 @@ class RegistrationActivity : BaseActivity() {
                             }
 
                         }
-                    }else{
-                        Utility.showSnackBar(binding.root, getString(R.string.err_invalid_password))
-                    }
-                } else {
-                    Utility.showSnackBar(binding.root, getString(R.string.err_invalid_password))
-                }
+
+
             }
         }
         return false

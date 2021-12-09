@@ -7,22 +7,22 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_ledger"
-        android:title="@string/title_ledger"
-        android:icon="@drawable/ic_bottom_ledger"/>
+        android:id="@+id/navigation_profile"
+        android:title="My Profile"
+        android:icon="@drawable/ic_user_"/>
 
     <item
-        android:id="@+id/navigation_tb"
-        android:icon="@drawable/ic_bottom_tb"
-        android:title="@string/title_trail_bal" />
+        android:id="@+id/navigation_my_com"
+        android:icon="@drawable/ic_sr_debate"
+        android:title="My Companies" />
 
     <item
-        android:id="@+id/navigation_s_cr"
-        android:icon="@drawable/ic_creditor"
-        android:title="@string/title_sun_cr" />
-    <item
-        android:id="@+id/navigation_s_dr"
-        android:icon="@drawable/ic_debator"
-        android:title="@string/title_sun_dr" />
+        android:id="@+id/navigation_session"
+        android:icon="@drawable/ic_calendar"
+        android:title="Session" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_s_dr"-->
+<!--        android:icon="@drawable/ic_debator"-->
+<!--        android:title="@string/title_sun_dr" />-->
 
 </menu>

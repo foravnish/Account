@@ -64,9 +64,9 @@ class SignupReposatory {
 
         return data
     }
-    fun callEditProfile(id: String,name: String,com_name: String,email: String,address: String,city:String): LiveData<LoginResponse> {
+    fun callEditProfile(id: String,name: String,com_name: String,email: String,address: String,city:String,mobile:String): LiveData<LoginResponse> {
         val data = MutableLiveData<LoginResponse>()
-        AppRetrofit.instance.callEditProfile(id,name,com_name,email,address,city).enqueue(object :
+        AppRetrofit.instance.callEditProfile(id,name,com_name,email,address,city,mobile).enqueue(object :
             Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 data.value = null

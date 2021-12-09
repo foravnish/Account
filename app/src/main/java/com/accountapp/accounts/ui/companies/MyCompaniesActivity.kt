@@ -14,6 +14,7 @@ import com.accountapp.accounts.model.response.CompanyListingResponse
 import com.accountapp.accounts.model.response.DataItemComListing
 import com.accountapp.accounts.ui.home.HomeActivity
 import com.accountapp.accounts.ui.ladgerList.ListViewModel
+import com.accountapp.accounts.ui.profile.FinancialYearActivityActivity
 import com.accountapp.accounts.utils.Prefences
 import com.accountapp.accounts.utils.Utility
 import kotlinx.android.synthetic.main.activity_my_companies.*
@@ -80,9 +81,10 @@ class MyCompaniesActivity : BaseActivity() , MyCompanyAdapter.SelectionCallback 
     }
 
     override fun onSelectCompany(company: String,gst: String) {
+
         Prefences.setCompany(mContext,company)
         Prefences.setGST_No(mContext,gst)
-        val intent = Intent(this@MyCompaniesActivity, HomeActivity::class.java)
+        val intent = Intent(this@MyCompaniesActivity, FinancialYearActivityActivity::class.java)
         Utility.startActivityWithLeftToRightAnimation(this@MyCompaniesActivity,intent)
         finish()
     }

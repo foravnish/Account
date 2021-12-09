@@ -53,7 +53,7 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
     override fun initUI() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ladger_listing)
         setToolbarWithBackIcon(
-            binding.includedToolbar.findViewById(R.id.toolbar), intent.getStringExtra("COM_NAME")
+            binding.includedToolbar.findViewById(R.id.toolbar), intent.getStringExtra("COM_NAME")!!
         )
 
         var companyName = intent.getStringExtra("COM_NAME")
@@ -80,17 +80,20 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
         dirPath = Utility.getRootDirPath(applicationContext)
 
+        var financial_year= Prefences.getSessionFull(mContext)!!.substring (3, 7);
+
         pDialog = ProgressDialog(this)
         pDialog!!.setMessage("Please wait...");
         pDialog!!.setCancelable(false);
 
         setAdapterSearchProduct()
         mLedgerCompany.setViewCallback(this)
-        getCompanyLadgerData(ACC_ID, fromDateAPi, endDateApi)
+        getCompanyLadgerData(ACC_ID!!, fromDateAPi!!, endDateApi!!,financial_year)
 
         binding.fab.setOnClickListener {
+            var financial_year= Prefences.getSessionFull(mContext)!!.substring (3, 7);
             if (isInternetAvailable(binding.root, mContext)) {
-                callPdfDownlaod(ACC_ID, fromDateAPi, endDateApi, companyName)
+                callPdfDownlaod(ACC_ID!!, fromDateAPi!!, endDateApi!!, companyName!!,financial_year)
             }
         }
     }
@@ -99,11 +102,12 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
         accId: String,
         fromDate: String,
         endDate: String,
-        companyName: String
+        companyName: String,
+        financial_year:String
     ) {
 
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
-        mViewModel.callPdffGenerateApi(Prefences.getGST_No(mContext), accId, fromDate, endDate)
+        mViewModel.callPdffGenerateApi(Prefences.getGST_No(mContext), accId, fromDate, endDate,financial_year)
             .observe(mContext, object : Observer<PDFGeneratorReponse> {
                 override fun onChanged(resp: PDFGeneratorReponse?) {
 
@@ -163,10 +167,10 @@ class LadgerListingActivity : BaseActivity(), LedgerCompanyAdapter.TotalCallback
 
     }
 
-    private fun getCompanyLadgerData(accId: String, fromDate: String, endDate: String) {
+    private fun getCompanyLadgerData(accId: String, fromDate: String, endDate: String,financial_year:String) {
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
 
-        mViewModel.callLadgerList(Prefences.getGST_No(mContext), accId, fromDate, endDate)
+        mViewModel.callLadgerList(Prefences.getGST_No(mContext), accId, fromDate, endDate,financial_year)
             .observe(mContext, object : Observer<LadgerListResponse> {
                 override fun onChanged(resp: LadgerListResponse?) {
                     showLoadingView(

@@ -12,10 +12,8 @@ class HomeViewModel : ViewModel(){
         mRepo = HomeReposatory()
     }
 
-    fun callReadCompany(gstNo: String?): LiveData<SignUpResponse> {
-        return mRepo.callReadCompany(gstNo!!)
+    fun callReadCompany(gstNo: String?,session:String): LiveData<SignUpResponse> {
+        return mRepo.callReadCompany(gstNo!!,session)
     }
-
-
 
 }

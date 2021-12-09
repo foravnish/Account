@@ -46,10 +46,11 @@ class ListReposatory {
         gstNo: String?,
         acc_no: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<LadgerListResponse> {
         val data = MutableLiveData<LadgerListResponse>()
-        AppRetrofit.instance.callLadgerList(gstNo, acc_no, fromDate, endDate)
+        AppRetrofit.instance.callLadgerList(gstNo, acc_no, fromDate, endDate,financial_year)
             .enqueue(object : Callback<LadgerListResponse> {
                 override fun onFailure(call: Call<LadgerListResponse>, t: Throwable) {
                     data.value = null
@@ -80,10 +81,11 @@ class ListReposatory {
         gstNo: String,
         acc_no: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<PDFGeneratorReponse> {
         val data = MutableLiveData<PDFGeneratorReponse>()
-        AppRetrofit.instance.callPdffGenerateApi(gstNo, acc_no, fromDate, endDate).enqueue(object :
+        AppRetrofit.instance.callPdffGenerateApi(gstNo, acc_no, fromDate, endDate,financial_year).enqueue(object :
             Callback<PDFGeneratorReponse> {
             override fun onFailure(call: Call<PDFGeneratorReponse>, t: Throwable) {
                 data.value = null
@@ -144,10 +146,11 @@ class ListReposatory {
     fun callTrialBalanceList(
         gstNo: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<TrialBalanceRespone> {
         val data = MutableLiveData<TrialBalanceRespone>()
-        AppRetrofit.instance.callTrialBalanceList(gstNo, fromDate, endDate)
+        AppRetrofit.instance.callTrialBalanceList(gstNo, fromDate, endDate,financial_year)
             .enqueue(object : Callback<TrialBalanceRespone> {
                 override fun onFailure(call: Call<TrialBalanceRespone>, t: Throwable) {
                     data.value = null
@@ -179,10 +182,11 @@ class ListReposatory {
     fun callPdffGenerateTrialBalance(
         gstNo: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<PDFGeneratorReponse> {
         val data = MutableLiveData<PDFGeneratorReponse>()
-        AppRetrofit.instance.callPdffGenerateTrialBalance(gstNo, fromDate, endDate).enqueue(object :
+        AppRetrofit.instance.callPdffGenerateTrialBalance(gstNo, fromDate, endDate,financial_year).enqueue(object :
             Callback<PDFGeneratorReponse> {
             override fun onFailure(call: Call<PDFGeneratorReponse>, t: Throwable) {
                 data.value = null

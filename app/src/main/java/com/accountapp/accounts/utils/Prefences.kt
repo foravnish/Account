@@ -18,6 +18,8 @@ object Prefences {
     lateinit var userAge: SharedPreferences
     lateinit var pinCode: SharedPreferences
     lateinit var pinCodeTemp: SharedPreferences
+    lateinit var session: SharedPreferences
+    lateinit var sessionFull: SharedPreferences
     lateinit var appLock: SharedPreferences
 
     var USER_ID = "USER_ID"
@@ -30,6 +32,8 @@ object Prefences {
     var USER_AGE = "USER_AGE"
     var PIN_CODE = "PIN_CODE"
     var PIN_CODE_TEMP = "PIN_CODE_TEMP"
+    var SESSION = "SESSION"
+    var SESSION_FULL = "SESSION_FULL"
     var APP_LOCK_PASSWORD = "APP_LOCK_PASSWORD"
 
 
@@ -171,7 +175,7 @@ object Prefences {
 //    Temp Only
     // pref Company Value
     fun setCompany(context: Context, `is`: String) {
-        pinCodeTemp = PreferenceManager.getDefaultSharedPreferences(context)
+    pinCodeTemp = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = pinCodeTemp.edit()
         editor.putString(PIN_CODE_TEMP, `is`)
         editor.commit()
@@ -182,8 +186,32 @@ object Prefences {
         return pinCodeTemp.getString(PIN_CODE_TEMP, "")
     }
 
+    fun setSession(context: Context, `is`: String) {
+        session = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor = session.edit()
+        editor.putString(SESSION, `is`)
+        editor.commit()
+    }
 
-// Set App Lock Password
+    fun getSession(context: Context?): String? {
+        session = PreferenceManager.getDefaultSharedPreferences(context)
+        return session.getString(SESSION, "")
+    }
+
+
+    fun setSessionFull(context: Context, `is`: String) {
+        sessionFull = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor = sessionFull.edit()
+        editor.putString(SESSION_FULL, `is`)
+        editor.commit()
+    }
+
+    fun getSessionFull(context: Context?): String? {
+        sessionFull = PreferenceManager.getDefaultSharedPreferences(context)
+        return sessionFull.getString(SESSION_FULL, "")
+    }
+
+    // Set App Lock Password
     fun setAppLock(context: Context, iss: Boolean) {
     appLock = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = appLock.edit()

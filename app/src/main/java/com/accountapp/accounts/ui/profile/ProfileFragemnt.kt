@@ -64,7 +64,7 @@ class ProfileFragemnt : BaseActivity() {
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item!!.getItemId()) {
             R.id.menu_edit -> {
                 Utility.startActivityWithLeftToRightAnimation(

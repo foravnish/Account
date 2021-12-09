@@ -32,6 +32,12 @@
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.signup.RegistrationActivity" />
         <activity android:name=".ui.profile.ProfileFragemnt" />
+        <activity android:name=".ui.profile.FinancialYearActivityActivity"/>
+        <activity android:name=".ui.fragment.LedgerFragment"/>
+        <activity android:name=".ui.fragment.TrailBalanceFragment"/>
+        <activity android:name=".ui.sundryDrCr.SundryCredatorFragment"/>
+        <activity android:name=".ui.sundryDrCr.SundryDebatorsFragment"/>
+
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

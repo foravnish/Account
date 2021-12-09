@@ -74,7 +74,7 @@ class AddCompanyActivity : BaseActivity() {
         Utility.closeKeyboard(binding.root, mContext)
         showLoadingView(true, binding.loadingView.loadingIndicator, binding.loadingView.container)
         val comName = binding.etCompany.text.toString()
-        val gstNo = binding.etGst.text.toString()
+        val gstNo = binding.etGst.text.toString().toUpperCase()
         if (b) {
             status = "1"
         } else {

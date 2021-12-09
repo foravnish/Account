@@ -17,10 +17,11 @@ class SundryReposatory {
     fun callSundryCredator(
         gstNo: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<TrialBalanceRespone> {
         val data = MutableLiveData<TrialBalanceRespone>()
-        AppRetrofit.instance.callSundryCradator(gstNo, fromDate, endDate)
+        AppRetrofit.instance.callSundryCradator(gstNo, fromDate, endDate,financial_year)
             .enqueue(object : Callback<TrialBalanceRespone> {
                 override fun onFailure(call: Call<TrialBalanceRespone>, t: Throwable) {
                     data.value = null
@@ -52,10 +53,11 @@ class SundryReposatory {
     fun callSundryCredatorPDF(
         gstNo: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<PDFGeneratorReponse> {
         val data = MutableLiveData<PDFGeneratorReponse>()
-        AppRetrofit.instance.callSundryCradatorPDF(gstNo, fromDate, endDate)
+        AppRetrofit.instance.callSundryCradatorPDF(gstNo, fromDate, endDate,financial_year)
             .enqueue(object : Callback<PDFGeneratorReponse> {
                 override fun onFailure(call: Call<PDFGeneratorReponse>, t: Throwable) {
                     data.value = null
@@ -89,10 +91,11 @@ class SundryReposatory {
     fun callSundryDebator(
         gstNo: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<TrialBalanceRespone> {
         val data = MutableLiveData<TrialBalanceRespone>()
-        AppRetrofit.instance.callSundryDebator(gstNo, fromDate, endDate)
+        AppRetrofit.instance.callSundryDebator(gstNo, fromDate, endDate,financial_year)
             .enqueue(object : Callback<TrialBalanceRespone> {
                 override fun onFailure(call: Call<TrialBalanceRespone>, t: Throwable) {
                     data.value = null
@@ -124,10 +127,11 @@ class SundryReposatory {
     fun callSundryDebatorPDF(
         gstNo: String,
         fromDate: String,
-        endDate: String
+        endDate: String,
+        financial_year:String
     ): LiveData<PDFGeneratorReponse> {
         val data = MutableLiveData<PDFGeneratorReponse>()
-        AppRetrofit.instance.callSundryDebatorPDF(gstNo, fromDate, endDate)
+        AppRetrofit.instance.callSundryDebatorPDF(gstNo, fromDate, endDate,financial_year)
             .enqueue(object : Callback<PDFGeneratorReponse> {
                 override fun onFailure(call: Call<PDFGeneratorReponse>, t: Throwable) {
                     data.value = null

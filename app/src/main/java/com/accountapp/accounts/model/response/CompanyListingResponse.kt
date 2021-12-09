@@ -18,4 +18,12 @@ data class DataItemComListing(val address: String = "",
 data class CompanyListingResponse(val data: List<DataItemComListing>?,
                                   val status: String = "")
 
+data class FYModel(
+    var fy: String,
+    var fromDt: String,
+    var toDt: String,
+    var isChecked: Boolean
+)
+
+
 

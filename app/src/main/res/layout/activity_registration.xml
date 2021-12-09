@@ -247,7 +247,7 @@
                                         android:background="@drawable/selector_bg_edit_2"
                                         android:hint="@string/gst"
                                         android:maxLength="15"
-                                        android:inputType="textPersonName"
+                                        android:inputType="textCapCharacters"
                                         android:paddingBottom="2dp"
                                         android:textColor="#f0f7f4"
                                         android:textCursorDrawable="@drawable/bg_input_cursor_2"

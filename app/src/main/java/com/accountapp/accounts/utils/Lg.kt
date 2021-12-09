@@ -63,11 +63,11 @@ object Lg {
                      INFO -> android.util.Log.i(tag, msg)
                      WARN -> android.util.Log.w(tag, msg)
                      ERROR -> android.util.Log.e(tag, msg)*/
-                    VERBOSE -> android.util.Log.v(TAG, msg)
-                    DEBUG -> android.util.Log.d(TAG, msg)
-                    INFO -> android.util.Log.i(TAG, msg)
-                    WARN -> android.util.Log.w(TAG, msg)
-                    ERROR -> android.util.Log.e(TAG, msg)
+                    VERBOSE -> android.util.Log.v(TAG, msg!!)
+                    DEBUG -> android.util.Log.d(TAG, msg!!)
+                    INFO -> android.util.Log.i(TAG, msg!!)
+                    WARN -> android.util.Log.w(TAG, msg!!)
+                    ERROR -> android.util.Log.e(TAG, msg!!)
                 }
             }
         } catch (e: Exception) {
